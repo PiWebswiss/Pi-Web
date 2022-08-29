@@ -1,6 +1,3 @@
-let url = window.location.href + "";
-if(url.indexOf("http://") === 0) window.location.href = url.replace("http://", "https://");
-
 const gt = (tag, children, attributes) => {
   const element = document.createElement(tag);
   for (const key in attributes) {
@@ -47,8 +44,13 @@ const btnMail = document.getElementById("btnMail");
 btnMail.addEventListener("click", function() {location.href = "mailto:pi.web%40piweb.ch"});
 
 const mail = document.getElementById("mail");
-mail.innerText = "Mail: pi.web@piweb.ch";
+mail.addEventListener("click", function() {
+  location.href = "mailto:pi.web%40piweb.ch"
+})
+
+mail.innerHTML = "Mail:pi.web@piweb.ch";
 mail.className = "mail-text-color";
+
 
 /* footer */
 const d = new Date();

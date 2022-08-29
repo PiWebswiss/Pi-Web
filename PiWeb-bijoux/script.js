@@ -1,7 +1,3 @@
-let url = window.location.href + "";
-if(url.indexOf("http://") === 0) window.location.href = url.replace("http://", "https://");
-
-
 /* utility */
 const gt = (tag, children, attributes) => {
   const element = document.createElement(tag);
@@ -21,7 +17,7 @@ const gt = (tag, children, attributes) => {
 /* footer */
 const d = new Date();
 const footer = document.getElementById("footerPage");
-const a = gt("a", "PIWeb", { href: "https://piweb.ch/"});
-const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", { className: "no-transition white"});
+const a = gt("a", "PIWeb", { href: "https://piweb.ch"});
+const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ");
 const p = gt("p", [span, a])
 footer.appendChild(p);
