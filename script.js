@@ -49,8 +49,6 @@ btnMail.addEventListener("click", function() {location.href = "mailto:pi.web%40p
 const mail = document.getElementById("mail");
 mail.innerText = "Mail: pi.web@piweb.ch";
 mail.className = "mail-text-color";
-/* to remove !!!!! */
-console.log("to remove !", encodeURIComponent("pi.web@piweb.ch"))
 
 /* footer */
 const d = new Date();
