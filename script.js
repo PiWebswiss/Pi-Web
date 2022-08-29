@@ -44,15 +44,18 @@ function complete(){
 
 /* mail */
 const btnMail = document.getElementById("btnMail");
-btnMail.addEventListener("click", function() {location.href = "mailto:piweb%40gmail.com"});
+btnMail.addEventListener("click", function() {location.href = "mailto:pi.web%40piweb.ch"});
 
+const mail = document.getElementById("mail");
+mail.innerText = "Mail: pi.web@piweb.ch";
+mail.className = "mail-text-color";
 /* to remove !!!!! */
-console.log("to remove !", encodeURIComponent("piweb@gmail.com"))
+console.log("to remove !", encodeURIComponent("pi.web@piweb.ch"))
 
 /* footer */
 const d = new Date();
 const footer = document.getElementById("footerPage");
-const a = gt("a", "PIWeb", { href: "#"});
+const a = gt("a", "PIWeb", { href: "#", className: "a-decoration"});
 const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", { className: "no-transition white"});
 const p = gt("p", [span, a])
 footer.appendChild(p);

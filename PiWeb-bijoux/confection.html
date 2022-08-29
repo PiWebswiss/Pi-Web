@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
-<title>Bijoux Venturi</title>
+<title>Pi Web</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="./index.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+<script defer src="script.js"></script>
 
 
 <style>
@@ -81,23 +82,6 @@ body {font-family: "Arial","Helvetica", sans-serif}
 
 <script>
 
-let url = window.location.href + "";
-if(url.indexOf("http://") === 0) window.location.href = url.replace("http://", "https://");
-
-const gt = (tag, children, attributes) => {
-  const element = document.createElement(tag);
-  for (const key in attributes) {
-      element[key] = attributes[key];
-  }
-  if (children) {
-      if (typeof children === "string") element.innerText = children;
-      else if (Array.isArray(children)){
-          for (let i = 0; i < children.length; i++) element.appendChild(children[i]);
-      }else element.appendChild(children);
-  }
-  return element;
-};
-
 class Website{
   constructor(){
     this.version = "0.0.9";
@@ -136,7 +120,7 @@ class NavBar{
             i:false,
           },{
             txt:"CONTACT",
-            href:"mailto:bijouxventure@gmail.com",
+            href:"mailto:pi.web%40piweb.ch",
             i:false,
           },{
             txt:false,
@@ -179,7 +163,7 @@ class NavBar{
         div:false,
         txt:false,
         i:"fas fa-envelope",
-        href:"mailto:bijouxventure@gmail.com",
+        href:"mailto:pi.web%40piweb.ch",
       },{
         div:false,
         txt:false,
@@ -364,7 +348,7 @@ class About{
         i:"far fa-envelope",
         p0:"Nous contacter",
         p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
-        href:"mailto:bijouxventure@gmail.com",
+        href:"mailto:pi.web%40piweb.ch",
       },
     ];
   }

@@ -11,7 +11,7 @@
   <!--<script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>-->
   <script src="https://js.stripe.com/v3/"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
-
+  <script defer src="script.js"></script>
 
 
       <style>
@@ -180,24 +180,6 @@
     </footer>>
 
 <script>
-
-
-let url = window.location.href + "";
-if(url.indexOf("http://") === 0) window.location.href = url.replace("http://", "https://");
-
-const gt = (tag, children, attributes) => {
-  const element = document.createElement(tag);
-  for (const key in attributes) {
-      element[key] = attributes[key];
-  }
-  if (children) {
-      if (typeof children === "string") element.innerText = children;
-      else if (Array.isArray(children)){
-          for (let i = 0; i < children.length; i++) element.appendChild(children[i]);
-      }else element.appendChild(children);
-  }
-  return element;
-};
 
 class Website{
   constructor(){
@@ -666,7 +648,7 @@ class NavBar{
             i:false,
           },{
             txt:"CONTACT",
-            href:"mailto:bijouxventure@gmail.com",
+            href:"mailto:pi.web%40piweb.ch",
             i:false,
           },{
             txt:false,
@@ -709,7 +691,7 @@ class NavBar{
         div:false,
         txt:false,
         i:"fas fa-envelope",
-        href:"mailto:bijouxventure@gmail.com",
+        href:"mailto:pi.web%40piweb.ch",
       },{
         div:false,
         txt:false,
@@ -1075,7 +1057,7 @@ class About{
         i:"far fa-envelope",
         p0:"Nous contacter",
         p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
-        href:"mailto:bijouxventure@gmail.com",
+        href:"mailto:pi.web%40piweb.ch",
       },
     ];
   }
@@ -1126,14 +1108,6 @@ class About{
 const app = new Website();
 app.init();
 
-
-/* footer */
-const d = new Date();
-const footer = document.getElementById("footerPage");
-const a = gt("a", "PIWeb", { href: "#"});
-const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", { className: "no-transition white"});
-const p = gt("p", [span, a])
-footer.appendChild(p);
 
 </script>
 

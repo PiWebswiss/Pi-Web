@@ -40,7 +40,7 @@ function myFunction() {
 /* footer */
 const d = new Date();
 const footer = document.getElementById("footerPage");
-const a = gt("a", "PIWeb", { href: "PIWeb", className: "w3-hover-text-blue"});
+const a = gt("a", "PIWeb", { href: "https://piweb.ch/", className: "w3-hover-text-blue"});
 const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ");
 const p = gt("p", [span, a]);
 /* footer.innerHTML = "<p>© " + d.getFullYear() + " Copyright : Powered by" + `<a class="w3-hover-text-blue" href="PIWeb">PIWeb</a></p>` */
