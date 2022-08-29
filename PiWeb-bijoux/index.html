@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <title>Pi Web</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+  <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+  
+  
+  <style>
+    
+  .w3-sofia {
+    font-family: "Sofia", cursive;
+  }
+  .flex {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    
+    }
+  .fwrap{
+    flex-wrap: wrap;  
+  }
+  body {font-family: "Arial","Helvetica", sans-serif}
+  .mySlides {width:100%;}
+  .w3-spelling {
+    text-decoration-line: underline;
+  }
+  .w3-cardV{
+    margin-right: 8px;
+  }
+  #img_carousel{
+    max-width:800px;
+  }
+  .slide_in{
+    position:relative;
+    top:0;
+    left:0;
+    opacity:1;
+    transition: opacity 500ms ease-in, -webkit-transform 500ms ease-in;
+    transition: opacity 500ms ease-in, transform 500ms ease-in;
+    transition: opacity 500ms ease-in, transform 500ms ease-in,
+      -webkit-transform 500ms ease-in;
+  }
+  .scrolled_left{
+    opacity:0;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+  .scrolled_right{
+    opacity:0;
+    -webkit-transform: translateX(50%);
+    transform: translateX(50%);
+  }
+  #about{
+    padding:128px 16px;
+  }
+  .drpd{
+    margin-top:46px;
+  }
+  
+  </style>
+    
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div id="navbar"></div>
+  
+  <!-- top Images -->
+  <div class="w3-display-container  w3-center  ">
+    <img async src="Image1.jpeg" style="width:100%"> 
+  </div>
+  
+
+  <!-- The Band Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+    <h2 class="w3-wide w3-sofia">Pi Web</h2>
+    <p class="w3-opacity w3-sofia "><i>Bienenue</i></p>
+    <p class=" w3-justify w3-sofia">Hi Welcome to Bijoux Venturi this Website is still under construction come back soon.
+      Hi Welcome to Bijoux Venturi this Website is still under construction come back soon.Hi Welcome to Bijoux Venturi this Website is still under construction come back soon.
+      Hi Welcome to Bijoux Venturi this Website is still under construction come back soon.Hi Welcome to Bijoux Venturi this Website is still under construction come back soon.
+      <a class="w3-justify w3-margin w3-hover-text-yellow " href="confection.html">En savoir plus</a>
+    </p>
+  </div>
+
+
+
+  <!-- Carousel Section --> 
+  <div id="a_carousel" class="w3-bar-item w3-center "></div>
+  <div id="img_carousel" class="w3-content 3-section"></div>
+
+  <div class=" w3-padding-32"></div>
+
+  <!-- Description Section --> 
+  <div id="slider-container"></div>
+  <!-- About Section --> 
+  <div id="about"></div>
+
+<!-- Footer -->
+<footer class="w3-container w3-center">
+  <div id="footerPage"></div>
+</footer>
+
+
+<script>
+
+let url = window.location.href + "";
+if(url.indexOf("http://") === 0) window.location.href = url.replace("http://", "https://");
+
+const gt = (tag, children, attributes) => {
+  const element = document.createElement(tag);
+  for (const key in attributes) {
+      element[key] = attributes[key];
+  }
+  if (children) {
+      if (typeof children === "string") element.innerText = children;
+      else if (Array.isArray(children)){
+          for (let i = 0; i < children.length; i++) element.appendChild(children[i]);
+      }else element.appendChild(children);
+  }
+  return element;
+};
+
+class Website{
+  constructor(){
+    this.version = "0.0.9";
+  }
+  init(){
+    /* init navbar */
+    const navbar = new NavBar();
+    navbar.render();
+
+    /* init carousel */
+    const shop = new Shop();
+    shop.carousel();
+
+    /* init description*/
+    const description = new Description();
+    description.render();
+
+    /* init about */
+    const about = new About();
+    about.render();
+  }
+}
+
+
+class NavBar{
+  constructor(){
+    this.listItemClassName = "w3-bar-item w3-button w3-hover-none w3-padding-large";
+    this.content = [
+      {
+        div:true,
+        txt:false,
+        href:"#",
+        i:"fa fa-bars",
+        dropdownClassName:"w3-bar-item w3-hide-medium w3-hide-large w3-left",
+        sublistClassName:"w3-bar-block w3-theme-l1 w3-hide w3-hide-large w3-hide-medium w3-top drpd",
+        sublist:[
+          {
+            txt:"MAGASIN",
+            href:"shop.html",
+            i:false,
+          },{
+            txt:"CONFECTION",
+            href:"confection.html",
+            i:false,
+          },{
+            txt:"CONTACT",
+            href:"mailto:bijouxventure@gmail.com",
+            i:false,
+          },{
+            txt:false,
+            href:"#",
+            i:"fa fa-search",
+          },
+        ],
+      },{
+        div:false,
+        txt:"Bijoux Venturi",
+        href:"index.html",
+        i:false,
+      },{
+        div:true,
+        txt:"MAGASIN",
+        href:"shop.html",
+        i:"fa fa-caret-down",
+        dropdownClassName:"w3-bar-item w3-dropdown-hover w3-hide-small",
+        sublistClassName:"w3-dropdown-content w3-bar-block w3-card-4 w3-theme-l1",
+        sublist:[
+          {
+            txt:"Perle",
+            href:"shop.html#Perle"
+          },{
+            txt:"Venturi",
+            href:"shop.html#Venturi"
+          },{
+            txt:"Argent",
+            href:"shop.html#Argent"
+          },{
+            txt:"Cuivre",
+            href:"shop.html#Cuivre"
+          },
+        ],
+      },{
+        txt:"CONFECTION",
+        href:"confection.html",
+        i:false,
+      },{
+        div:false,
+        txt:false,
+        i:"fas fa-envelope",
+        href:"mailto:piweb@gmail.com",
+      },{
+        div:false,
+        txt:false,
+        href:"#",
+        i:"fa fa-search",
+      },{
+        div:false,
+        txt:false,
+        href:"#cart",
+        i:"fas fa-shopping-bag",
+      },
+    ];
+  }
+  handleClick(s, e){
+    const tmp = e.currentTarget.id.split("_")
+    const listIndex = parseInt(tmp[0]);
+    const sublistIndex = parseInt(tmp[1]);
+
+    /* NavBar navigation handler */
+    switch(listIndex){
+      case 0:
+        const dropdown = document.querySelector("#navbar_sublist_0");
+        if(dropdown.className.indexOf("w3-show") === -1) dropdown.className += " w3-show";
+        else dropdown.className = dropdown.className.replace(" w3-show", "");
+
+        switch(sublistIndex){
+          case 0://to magasin
+            break;
+          case 1://to confection
+            break;
+          case 2://to contact
+            break;
+          case 3://to search
+            break;
+          default://to landing page
+            break;
+        }
+        break;
+      case 1://to Bijoux Venturi (landing page)
+        break;
+      case 2://to Magasin
+        switch(sublistIndex){
+          case 0://to Perle
+            break;
+          case 1://to Venturi
+            break;
+          case 2://to Argent
+            break;
+          case 3://to Cuivre
+            break;
+          default://to Magasin
+            break;
+        }
+        break;
+      case 3://to Confection
+        break;
+      case 4://to contact
+        break;
+      case 5://to Search
+        break;
+      case 6://to Shopping cart
+        break;
+      default://to Landing page
+        break;
+    }
+  }
+  createListItem(index){
+    const item = this.content[index];
+    if(!item.div){
+      const a = document.createElement("a");
+      a.href = item.href;
+      a.id = index + "_navbar_a";
+      a.className = this.listItemClassName + " " + this.a_classSelector(index);
+      if(item.txt) a.innerHTML = item.txt;
+      a.addEventListener("click", this.handleClick.bind(event, this));
+
+      if(item.i){
+        const icon = document.createElement("i");
+        icon.className = item.i;
+        a.appendChild(icon);
+      }
+      return a;
+    }else{
+      const div = document.createElement("div");
+      div.className = item.dropdownClassName;
+      if(index === 0) div.style.margin = "0";
+
+      const a = document.createElement("a");
+      a.href = item.href;
+      a.id = index + "_navbar_a";
+      a.className = this.listItemClassName + " " + this.a_classSelector(index);
+      if(item.txt) a.innerHTML = item.txt;
+      a.addEventListener("click", this.handleClick.bind(event, this));
+
+      if(item.i){
+        const icon = document.createElement("i");
+        icon.className = item.i;
+        a.appendChild(icon);
+      }
+      div.appendChild(a);
+
+      const listItem = this.createSublist(index, item);
+      div.appendChild(listItem);
+
+      return div;
+    }
+  }
+  a_classSelector(index){
+    switch(index){
+      case 0:
+        return "w3-hover-text-yellow w3-hide-medium w3-hide-large w3-left";
+      case 1:
+        return "w3-hover-text-yellow w3-sofia";
+      case 4:
+        return "w3-hover-text-blue w3-right";
+      case 5:
+        return "w3-hover-text-red w3-right w3-hide-small";
+      case 6 :
+        return "w3-hover-text-yellow w3-right relative";
+      default:
+        return "w3-hover-text-yellow w3-hide-small";
+    }
+  }
+  createSublist(index, item){
+    const div = document.createElement("div");
+    div.className = item.sublistClassName;
+    div.id = "navbar_sublist_" + index;
+
+    for(let i = 0; i < item.sublist.length; i++){
+      const a = document.createElement("a");
+      a.href = item.sublist[i].href;
+      a.id = index + "_" + i + "_sub_navbar_a";
+      a.className = "w3-bar-item w3-button w3-hover-none w3-hover-text-yellow w3-theme-l1";
+      if(item.sublist[i].txt) a.innerHTML = item.sublist[i].txt;
+      a.addEventListener("click", this.handleClick.bind(event, this));
+
+      if(item.sublist[i].i){
+        const icon = document.createElement("i");
+        icon.className = item.sublist[i].i;
+        a.appendChild(icon);
+      }
+      div.appendChild(a);
+    }
+
+    return div;
+  }
+  render(){
+    const navbar = document.querySelector("#navbar");
+    navbar.className = "w3-top";
+
+    const primary_container = document.createElement("div");
+    primary_container.className = "w3-bar-item w3-card w3-theme-d5";
+
+    for(let i = 0; i < this.content.length; i++){
+      const item = this.createListItem(i);
+      primary_container.appendChild(item);
+    }
+    navbar.appendChild(primary_container);
+  }
+}
+
+
+
+
+/* Carousel */
+class Shop{
+  constructor(){
+    this.index = 0;
+    this.a_className = "w3-bar-item  w3-button w3-hover-none w3-hover-text-yellow w3-xlarge nav";
+    this.i_className = "w3-sofia";
+    this.img_className = "mySlides w3-card-4 w3-circle";
+    this.items = [
+      {
+        i:"Perle",
+        src:"./Image1.jpeg",
+        href:"shop.html",//"#Perle"
+      },{
+        i:"Venturi",
+        src:"./Image2.jpeg",
+        href:"shop.html#Venturi",
+      },{
+        i:"Argent",
+        src:"./Image3.jpeg",
+        href:"shop.html#Argent",
+      },{
+        i:"Cuivre",
+        src:"./Image2.jpeg",
+        href:"shop.html#Cuivre",
+      },
+    ];
+    this.a_carousel = document.querySelector("#a_carousel");
+    this.img_carousel = document.querySelector("#img_carousel");
+  }
+  carousel() {
+    const e = {currentTarget: {id: this.index > this.items.length - 1 ? 0 : this.index}};
+    this.handleshop(this, e);
+    setTimeout(this.carousel.bind(this), 6000);
+  }
+  handleshop(s, event){
+    s.index = parseFloat(event.currentTarget.id);
+    s.render_a();
+    s.render_img();
+  }
+  render_img(){
+    const _img_ = new Image();
+    _img_.src = this.items[this.index].src;
+    _img_.className = this.img_className;
+    _img_.id = this.index + "shopB";
+    _img_.onload = () => {
+      this.img_carousel.innerHTML = "";
+      this.img_carousel.appendChild(_img_);
+      this.index++;
+    }
+  }
+  render_a(){
+    this.a_carousel.innerHTML = "";
+    for(let i = 0; i < this.items.length; i++){
+      const a = document.createElement("a");
+      a.id = i + "shopA";
+      a.href = this.items[i].href;
+      a.className = this.a_className;
+      const i_ = document.createElement("i");
+      i_.className = this.i_className;
+      i_.innerHTML = this.items[i].i;
+      a.appendChild(i_);
+      a.addEventListener("click", this.handleshop.bind(event, this));
+      this.a_carousel.appendChild(a);
+    }
+    this.a_carousel.children[this.index].style.textDecoration = "underline";// Or put color:style.color etc..
+  }
+}
+
+class Description{
+  constructor(){
+    this.content = [
+      {
+        src:"Image1.jpeg",
+        alt:"Paris",
+        width:"300",
+        height:"300",
+        title:"Clarity",
+        subtitle:"Pixels, who?",
+        p0span0:"Take photos like a pro. ",
+        p0span1:"You should buy this app because lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      },{
+        src:"Image4.jpeg",
+        alt:"Paris",
+        width:"300",
+        height:"300",
+        title:"The App",
+        subtitle:"Why buy it?",
+        p0span0:"Take photos like a pro. ",
+        p0span1:"You should buy this app because lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      },{
+        src:"Image3.jpeg",
+        alt:"Paris",
+        width:"300",
+        height:"300",
+        title:"Clarity",
+        subtitle:"Why buy it?",
+        p0span0:"Take photos like a pro. ",
+        p0span1:"You should buy this app because lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      },
+    ];
+  }
+  initObserver(){
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.2,
+    };
+
+    const slider_root = document.querySelector("#slider-container");
+    const slide_in = document.querySelectorAll(".slide_in");
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          entry.target.classList.add("scrolled_" + ["left", "right"][parseInt(entry.target.id) % 2]);
+        }else{
+          entry.target.classList.remove("scrolled_left");
+          entry.target.classList.remove("scrolled_right");
+        }
+      });
+    }, options);
+
+    slide_in.forEach(image => observer.observe(image, options));
+  }
+  createLayout(index){
+    /* card containers */
+    const secondary_container = document.createElement("div");
+    secondary_container.className = "w3-padding-64 w3-theme-l4";
+
+    const tertiary_container = document.createElement("div");
+    tertiary_container.className = "w3-row-padding";
+
+    /* Image container */
+    const img_container = document.createElement("div");
+    img_container.className = "w3-col l4 m6";
+
+    const img = document.createElement("img");
+    img.id = index + "_img_anim";
+    img.className = "w3-round w3-image w3-left slide_in scrolled_" + ["left", "right"][index % 2];
+    img.src = this.content[index].src;
+    img.alt = this.content[index].alt;
+    img.style.width = this.content[index].width;
+    img.style.height = this.content[index].height;
+    img_container.appendChild(img);
+
+     /* text container */
+    const quaternary_container = document.createElement("div");
+    quaternary_container.className = "w3-col l8 m6";
+
+    const title = document.createElement("h2");
+    title.innerHTML = this.content[index].title;
+    title.className = "w3-jumbo";
+
+    const subtitle = document.createElement("h3");
+    subtitle.innerHTML = this.content[index].subtitle;
+    subtitle.className = "w3-xxxlarge w3-text-green";
+
+    const p_0 = document.createElement("p");
+    
+    const p_0_span_0 = document.createElement("span");
+    p_0_span_0.className = "w3-xlarge";
+    p_0_span_0.innerHTML = this.content[index].p0span0;
+
+    const p_0_span_1 = document.createElement("span");
+    p_0_span_1.innerHTML = this.content[index].p0span1;
+    p_0.appendChild(p_0_span_0);
+    p_0.appendChild(p_0_span_1);
+
+    quaternary_container.appendChild(title);
+    quaternary_container.appendChild(subtitle);
+    quaternary_container.appendChild(p_0);
+
+    if(index % 2){
+      tertiary_container.appendChild(quaternary_container);
+      tertiary_container.appendChild(img_container);
+    }else{
+      tertiary_container.appendChild(img_container);
+      tertiary_container.appendChild(quaternary_container);
+    }
+
+    secondary_container.appendChild(tertiary_container);
+
+    return secondary_container;
+
+  }
+  render(){
+    const main_container = document.querySelector("#slider-container");
+
+    for(let i = 0; i < this.content.length; i++){
+      const content = this.createLayout(i);
+      main_container.appendChild(content);
+    }
+    this.initObserver();
+  }
+}
+
+
+class About{
+  constructor(){
+    this.title = "ABOUT THE COMPANY";
+    this.subtitle = "Key features of our company";
+    this.content = [
+      {
+        i:"fa fa-hand-holding-heart",
+        p0:"Confection artisanale",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        href:"#",
+      },{
+        i:"far fa-credit-card",
+        p0:"Paiement",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        href:"#",
+      },{
+        i:"fas fa-truck",
+        p0:"Livraison",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        
+      },{
+        i:"far fa-envelope",
+        p0:"Nous contacter",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        href:"mailto:bijouxventure@gmail.com",
+      },
+    ];
+  }
+  render(){
+    const about = document.querySelector("#about");
+    about.className = "w3-container";
+
+    const title = document.createElement("h3");
+    title.className = "w3-center";
+    title.innerHTML = this.title;
+
+    const subtitle = document.createElement("p");
+    subtitle.className = "w3-center w3-large";
+    subtitle.innerHTML = this.subtitle;
+
+    const primary_container = document.createElement("div");
+    primary_container.className = "w3-row-padding w3-center";
+    primary_container.style = "margin-top:64px;";
+
+    for(let i = 0; i < this.content.length; i++){
+      const minidiv = document.createElement("div");
+      minidiv.className = "w3-quarter";
+
+      const icon = document.createElement("i");
+      icon.className = this.content[i].i + " w3-margin-bottom w3-jumbo";
+
+      const p0 = document.createElement("p");
+      p0.className = "w3-large";
+      p0.innerHTML = this.content[i].p0;
+
+      const p1 = document.createElement("p");
+      p1.innerHTML = this.content[i].p1;
+
+      minidiv.appendChild(icon);
+      minidiv.appendChild(p0);
+      minidiv.appendChild(p1);
+
+      primary_container.appendChild(minidiv);
+    }
+
+    about.appendChild(title);
+    about.appendChild(subtitle);
+    about.appendChild(primary_container);
+  }
+}
+
+
+const app = new Website();
+app.init();
+
+/* footer */
+const d = new Date();
+const footer = document.getElementById("footerPage");
+const a = gt("a", "PIWeb", { href: "#"});
+const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", { className: "no-transition white"});
+const p = gt("p", [span, a])
+footer.appendChild(p);
+
+
+</script>
+
+</body>
+</html>
