@@ -17,6 +17,7 @@ a {
 
 .marge-top {
    margin-bottom: 2rem;
+
 }
 
 img {
@@ -46,7 +47,7 @@ img {
 
 .container > *{
     width: 50%;
-    margin: 2rem;
+    margin: 1rem;
     
 }
 
@@ -111,7 +112,7 @@ img {
     font-size: 3rem;
     font-family: sans-serif;
     text-align: center;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 span {
