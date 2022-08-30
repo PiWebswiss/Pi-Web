@@ -135,7 +135,7 @@ span.fade {
     display: inline-block;
     font-size: 1.5rem;
     border-radius: 8px;
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
 }
 
 .button:hover {background-color: rgb(206, 102, 33)}
