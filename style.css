@@ -47,7 +47,7 @@ img {
 
 .container > *{
     width: 50%;
-    margin: 2rem;
+    margin: 1rem;
     
 }
 
@@ -129,6 +129,7 @@ span.fade {
     display: inline-block;
     font-size: 1.5rem;
     border-radius: 8px;
+    margin-bottom: 6rem;
 }
 
 .button:hover {background-color: rgb(206, 102, 33)}
@@ -142,8 +143,8 @@ span.fade {
     display: inline-block;
     border-radius: 8px;
     font-size: 1.5rem;
-    margin: 1rem;
     margin-top: 2rem;
+    margin: 1rem;
 }
 
 .min-button:hover {background-color: rgb(206, 102, 33)}
