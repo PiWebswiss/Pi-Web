@@ -89,19 +89,24 @@ img {
 }
 
 
+@media (max-width: 600px) {
+    .title-big {
+        font-size: 2rem;
+    }
+    .big-text {
+        font-size: 2rem;
+    }
+    
+}
+
 @media (min-width: 600px) {
     .title-big {
         font-size: 3rem;
     }
     .big-text {
-        font-size: 3rem;
+        font-size: 4rem;
     }
-    .button {
-        font-size: 2rem;
-    }
-    .min-button {
-        font-size: 2rem;
-    }
+    
 }
 
 
@@ -109,6 +114,7 @@ img {
     color: white;
     font-family: sans-serif;
     text-align: center;
+
 }
 
 span {
