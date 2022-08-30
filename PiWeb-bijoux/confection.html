@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <title>Pi Web</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
 <script defer src="script.js"></script>
+<link rel="icon" href="logo 2.png" type="image/x-icon">
 
 
 <style>
@@ -77,8 +78,9 @@ body {font-family: "Arial","Helvetica", sans-serif}
 <!-- Footer -->
 <div id="about"></div>
 <footer class="w3-container w3-center">
-  <div id="footerPage"></div>
+    <div id="footerPage"></div>
 </footer>
+
 
 <script>
 
@@ -111,7 +113,7 @@ class NavBar{
         sublistClassName:"w3-bar-block w3-theme-l1 w3-hide w3-hide-large w3-hide-medium w3-top drpd",
         sublist:[
           {
-            txt:"MAGASIN",
+            txt:"SHOP",
             href:"index.shop.html",
             i:false,
           },{
@@ -135,7 +137,7 @@ class NavBar{
         i:false,
       },{
         div:true,
-        txt:"MAGASIN",
+        txt:"SHOP",
         href:"shop.html",
         i:"fa fa-caret-down",
         dropdownClassName:"w3-bar-item w3-dropdown-hover w3-hide-small",
@@ -190,7 +192,7 @@ class NavBar{
         else dropdown.className = dropdown.className.replace(" w3-show", "");
 
         switch(sublistIndex){
-          case 0://to magasin
+          case 0://to SHOP
             break;
           case 1://to confection
             break;
@@ -204,7 +206,7 @@ class NavBar{
         break;
       case 1://to Pi Web (landing page)
         break;
-      case 2://to Magasin
+      case 2://to SHOP
         switch(sublistIndex){
           case 0://to Perle
             break;
@@ -214,7 +216,7 @@ class NavBar{
             break;
           case 3://to Cuivre
             break;
-          default://to Magasin
+          default://to SHOP
             break;
         }
         break;
@@ -399,14 +401,6 @@ class About{
 
 const app = new Website();
 app.init();
-
-/* footer */
-const d = new Date();
-const footer = document.getElementById("footerPage");
-const a = gt("a", "PIWeb", { href: "#"});
-const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", { className: "no-transition white"});
-const p = gt("p", [span, a])
-footer.appendChild(p);
 
 
 </script>

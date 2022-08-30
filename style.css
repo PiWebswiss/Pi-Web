@@ -15,8 +15,12 @@ a {
     text-decoration: underline;
 }
 
+.marge-top {
+   margin-bottom: 2rem;
+}
+
 img {
-    max-width: 500px;
+    max-width: 600px;
     display: block;
     border-radius: 8px;
     object-fit: contain;
@@ -42,7 +46,7 @@ img {
 
 .container > *{
     width: 50%;
-    margin: 1rem;
+    margin: 2rem;
     
 }
 
