@@ -20,8 +20,13 @@ a {
 
 }
 
+.min-img {
+    min-width: 350px;
+}
+
 img {
     max-width: 600px;
+    
     display: block;
     border-radius: 8px;
     object-fit: contain;
@@ -88,8 +93,26 @@ img {
     max-width: 50%;
 }
 
+.min-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+
+}
+
+.min-container > *{
+    max-width: 50%;
+}
+
 
 @media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+    .no-container {
+        width: 100%;
+    }
     .title-big {
         font-size: 2rem;
     }
@@ -186,3 +209,6 @@ span.fade {
     cursor: pointer;
 }
 
+.margin {
+    margin: 1rem;
+}
