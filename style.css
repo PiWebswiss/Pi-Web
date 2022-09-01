@@ -21,7 +21,7 @@ a {
 }
 
 .min-img {
-    min-width: 350px;
+    min-width: 300px;
 }
 
 img {
@@ -110,7 +110,10 @@ img {
         width: 100%;
     }
     .title-big {
-        font-size: 2rem;
+        font-size: 1.6rem;
+    }
+    .min-button {
+        font-size: 1rem;
     }
     .big-text {
         font-size: 2rem;
@@ -124,6 +127,9 @@ img {
     }
     .big-text {
         font-size: 4rem;
+    }
+    .min-button {
+        font-size: 1.5rem;
     }
     
 }
@@ -167,7 +173,6 @@ span.fade {
     text-align: center;
     display: inline-block;
     border-radius: 8px;
-    font-size: 1.5rem;
     margin-top: 2rem;
     margin: 1rem;
 }
