@@ -20,12 +20,9 @@ a {
 
 }
 
-.min-img {
-    min-width: 300px;
-}
 
 img {
-    max-width: 600px;
+    max-width: 330px;
     display: block;
     border-radius: 8px;
     object-fit: contain;
@@ -46,11 +43,11 @@ img {
 
 }
 
-.container > *{
+/* .container > *{
     width: 50%;
     margin: 1rem;
     
-}
+} */
 
 .container-white {
     background-color: white;
@@ -78,7 +75,6 @@ img {
 
 .hero-container {
     display: flex;
-    background-color: black;
     color: white;
     align-items: center;
     justify-content: space-evenly;
@@ -99,6 +95,7 @@ img {
 
 .min-container > *{
     max-width: 50%;
+
 }
 
 
@@ -161,6 +158,7 @@ span.fade {
     font-size: 1.5rem;
     border-radius: 8px;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .button:hover {background-color: rgb(206, 102, 33)}
@@ -214,3 +212,6 @@ span.fade {
     margin: 1rem;
 }
 
+.color-black {
+    
+}
