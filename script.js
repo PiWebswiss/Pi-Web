@@ -44,9 +44,7 @@ const btnMail = document.getElementById("btnMail");
 btnMail.addEventListener("click", function() {location.href = "mailto:pi.web%40piweb.ch"});
 
 const mail = document.getElementById("mail");
-mail.addEventListener("click", function() {
-  location.href = "mailto:pi.web%40piweb.ch"
-})
+mail.addEventListener("click", function() {location.href = "mailto:pi.web%40piweb.ch"})
 
 mail.innerHTML = "Mail:pi.web@piweb.ch";
 mail.className = "mail-text-color";
@@ -56,6 +54,6 @@ mail.className = "mail-text-color";
 const d = new Date();
 const footer = document.getElementById("footerPage");
 const a = gt("a", "PIWeb", { href: "#", className: "a-decoration"});
-const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", { className: "no-transition white"});
+const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", {className: "no-transition white"});
 const p = gt("p", [span, a])
 footer.appendChild(p);
