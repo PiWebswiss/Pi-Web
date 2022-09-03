@@ -15,9 +15,13 @@ a {
     text-decoration: underline;
 }
 
-.marge-top {
+.marge-buttom {
    margin-bottom: 2rem;
 
+}
+
+.marge-top {
+    margin-top: 2rem;
 }
 
 
@@ -212,6 +216,4 @@ span.fade {
     margin: 1rem;
 }
 
-.color-black {
-    
-}
+
