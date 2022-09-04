@@ -43,8 +43,8 @@ function complete(){
 const btnMail = document.getElementById("btnMail");
 btnMail.addEventListener("click", function() {location.href = "mailto:pi.web%40piweb.ch"});
 
-const mail = document.getElementById("mail");
-mail.addEventListener("click", function() {location.href = "mailto:pi.web%40piweb.ch"})
+/* const mail = document.getElementById("mail");
+mail.addEventListener("click", function() {location.href = "mailto:pi.web%40piweb.ch"}) */
 
 mail.innerHTML = "Mail:pi.web@piweb.ch";
 mail.className = "mail-text-color";

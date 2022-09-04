@@ -212,7 +212,7 @@ span.fade {
 
 .mail-text-color {
     color: rgb(237, 131, 10);
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .margin {
