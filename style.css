@@ -62,7 +62,7 @@ img {
 
 
 .grad {
-    background: linear-gradient(180deg, rgba(2,0,36,1) 96%, rgb(213, 212, 220) 100%);
+    background: linear-gradient(180deg, rgb(1, 0, 19) 98%, rgb(213, 212, 220) 100%);
 }
 
 .grad2 {
