@@ -137,16 +137,16 @@ class NavBar{
         sublist:[
           {
             txt:"Perle",
-            href:"#Perle"
+            href:"shop.html#Perle"
           },{
             txt:"Venturi",
-            href:"#Venturi"
+            href:"shop.html#Venturi"
           },{
             txt:"Argent",
-            href:"#Argent"
+            href:"shop.html#Argent"
           },{
             txt:"Cuivre",
-            href:"#Cuivre"
+            href:"shop.html#Cuivre"
           },
         ],
       },{
@@ -166,7 +166,7 @@ class NavBar{
       },{
         div:false,
         txt:false,
-        href:"#",
+        href:"#cart",
         i:"fas fa-shopping-bag",
       },
     ];
@@ -184,7 +184,7 @@ class NavBar{
         else dropdown.className = dropdown.className.replace(" w3-show", "");
 
         switch(sublistIndex){
-          case 0://to SHOP
+          case 0://to magasin
             break;
           case 1://to confection
             break;
@@ -198,7 +198,7 @@ class NavBar{
         break;
       case 1://to Pi Web (landing page)
         break;
-      case 2://to SHOP
+      case 2://to Magasin
         switch(sublistIndex){
           case 0://to Perle
             break;
@@ -208,7 +208,7 @@ class NavBar{
             break;
           case 3://to Cuivre
             break;
-          default://to SHOP
+          default://to Magasin
             break;
         }
         break;
@@ -276,7 +276,7 @@ class NavBar{
       case 5:
         return "w3-hover-text-red w3-right w3-hide-small";
       case 6 :
-        return "w3-hover-text-yellow w3-right";
+        return "w3-hover-text-yellow w3-right relative";
       default:
         return "w3-hover-text-yellow w3-hide-small";
     }
@@ -318,6 +318,8 @@ class NavBar{
     navbar.appendChild(primary_container);
   }
 }
+
+
 class About{
   constructor(){
     this.title = "ABOUT THE COMPANY";
