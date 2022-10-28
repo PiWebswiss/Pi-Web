@@ -26,6 +26,8 @@ a {
 
 
 img {
+    width: auto;
+    height: auto;
     max-width: 330px;
     display: block;
     border-radius: 8px;
