@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<header>
+<head>
   <title>Pi Web</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./index.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-  <!--<script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>-->
-  <script src="https://js.stripe.com/v3/"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
   <script defer src="script.js"></script>
   <link rel="icon" href="logo 2.png" type="image/x-icon">
-
+</head>
 
       <style>
         
@@ -147,16 +145,18 @@
       }
 
       </style>
-      
-</header>
 
 <body>
 
-<!-- Navbar -->
-<div id="navbar"></div>
+   
+  <header>
+    <!-- Navbar -->
+    <div id="navbar"></div> 
+  </header>
 
 
 
+  <main>
      <!-- ShopPerle-->
    <!-- id par défaut p0-->
       <div id="NavPerle"></div> 
@@ -179,7 +179,9 @@
     <footer class="w3-container w3-center">
       <div id="footerPage"></div>
     </footer>>
-
+  
+  </main>
+  
 <script>
 
 class Website{
