@@ -65,10 +65,6 @@ img {
     background: linear-gradient(180deg, rgb(1, 0, 19) 98%, rgb(213, 212, 220) 100%);
 }
 
-.grad2 {
-    background: linear-gradient(0deg, rgb(30, 29, 29) 96%, rgb(217, 217, 219)  100%);
-}
-
 .grad3 {
     background: linear-gradient(0deg, rgb(71, 68, 68) 1%, rgb(30, 29, 29) 100%);
     
@@ -92,18 +88,6 @@ img {
     max-width: 50%;
 }
 
-.min-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-
-
-}
-
-.min-container > *{
-    max-width: 50%;
-
-}
 
 
 @media (max-width: 600px) {
@@ -135,7 +119,9 @@ img {
     .min-button {
         font-size: 1.5rem;
     }
-    
+    .padding-big {
+        padding: 3.5rem;
+    }
 }
 
 
@@ -166,6 +152,7 @@ span.fade {
     border-radius: 8px;
     margin-bottom: 2rem;
     width: 100%;
+    cursor: pointer;
 }
 
 .button:hover {background-color: rgb(206, 102, 33)}
@@ -180,6 +167,7 @@ span.fade {
     border-radius: 8px;
     margin-top: 2rem;
     margin: 1rem;
+    cursor: pointer;
 }
 
 .min-button:hover {background-color: rgb(206, 102, 33)}
@@ -212,11 +200,9 @@ span.fade {
 
 .mail-text-color {
     color: rgb(237, 131, 10);
-    /* cursor: pointer; */
 }
 
 .margin {
     margin: 1rem;
 }
-
 
