@@ -64,7 +64,7 @@ img {
 
 
 .grad {
-    background: linear-gradient(180deg, rgb(1, 0, 20) 98% 98%, rgb(213, 212, 220) 100%);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 98% 98%, rgb(213, 212, 220) 100%);
 }
 
 .grad3 {
@@ -83,11 +83,13 @@ img {
     color: white;
     align-items: center;
     justify-content: space-evenly;
+    
 
 }
 
 .hero-container > *{
-    max-width: 50%;
+    max-width: 40%;
+    max-height: 25rem;
 }
 
 
@@ -116,16 +118,16 @@ img {
         font-size: 2rem;
     }
     .title-big {
-        font-size: 3rem;
+        font-size: 2.3rem;
     }
     .big-text {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
     .min-button {
         font-size: 1.5rem;
     }
     .padding-big {
-        padding: 3.5rem;
+        padding: 4rem;
     }
 }
 
