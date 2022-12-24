@@ -1,15 +1,21 @@
-/* paralax animation */
-window.addEventListener('scroll', function(e) {
-  
-    target = document.querySelectorAll('.scroll');
-    
-    index =  0, length = target.length;
-  
-    for (index; index < length; index++) {
-        rate = window.pageYOffset * target[index].dataset.rate;
-        target[index].style.transform = 'translate3d(0px,'+rate+'px, 0px)';
-    }
-  });
+// Select the element that you want to animate
+const element = document.querySelector('.scroll');
+
+// Set the initial state of the animation
+element.style.transform = 'translateY(100%)';
+
+// Set up a function to update the state of the animation
+function updateAnimation() {
+  // Calculate the percentage of the page that has been scrolled
+  const scrollPercentage = (window.scrollY / (document.body.offsetHeight - window.innerHeight)) * 100;
+
+  // Update the state of the animation based on the scroll percentage
+  element.style.transform = `translateY(${100 - scrollPercentage}%)`;
+}
+
+// Listen for the scroll event and update the animation on each scroll
+window.addEventListener('scroll', updateAnimation);
+
 
 
 
