@@ -156,36 +156,44 @@ span.fade {
     opacity: 1;
 }
 
-.button {
+a.button-big {
+    display: inline-block;
     background-color: rgb(216, 139, 16); 
     color: white;
     border: none;
     padding: 1rem;
     text-align: center;
-    display: inline-block;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     border-radius: 8px;
     margin-bottom: 2rem;
     width: 100%;
     cursor: pointer;
+    transition: background 250ms ease-in-out, transform 150ms ease;
 }
 
-.button:hover {background-color: rgb(206, 102, 33)}
+a.button-big:hover, a.button-big:focus {
+    background-color: rgb(206, 102, 33);
+    transform: scale(1.05);
+}
 
 
-.min-button {
+a.min-button {
+    display: inline-block;
     background-color: rgba(2,0,36,1); 
+    color: white;
     border: none;
     padding: 1rem;
     text-align: center;
-    display: inline-block;
     border-radius: 8px;
-    margin-top: 2rem;
     margin: 1rem;
     cursor: pointer;
+    transition: background 250ms ease-in-out, transform 150ms ease;
 }
 
-.min-button:hover {background-color: rgb(206, 102, 33)}
+a.min-button:hover, a.min-button:focus {
+    background-color: rgb(206, 102, 33);
+    transform: scale(1.05);
+}
 
 
 .center {
