@@ -189,7 +189,7 @@ a.min-button {
     border-radius: 8px;
     margin: 1rem;
     cursor: pointer;
-    transition: background-color 250ms ease-in-out, transform 150ms ease;
+    transition: background-color 150ms ease-in-out, transform 150ms ease;
 }
 
 a.min-button:active {
