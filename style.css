@@ -171,7 +171,7 @@ a.button-big {
     transition: background 250ms ease-in-out, transform 150ms ease;
 }
 
-a.button-big:active, a.button-big:focus {
+a.button-big:active {
     background-color: rgb(206, 102, 33);
     transform: scale(1.05);
 }
@@ -179,7 +179,7 @@ a.button-big:active, a.button-big:focus {
 
 a.min-button {
     display: inline-block;
-    background-color: rgba(2,0,36,1); 
+    background-color: rgb(2,0,36,1); 
     color: white;
     border: none;
     padding: 1rem;
@@ -190,7 +190,7 @@ a.min-button {
     transition: background 250ms ease-in-out, transform 150ms ease;
 }
 
-a.min-button:active, a.min-button:focus {
+a.min-button:active {
     background-color: rgb(206, 102, 33);
     transform: scale(1.10);
 }
