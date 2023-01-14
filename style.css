@@ -192,7 +192,7 @@ a.min-button {
     transition: background-color 150ms ease-in-out, transform 150ms ease;
 }
 
-a.min-button:active {
+a.min-button:hover, a.min-button:focus {
     background-color: rgb(206, 102, 33);
     transform: scale(1.10);
 }
