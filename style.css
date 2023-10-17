@@ -1,5 +1,6 @@
 * {
    box-sizing: border-box; 
+   font-family: "Arial", sans-serif;
 }
 body {
     margin: 0;
@@ -214,8 +215,7 @@ a.min-button:hover, a.min-button:focus {
  
 .text-red {
     color: red;
-    font-size: xx-large;
-    font-family: "Times New Roman", Times, serif;
+    font-size: 3rem;
 }
 
 .no-transition {
@@ -231,3 +231,12 @@ a.min-button:hover, a.min-button:focus {
     margin: 1rem;
 }
 
+.hover-link {
+    color: red; /* Default color */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.hover-link:hover {
+    color: rgb(110, 5, 5); /* Color on hover */
+    text-decoration: rgb(110, 5, 5) underline;
+}
