@@ -16,6 +16,13 @@ a {
     text-decoration: underline;
 }
 
+.a-decoration:hover {
+    color: rgb(1, 0, 0); /* Color on hover */
+    text-decoration: underline;
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+
 .marge-buttom {
    margin-bottom: 2rem;
 
@@ -101,6 +108,15 @@ transform: scale(1.025);
     max-height: 25rem;
 }
 
+.title-span {
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.title-span.fade {
+    opacity: 1;
+}
+
 
 
 @media (max-width: 600px) {
@@ -148,16 +164,8 @@ transform: scale(1.025);
 
 }
 
-span {
-    opacity: 0;
-    transition: all 0.4s ease;
-}
 
-span.fade {
-    opacity: 1;
-}
-
-a.button-big {
+.button-big {
     display: inline-block;
     background-color: rgb(216, 139, 16); 
     color: white;
@@ -174,13 +182,13 @@ a.button-big {
     transition: background-color 150ms ease-in-out, transform 150ms ease;
 }
 
-a.button-big:active {
+.button-big:active {
     background-color: rgb(206, 102, 33);
     transform: scale(1.05);
 }
 
 
-a.min-button {
+.min-button {
     display: inline-block;
     background-color: rgb(2,0,36,1); 
     color: white;
@@ -194,7 +202,7 @@ a.min-button {
     transition: background-color 150ms ease-in-out, transform 150ms ease;
 }
 
-a.min-button:hover, a.min-button:focus {
+.min-button:hover, .min-button:focus {
     background-color: rgb(206, 102, 33);
     transform: scale(1.10);
 }
@@ -225,18 +233,22 @@ a.min-button:hover, a.min-button:focus {
 
 .mail-text-color {
     color: rgb(237, 131, 10);
+    text-decoration: underline;
+}
+
+.mail-text-color:hover {
+    color: rgb(1, 0, 0); /* Default color */
+    transition: color 0.2s; /* Smooth color transition */
+    cursor: pointer;
 }
 
 .margin {
     margin: 1rem;
 }
 
-.hover-link {
-    color: red; /* Default color */
-    transition: color 0.3s; /* Smooth color transition */
-}
 
-.hover-link:hover {
-    color: rgb(110, 5, 5); /* Color on hover */
-    text-decoration: rgb(110, 5, 5) underline;
+
+
+.padding-bottom {
+    padding-bottom: 2rem;
 }
