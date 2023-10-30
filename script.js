@@ -73,7 +73,7 @@ newButton.addEventListener("click", function() {
     location.href = "mailto:pi.web%40piweb.ch";
 });
 newButton.textContent = "Send me a mail";
-newButton.className = "button-big padding";
+newButton.className = "button-big";
 btnMail.appendChild(newButton);
 
 

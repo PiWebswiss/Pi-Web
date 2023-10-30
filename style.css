@@ -110,7 +110,7 @@ transform: scale(1.025);
 
 .title-span {
     opacity: 0;
-    transition: all 0.4s ease;
+    transition: all 1.40s ease;
 }
 
 .title-span.fade {
@@ -187,6 +187,10 @@ transform: scale(1.025);
     transform: scale(1.05);
 }
 
+.button-big:hover, .button-big:focus {
+    background-color: (206, 102, 33);
+    transform: scale(1.02);
+}
 
 .min-button {
     display: inline-block;
