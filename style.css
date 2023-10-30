@@ -228,6 +228,17 @@ transform: scale(1.025);
 .text-red {
     color: red;
     font-size: 3rem;
+
+
+}
+.text-link {
+    text-decoration: underline;
+}
+
+.text-link:hover {
+    color: rgb(1, 0, 0); /* Default color */
+    transition: color 0.2s; /* Smooth color transition */
+    cursor: pointer;
 }
 
 .no-transition {
