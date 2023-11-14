@@ -34,8 +34,8 @@ async function loadModel(path) {
 
 // Function to initialize both models
 async function initModels() {
-    fossilModel = await loadModel('https://piweb.ch/fossil-classifier-model/model.json',);
-    checkFossilModel = await loadModel('https://piweb.ch/model-fossil-vs-non/model.json');
+    fossilModel = await loadModel('file://piweb.ch/fossil-classifier-model/model.json',);
+    checkFossilModel = await loadModel('file://piweb.ch/model-fossil-vs-non/model.json');
     /* predictButton.disabled = false; */  // Enable the predict button after models are loaded
 }
 
