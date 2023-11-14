@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Pi Web</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Custom-made website">
+  <meta name="theme-color" content="black"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="static/index.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+  <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+  <script defer src="static/script.js"></script>
+  <link rel="icon" href="logo 2.png" type="image/x-icon">
+</head>
+
+<style>
+  .w3-sofia {
+      font-family: "Sofia", cursive;
+  }
+
+    .b-section{
+    padding: 48px 0;
+  }
+  @media (min-width: 600px) {
+    .b-section{
+      padding: 96px 0;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .b-section{
+      padding: 128px 0;
+    }
+  }
+  
+  </style>
+  
+ <body>
+  <header>
+    
+      <!-- Navbar -->
+    <div class="w3-top w3-black">
+      
+      <div class="w3-bar-item">
+        
+        <a class="w3-bar-item w3-button w3-hover-none w3-padding-large w3-hide-medium w3-hide-large w3-left w3-text-white w3-hover-text-white" href="javascript:void(0)" onclick="navMobile()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="index.html" class="w3-bar-item w3-button w3-hover-none w3-padding-large w3-sofia w3 w3-text-white w3-hover-text-white">Pi Web</a>
+        <a href="sharpening.html" class="w3-bar-item w3-button w3-hover-none w3-padding-large w3-hide-small w3-text-white w3-hover-text-white ">SHARPENING</a>
+        <a href="mailto:pi.web%40piweb.ch" class="w3-padding-large w3-right w3-text-white"><i class="fas fa-envelope"></i></a>
+        
+      </div>
+    </div>
+
+        <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+
+        <div id="navDemo" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+          <a href="sharpening.html" class="w3-bar-item w3-button w3-white" onclick="navMobile()">SHARPENING</a>
+          <a href="mailto:pi.web%40piweb.ch" class="w3-bar-item w3-button w3-white" onclick="navMobile()">CONTACT</a>
+        </div>
+  </header> 
+
+  <main>
+    <!-- description2-->
+    <div class="w3-container w3-black b-section">
+      <div class="w3-row-padding">
+        <div class="w3-col m6">
+          <h3>Repair by our specialists</h3>
+          <p>Our qualified specialist submits your siceaux to a detailed examination in order to judge its condition and note the defect(s).</p>
+        </div>
+        <div class="w3-col m6">
+          <img class="w3-image w3-round-large" src="IMG11.jpg" width="700" height="394">
+        </div>
+      </div>
+      </div>
+
+    <!-- description3-->
+    <div class="w3-container w3-black b-section">
+      <div class="w3-row-padding">
+        <div class="w3-col m6">
+          <img class="w3-image w3-round-large" src="IMG13.jpg" width="700" height="394">
+        </div>
+        <div class="w3-col m6">
+          <h3>Repair and maintenance</h3>
+          <p>Our qualified specialist submits your siceaux to a detailed examination in order to judge its condition and note the defect(s).</p>
+        </div>
+      </div>
+      </div>
+
+
+    <!-- description1-->
+    <div class="w3-container b-section">
+      <div class="w3-row-padding">
+        <div class="w3-col m6">
+          <h3>Your scissors</h3>
+          <p><br>Our qualified specialist submits your siceaux to a detailed examination in order to judge its condition and note the defect(s)..</p>
+        </div>
+        <div class="w3-col m6">
+          <img class="w3-image w3-round-large" src="photo1.png" width="700" height="394">
+        </div>
+      </div>
+      </div>
+
+  </main>
+
+<!-- Footer -->
+<footer class="w3-container w3-center">
+  <div id="footerPage"></div>
+</footer>
+
+
+
+</body>
+</html>

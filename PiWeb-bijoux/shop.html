@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Pi Web</title>
+  <meta name="description" content="Custom-made website">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+  <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+  <script defer src="script.js"></script>
+  <link rel="icon" href="logo 2.png" type="image/x-icon">
+</head>
+
+      <style>
+        
+      .w3-sofia {
+        font-family: "Sofia", "cursive";
+      }
+      .flex {
+        display: flex;
+        margin: 10px;
+        padding: 10px;
+      }
+      .fwrap{
+        flex-wrap: wrap;  
+      }
+      body {font-family: "Arial","Helvetica", sans-serif}
+      .mySlides {width:100%;}
+      .w3-spelling {
+        text-decoration-line: underline;
+      }
+      .w3-cardV{
+        margin-right: 8px;
+      }
+      .drpd{
+        margin-top:46px;
+      }
+      .top-pading{
+        padding-top: 100px;
+      }
+      .absolute{
+        position: absolute;
+      }
+      .relative{
+        position: relative;
+      }
+      .carticon-feedback{
+        top:0;
+        right:0;
+        padding:5px;
+        background-color:#9c0642;
+      }
+      .cartnum{
+        color:#fff;
+        font-size:0.75em;
+        font-weight:600;
+      }
+      .cart-header {
+          font-weight: bold;
+          font-size: 1.25em;
+          color: #333;
+      }
+      .cart-shipping{
+        box-sizing: border-box;
+        display: table-cell;
+        vertical-align: middle;
+        align-items: center;
+        padding: 1em 0.5em;
+      }
+      .cart-column {
+        box-sizing: border-box;
+        display: table-cell;
+        vertical-align: middle;
+        align-items: center;
+        padding: 1em 0.5em;
+      }
+      .cart-column:not(.cart-column-title):not(.cart-column-total){
+        border-bottom: 1px solid black;
+
+      }
+      .cart-column-title {
+        text-align: right;
+      }
+      .cart-table{
+        display: table;
+        width:100%;
+      }
+      .cart-row {
+          display: table-row;
+      }
+      .cart-price {
+          font-size: 1.2em;
+          color: #333;
+      }
+
+
+      .cart-item-title {
+          color: #333;
+          margin-left: .5em;
+          font-size: 1.2em;
+      }
+
+      .cart-item-image {
+          width: 75px;
+          height: auto;
+          border-radius: 10px;
+      }
+
+      .btn-danger {
+        color: white;
+        background-color: #EB5757;
+        border: none;
+        border-radius: .3em;
+        font-weight: bold;
+        margin: 0;
+        
+        
+      }
+      .cart-quantity-input:invalid{
+        color: #EB5757;
+      }
+      .cart-quantity-input {
+          border-radius: 5px;
+          border: 1px solid #56CCF2;
+          background-color: #eee;
+          color: #333;
+          padding: 0;
+          text-align: center;
+          font-size: 1.2em;
+          width: 50px;
+      }
+
+      .btn-purchase {
+          display: block;
+          font-size: 1.75em;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      .center p {
+        line-height: 1.5;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      </style>
+
+<body>
+
+   
+  <header>
+    <!-- Navbar -->
+    <div id="navbar"></div> 
+  </header>
+
+
+
+  <main>
+     <!-- ShopPerle-->
+   <!-- id par défaut p0-->
+      <div id="NavPerle"></div> 
+    <!-- ShopVenturi vo-->
+      <div id="NavVenturi"></div> 
+    <!-- ShopArgent p0-->
+      <div id="NavArgent"></div> 
+    <!-- ShopCuivre c0-->
+      <div id="NavCuivre"></div>
+    <!-- Cart--> 
+      <div id="cart"></div>
+    <!-- <div id="checkout-button"></div>-->
+   <!--  <form action="/create-checkout-session" method="POST">
+      <button class ="w3-right w3-margin-right w3-large w3-button w3-theme-d3"style="width:30%" type="submit" id="checkout-button">Checkout</button>
+    </form>-->
+      <div class="w3-padding-32"></div>
+    <!-- About Section --> 
+      <div id="about"></div>
+    <!-- Footer -->
+    <footer class="w3-container w3-center">
+      <div id="footerPage"></div>
+    </footer>>
+  
+  </main>
+  
+<script>
+
+class Website{
+  constructor(){
+    this.version = "0.0.9";
+    this.inventory = {
+      p0: {
+        src:"Image1.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Everything you need to get into the game and play with the added benefit of accurate sound.",
+        cardbtn:"s",
+        id:"p0",
+      },
+      p1: {
+        src:"Image2.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.Take photos like a pro.",
+        cardbtn:"s",
+        id:"p1",
+      },
+      p2: {
+        src:"Image3.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"p2",
+      },
+      p3: {
+        src:"Image1.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"p3",
+      },
+      v0: {
+        src:"Image1.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"v0",
+      },
+      v1: {
+        src:"Image2.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"v1",
+      },
+      v2: {
+        src:"Image3.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"v2",
+      },
+      v3: {
+        src:"Image1.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"v3",
+      },
+      a0: {
+        src:"Image1.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"a0",
+      },
+      a1: {
+        src:"Image2.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"a1",
+      },
+      a2: {
+        src:"Image3.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"a2",
+      },
+      a3: {
+        src:"Image1.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"a3",
+      },
+      c0: {
+        src:"Image1.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"c0",
+      },
+      c1: {
+        src:"Image2.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"c1",
+      },
+      c2: {
+        src:"Image3.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"c2",
+      },
+      c3: {
+        src:"Image1.jpeg" ,
+        title:"To define",
+        text0:"To define",
+        price:50,
+        cardtext:"Take photos like a pro.",
+        cardbtn:"s",
+        id:"c3",
+      },
+    };
+    this.cart = [];
+  }
+  handleCartFeedback(){
+    const iconcart = document.getElementById("6_navbar_a");
+    if(this.cart.length > 0){
+      if(this.cart.length !== 1){
+        iconcart.removeChild(iconcart.lastChild);
+      }
+      const div = document.createElement("div");
+      div.className = "absolute carticon-feedback";
+
+      const p = document.createElement("p");
+      p.className = "relative cartnum";
+      p.innerHTML = this.cart.length.toString();
+
+      div.appendChild(p);
+      iconcart.appendChild(div);
+
+    }else{
+      iconcart.removeChild(iconcart.lastChild);
+    }
+    //TODO check if correct
+    this.checkout.render(this.cart);
+  }
+  addToCart = (itemId) => {
+    this.cart.push(itemId);
+    this.handleCartFeedback();
+  }
+  removeFromCart = (itemId) => {
+    const idx = this.cart.indexOf(itemId);
+    if(idx > -1){
+      this.cart.splice(idx, 1);
+    }
+    this.handleCartFeedback();
+  }
+  handleCartAction = (action, itemId) => {
+    if(action === 1) this.addToCart(itemId);
+    else if(action === 0) this.removeFromCart(itemId);
+  }
+  init(){
+    /* init navbar */
+    this.navbar = new NavBar();
+      this.navbar.render();
+      /* init about */
+    const about = new About();
+    about.render();
+   
+    /* init navShop */
+    const shop = {
+      p: [this.inventory.p0, this.inventory.p1, this.inventory.p2, this.inventory.p3,],
+      v: [this.inventory.v0, this.inventory.v1, this.inventory.v2, this.inventory.v3,],
+      a: [this.inventory.a0, this.inventory.a1, this.inventory.a2, this.inventory.a3,],
+      c: [this.inventory.c0, this.inventory.c1, this.inventory.c2, this.inventory.c3,],
+    };
+
+    const navshop_perle = new NavShop(shop.p, "Perle", this.handleCartAction);
+    navshop_perle.render();
+
+    const navshop_venturi = new NavShop(shop.v, "Venturi", this.handleCartAction);
+    navshop_venturi.render();
+
+    const navshop_argent = new NavShop(shop.a, "Argent", this.handleCartAction);
+    navshop_argent.render();
+
+    const navshop_cuivre = new NavShop(shop.c, "Cuivre", this.handleCartAction);
+    navshop_cuivre.render();
+
+    //TODO render on own page
+    this.checkout = new Cart(this.inventory, this.cart, this.addToCart, this.removeFromCart);
+    this.checkout.render(this.cart);
+
+
+  }
+}
+class Cart{
+  constructor(inventory, cart, addToCart, removeFromCart){
+    this.container = document.getElementById("cart"); 
+    this.inventory = inventory;
+    this.cart = cart;
+    this.cartTotal = 0;
+    this.addToCart = addToCart;
+    this.removeFromCart = removeFromCart;
+  }
+  handleChange = (s,id,e) => {
+    const limit = 100;
+    const val = parseInt(e.target.value);
+    if(!isNaN(val) && val <= limit && val >= 0){
+      const numId = this.computeNumItems(id);
+      if(val > numId) this.cartAdder(val - numId, id);
+      else if(val < numId) this.cartRemover(numId - val, id);
+    }
+  }
+  cartRemover(num, id){
+    for(let i = 0; i < num; i++){
+      this.removeFromCart(id);
+    }
+  }
+  cartAdder(num, id){
+    for(let i = 0; i < num; i++){
+      this.addToCart(id);
+    }
+  }
+  computeNumItems = (id) => {
+    let numId = 0;
+    for(let i = 0; i < this.cart.length; i++){
+      if(this.cart[i] === id) numId++;
+    } 
+    return numId;
+  }
+  handleClick = (s,id,e) => {
+    const n = this.computeNumItems(id);
+    this.cartRemover(n, id);
+  }
+  //cod form https://stackoverflow.com/questions/29775797/fetch-post-json-data
+  //check https://www.webucator.com/article/how-to-send-and-receive-json-data-to-and-from-the/fle
+  handleCheckout = (s,e) => {
+    console.log(s.cart);
+    (async () => {
+      const rawResponse = await fetch("http://localhost:3000/create-checkout-session", {//change for live site
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(s.cart)
+      });
+      const json = await rawResponse.json();
+      window.location.href = await json.url;
+    })();
+  }
+    
+    
+    
+  createCart(){ 
+    //onst about = document.querySelector("#about");
+    const cart = document.querySelector("#cart");
+    cart.className = "w3-container";
+
+    const div = document.createElement("div");
+    div.className = "cart-table"; //put in w3-modal-content w3-card-4 
+
+    const title = document.createElement("h2");
+    title.className = "w3-center";
+    title.innerHTML = "Shopping cart";
+
+    const row = document.createElement("div");
+    row.className = "cart-row";
+  
+    const spn0 = document.createElement("span");
+    spn0.className = "cart-header cart-column";
+    spn0.innerHTML = "ARTICLE";
+
+    const spn1 = document.createElement("span");
+    spn1.className = "art-price cart-header cart-column";
+    spn1.innerHTML = "PRICE";
+
+    const spn2 = document.createElement("span");
+    spn2.className = "cart-quantity cart-header cart-column";
+    
+    const shipping = document.createElement("div");
+    shipping.className = "cart-row";
+
+    const carttCellShip = document.createElement("span");
+    carttCellShip.className = "cart-quantity cart-column cart-column-title";
+    carttCellShip.innerHTML = "SHIPPING";
+    
+    const priceCellShip = document.createElement("div");
+    priceCellShip.className = "cart-price cart-shipping";
+    priceCellShip.innerHTML = "FREE";
+    
+    const cartt = document.createElement("div");
+    cartt.className = "cart-row";
+
+    const carttCell0 = document.createElement("span");
+    carttCell0.className = "cart-quantity cart-header cart-column cart-column-title";
+    carttCell0.innerHTML = "TOTAL";
+
+    const btn = document.createElement("div");
+    btn.className = "w3-margin-top w3-large w3-button w3-theme-d3";
+    btn.innerHTML = "ORDER";
+    btn.onclick = this.handleCheckout.bind(event,this);
+   
+
+   /* Header */
+    cart.appendChild(title); 
+    row.appendChild(spn0);
+    row.appendChild(spn1); 
+    row.appendChild(spn2);
+    
+    div.appendChild(row);
+    
+    /* Cart */
+    const cartItems = this.generateCart();
+    for(const item of cartItems){
+      div.appendChild(item);
+    }
+
+    const carttCell1 = document.createElement("span");
+    carttCell1.className = "cart-column cart-column-total";
+    carttCell1.innerHTML = this.cartTotal.toFixed(2) + "€";
+
+    shipping.appendChild(carttCellShip);
+    shipping.appendChild(priceCellShip);
+    div.appendChild(shipping);
+
+    /* Total */
+    
+    cartt.appendChild(carttCell0);
+    cartt.appendChild(carttCell1);
+    div.appendChild(cartt);
+    cartt.appendChild(btn);
+   
+    
+    return div;
+    
+  }
+  
+  generateCart = () => {
+    this.cartTotal = 0;
+    const rows = [];
+
+    for(const key in this.inventory){
+      const item = this.inventory[key];
+      const n = this.computeNumItems(key);
+      if(n > 0){
+        this.cartTotal += (item.price * n);
+        const row = this.createRow(key, item.src, item.title, item.price.toFixed(2) + "€", n);
+        rows.push(row);
+      }
+    }
+    return rows;
+  }
+
+  createRow(id, image, title, price, num){
+  
+    const row = document.createElement("div");
+    row.className = "cart-row ";
+    
+    const div0 = document.createElement("div");
+    div0.className = " cart-column ";
+
+    const img = document.createElement("img")
+    img.src =  image;
+    img.className = "cart-item-image";
+
+    const span0 = document.createElement("span");
+    span0.innerHTML = title;
+    span0.className = "cart-item-title ";
+
+    const priceCell = document.createElement("div");
+    priceCell.className = "cart-price cart-column";
+    priceCell.innerHTML = price;
+    
+    const div1 = document.createElement("div");
+    div1.className = "cart-column";
+    
+   const inpt = document.createElement("input");
+    inpt.onchange = this.handleChange.bind(event,this,id);
+    inpt.className = "cart-quantity cart-column cart-quantity-input ";
+    inpt.type  = "number";
+    inpt.value = num;
+    inpt.max = "100";
+    inpt.min = "0";
+
+    const btn = document.createElement("button");
+    btn.id = (id + "_cart_final");
+    btn.className = "cart-item-title";
+    btn.innerHTML= "X";
+    btn.style.top = "";
+    btn.style.right = "";
+    btn.style.border = "none";
+    btn.style.backgroundColor = "transparent";
+    btn.title = btn.innerHTML;
+    btn.onclick = this.handleClick.bind(event,this, id);
+  
+    
+    
+    div0.appendChild(img);
+    div0.appendChild(span0);
+    div1.appendChild(inpt);
+    div1.appendChild(btn); 
+    
+    row.appendChild(div0);
+    row.appendChild(priceCell);
+    row.appendChild(div1);
+
+    return row;
+  
+  }
+  render(cart){
+    this.cart = cart;
+    this.container.innerHTML = "";
+    this.container.appendChild(this.createCart());
+  }
+}
+
+class NavBar{
+  constructor(){
+    this.listItemClassName = "w3-bar-item w3-button w3-hover-none w3-padding-large";
+    this.content = [
+      {
+        div:true,
+        txt:false,
+        href:"#",
+        i:"fa fa-bars",
+        dropdownClassName:"w3-bar-item w3-hide-medium w3-hide-large w3-left",
+        sublistClassName:"w3-bar-block w3-theme-l1 w3-hide w3-hide-large w3-hide-medium w3-top drpd",
+        sublist:[
+          {
+            txt:"SHOP",
+            href:"shop.html",
+            i:false,
+          },{
+            txt:"CONFECTION",
+            href:"confection.html",
+            i:false,
+          }
+        ],
+      },{
+        div:false,
+        txt:"Pi Web",
+        href:"index.html",
+        i:false,
+      },{
+        div:true,
+        txt:"SHOP",
+        href:"shop.html",
+        i:"fa fa-caret-down",
+        dropdownClassName:"w3-bar-item w3-dropdown-hover w3-hide-small",
+        sublistClassName:"w3-dropdown-content w3-bar-block w3-card-4 w3-theme-l1",
+        sublist:[
+          {
+            txt:"Perle",
+            href:"#Perle"
+          },{
+            txt:"Venturi",
+            href:"#Venturi"
+          },{
+            txt:"Argent",
+            href:"#Argent"
+          },{
+            txt:"Cuivre",
+            href:"#Cuivre"
+          },
+        ],
+      },{
+        txt:"CONFECTION",
+        href:"confection.html",
+        i:false,
+      },{
+        div:false,
+        txt:false,
+        i:"fas fa-envelope",
+        href:"mailto:pi.web%40piweb.ch",
+      },{
+        div:false,
+        txt:false,
+        href:"#",
+        i:"fa fa-search",
+      },{
+        div:false,
+        txt:false,
+        href:"#cart",
+        i:"fas fa-shopping-bag",
+      },
+    ];
+  }
+  handleClick(s, e){
+    const tmp = e.currentTarget.id.split("_")
+    const listIndex = parseInt(tmp[0]);
+    const sublistIndex = parseInt(tmp[1]);
+
+    /* NavBar navigation handler */
+    switch(listIndex){
+      case 0:
+        const dropdown = document.querySelector("#navbar_sublist_0");
+        if(dropdown.className.indexOf("w3-show") === -1) dropdown.className += " w3-show";
+        else dropdown.className = dropdown.className.replace(" w3-show", "");
+
+        switch(sublistIndex){
+          case 0://to magasin
+            break;
+          case 1://to confection
+            break;
+          case 2://to contact
+            break;
+          case 3://to search
+            break;
+          default://to landing page
+            break;
+        }
+        break;
+      case 1://to Pi Web (landing page)
+        break;
+      case 2://to Magasin
+        switch(sublistIndex){
+          case 0://to Perle
+            break;
+          case 1://to Venturi
+            break;
+          case 2://to Argent
+            break;
+          case 3://to Cuivre
+            break;
+          default://to Magasin
+            break;
+        }
+        break;
+      case 3://to Confection
+        break;
+      case 4://to contact
+        break;
+      case 5://to Search
+        break;
+      case 6://to Shopping cart
+        break;
+      default://to Landing page
+        break;
+    }
+  }
+  createListItem(index){
+    const item = this.content[index];
+    if(!item.div){
+      const a = document.createElement("a");
+      a.href = item.href;
+      a.id = index + "_navbar_a";
+      a.className = this.listItemClassName + " " + this.a_classSelector(index);
+      if(item.txt) a.innerHTML = item.txt;
+      a.addEventListener("click", this.handleClick.bind(event, this));
+
+      if(item.i){
+        const icon = document.createElement("i");
+        icon.className = item.i;
+        a.appendChild(icon);
+      }
+      return a;
+    }else{
+      const div = document.createElement("div");
+      div.className = item.dropdownClassName;
+      if(index === 0) div.style.margin = "0";
+
+      const a = document.createElement("a");
+      a.href = item.href;
+      a.id = index + "_navbar_a";
+      a.className = this.listItemClassName + " " + this.a_classSelector(index);
+      if(item.txt) a.innerHTML = item.txt;
+      a.addEventListener("click", this.handleClick.bind(event, this));
+
+      if(item.i){
+        const icon = document.createElement("i");
+        icon.className = item.i;
+        a.appendChild(icon);
+      }
+      div.appendChild(a);
+
+      const listItem = this.createSublist(index, item);
+      div.appendChild(listItem);
+
+      return div;
+    }
+  }
+  a_classSelector(index){
+    switch(index){
+      case 0:
+        return "w3-hover-text-yellow w3-hide-medium w3-hide-large w3-left";
+      case 1:
+        return "w3-hover-text-yellow w3-sofia";
+      case 4:
+        return "w3-hover-text-blue w3-right";
+      case 5:
+        return "w3-hover-text-red w3-right w3-hide-small";
+      case 6 :
+        return "w3-hover-text-yellow w3-right relative";
+      default:
+        return "w3-hover-text-yellow w3-hide-small";
+    }
+  }
+  createSublist(index, item){
+    const div = document.createElement("div");
+    div.className = item.sublistClassName;
+    div.id = "navbar_sublist_" + index;
+
+    for(let i = 0; i < item.sublist.length; i++){
+      const a = document.createElement("a");
+      a.href = item.sublist[i].href;
+      a.id = index + "_" + i + "_sub_navbar_a";
+      a.className = "w3-bar-item w3-button w3-hover-none w3-hover-text-yellow w3-theme-l1";
+      if(item.sublist[i].txt) a.innerHTML = item.sublist[i].txt;
+      a.addEventListener("click", this.handleClick.bind(event, this));
+
+      if(item.sublist[i].i){
+        const icon = document.createElement("i");
+        icon.className = item.sublist[i].i;
+        a.appendChild(icon);
+      }
+      div.appendChild(a);
+    }
+
+    return div;
+  }
+  render(){
+    const navbar = document.querySelector("#navbar");
+    navbar.className = "w3-top";
+
+    const primary_container = document.createElement("div");
+    primary_container.className = "w3-bar-item w3-card w3-theme-d5";
+
+    for(let i = 0; i < this.content.length; i++){
+      const item = this.createListItem(i);
+      primary_container.appendChild(item);
+    }
+    navbar.appendChild(primary_container);
+  }
+}
+
+
+
+/* NavShop */
+class NavShop{
+  constructor(content, name, cartAction){
+    this.content = content;
+    this.navshop = document.querySelector("#Nav" + name);//TODO append to root
+    this.popup = null;
+    this.name = name;
+    this.handleCartAction = cartAction;
+  }
+  render(){
+    this.navshop.id = this.name;//anchor hrtef=#Perle /#Argent #Cuivre etc
+    this.navshop.className = "w3-row-padding w3-padding-64";
+    const h2 = document.createElement("h2");
+    h2.className = "w3-border-bottom";
+    h2.style.textAlign = "left";
+    h2.innerHTML = this.name;
+
+    this.navshop.appendChild(h2);
+
+    for(const index in this.content){
+      this.navshop.appendChild(this.createCard(index));
+    }
+  }
+  createCard(index){
+    const card = this.content[index];
+
+    const secondary_container = document.createElement("div");
+    secondary_container.id = index.toString() + "_navcard_" + this.name.toLowerCase();
+    secondary_container.className = "w3-quarter ";
+    secondary_container.addEventListener("click", this.handleClick.bind(event, this));
+
+    const img = new Image();
+    img.src = card.src;
+    img.alt = card.title;
+    img.style = "width: 100%";
+   
+
+    const h3 = document.createElement("h3");
+    h3.innerHTML = card.title;
+    
+    const p0 = document.createElement("p");
+    p0.innerHTML = card.text0;
+
+    const price = document.createElement("p");
+    price.innerHTML = card.price.toFixed(2) + "€";
+    price.className = "w3-right ";
+   
+
+    secondary_container.appendChild(img);
+    secondary_container.appendChild(h3);
+    secondary_container.appendChild(p0);
+    secondary_container.appendChild(price);
+    
+
+    return secondary_container;
+
+  }
+  handlepopup(index){
+    if(this.popup !== null) this.killPopUp();
+    this.popup = new PopUp(index, this.content[index], this.killPopUp, this.selectOption);
+    this.popup.render();
+    this.navshop.appendChild(this.popup.container);
+  }
+  handleClick(s, e){
+    const index = parseInt(e.currentTarget.id);
+    s.handlepopup(index);
+  }
+  killPopUp = () => {
+    this.navshop.removeChild(this.navshop.lastChild);
+    this.popup = null;
+  }
+  selectOption = (e, index) => {
+    this.handleCartAction(1, this.content[index].id);
+
+    //e = event, index = index de marchandise
+    //élément acheté = this.content[index];
+    
+  }
+}
+
+
+//PopUp
+class PopUp{
+  constructor(index, item, action, onclick){
+    this.container = document.createElement("div");
+    this.index = index;
+    this.item = item;
+    this.action = action;
+    this.onclick = onclick;
+  }
+  handleClose(s, e){
+    s.kill();
+  }
+  render(){
+    this.container.id = this.index.toString() + "_card_popup";
+    this.container.className = "w3-modal";
+    this.container.style.display = "block";
+    
+
+    const div = document.createElement("div");
+    div.className = "w3-modal-content w3-card-4 w3-container";
+    div.style = "max-width:600px";
+  
+
+    const img = new Image();
+    img.src = this.item.src;
+    img.alt = this.item.title;
+    img.className = " w3-margin-top ";
+    img.style = "object-fit:contain";
+    img.style = "width: 100%";
+    
+    
+
+    const div1 = document.createElement("div"); 
+    div1.style.position = "relative";
+    
+
+
+    const div2 = document.createElement("div");
+    div2.className = " w3-padding ";
+
+    const divh = document.createElement("div");
+    divh.style.display = "flex";
+    divh.style.justifyContent = "space-between";
+
+    const h3 = document.createElement("h3");
+    h3.innerHTML = this.item.title;
+
+    const price = document.createElement("p");
+    price.innerHTML = this.item.price.toFixed(2) +"€";
+    
+    
+    const p0 = document.createElement("p");
+    p0.innerHTML = this.item.text0;
+  
+    
+
+    const p1 = document.createElement("p");
+    p1.innerHTML = this.item.cardtext;
+    
+
+    const btn = document.createElement("button");
+    btn.className = " w3-button w3-black ";
+    btn.innerHTML = "Add to the cart";
+
+    const btnclose = document.createElement("button")
+    btnclose.className = " w3-button w3-spelling w3-hover-none w3-hover-text-yellow w3-margin-right  ";
+    btnclose.innerHTML = "Close";
+    btnclose.addEventListener("click", this.handleClose.bind(event, this));
+    
+    
+    btn.title = btn.innerHTML;
+    btn.addEventListener("click", this.handleClick.bind(event, this));
+    btn.addEventListener("click", this.handleClose.bind(event, this)); // pas jolie to change
+
+    divh.appendChild(h3);
+    divh.appendChild(price);
+    div2.appendChild(divh);
+    div2.appendChild(p0);
+    div2.appendChild(p1);
+    div2.appendChild(btnclose);
+    div2.appendChild(btn);
+    
+
+    div1.appendChild(img);
+    div1.appendChild(div2);
+
+    div.appendChild(div1);
+    this.container.appendChild(div);
+  }
+  handleClick(s, e){
+    s.onclick(e, s.index);
+  }
+  kill(){
+    this.container.innerHTML = "";
+    this.action();
+  }
+}
+class About{
+  constructor(){
+    this.title = "ABOUT THE COMPANY";
+    this.subtitle = "Key features of our company";
+    this.content = [
+      {
+        i:"fa fa-hand-holding-heart",
+        p0:"Confection artisanale",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        href:"#",
+      },{
+        i:"far fa-credit-card",
+        p0:"Paiement",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        href:"https://www.flaticon.com/free-icon/credit-card_134592?term=card&related_id=134592",
+      },{
+        i:"fas fa-truck",
+        p0:"Livraison",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        
+      },{
+        i:"far fa-envelope",
+        p0:"Nous contacter",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        href:"mailto:pi.web%40piweb.ch",
+      },
+    ];
+  }
+  render(){
+    const about = document.querySelector("#about");
+    about.className = "w3-container";
+
+    const title = document.createElement("h3");
+    title.className = "w3-center";
+    title.innerHTML = this.title;
+
+    const subtitle = document.createElement("p");
+    subtitle.className = "w3-center w3-large";
+    subtitle.innerHTML = this.subtitle;
+
+    const primary_container = document.createElement("div");
+    primary_container.className = "w3-row-padding w3-center";
+    primary_container.style = "margin-top:64px;";
+
+    for(let i = 0; i < this.content.length; i++){
+      const minidiv = document.createElement("div");
+      minidiv.className = "w3-quarter";
+
+      const icon = document.createElement("i");
+      icon.className = this.content[i].i + " w3-margin-bottom w3-jumbo";
+
+      const p0 = document.createElement("p");
+      p0.className = "w3-large";
+      p0.innerHTML = this.content[i].p0;
+
+      const p1 = document.createElement("p");
+      p1.innerHTML = this.content[i].p1;
+      
+
+      minidiv.appendChild(icon);
+      minidiv.appendChild(p0);
+      minidiv.appendChild(p1);
+
+      primary_container.appendChild(minidiv);
+    }
+
+    about.appendChild(title);
+    about.appendChild(subtitle);
+    about.appendChild(primary_container);
+  }
+}
+
+const app = new Website();
+app.init();
+
+
+</script>
+
+</body>
+</html>
