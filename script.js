@@ -27,7 +27,7 @@ function simulateLoading() {
 
 // Function to load a TensorFlow.js model
 async function loadModel(path) {
-    return await tf.loadLayersModel(path);  // Load the model from a given path
+    return await tf.loadGraphModel(path);  // Load the model from a given path
 }
 
 
