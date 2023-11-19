@@ -12,10 +12,6 @@ h1 {
   text-align: center; 
 }
 
-.bottom-margin {
-  margin-bottom: 2rem;
-}
-
 .box-title {
   background-color: rgb(213, 211, 211);
   border-radius: 0.5rem;
@@ -60,7 +56,7 @@ h1 {
 }
 
 .min-padding {
-  padding: 0.5rem;
+  padding: 0.4rem;
 }
 
 
@@ -124,4 +120,34 @@ input[type="file"]::-webkit-file-upload-button:hover,
 input[type="file"]::-webkit-file-upload-button:focus {
   background-color: #000000; /* Change the background color on hover/focus */
   transform: scale(1.02); 
+}
+
+.footer-text {
+  color: black;
+  text-align: center;
+}
+
+.text-link {
+  text-decoration: underline;
+}
+
+.text-link:hover {
+  color: rgb(1, 0, 0); /* Default color */
+  transition: color 0.2s; /* Smooth color transition */
+  cursor: pointer;
+}
+
+.no-transition {
+  opacity: 1;
+  transition: none; 
+}
+
+.a-decoration {
+  color: black;
+}
+
+.a-decoration:hover {
+  color: rgb(9, 6, 59); /* Color on hover */
+  text-decoration: underline;
+  transition: color 0.3s; /* Smooth color transition */
 }

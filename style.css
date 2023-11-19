@@ -33,7 +33,7 @@ a {
 }
 
 
-img {
+.style-img {
     width: auto;
     height: auto;
     max-width: 330px;

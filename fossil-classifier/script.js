@@ -4,7 +4,21 @@ const result = document.getElementById('result');
 const showImage = document.createElement("img");
 const textResult = document.createElement("p");
 const dropAreaStyle = document.getElementsByClassName("drop-area");
-console.log(dropAreaStyle[0].style.width)
+
+// Function for creating elements, already defined in your codebase
+const gt = (tag, children, attributes) => {
+    const element = document.createElement(tag);
+    for (const key in attributes) {
+        element[key] = attributes[key];
+    }
+    if (children) {
+        if (typeof children === "string") element.innerText = children;
+        else if (Array.isArray(children)){
+            for (let i = 0; i < children.length; i++) element.appendChild(children[i]);
+        }else element.appendChild(children);
+    }
+    return element;
+  };
 
 
 
@@ -210,20 +224,23 @@ async function handleImg(file) {
                 }
                 
             } catch (error) {
-                console.log('Error handling the file:', error)
+                textResult.textContent = 'Error handling the file:' + error
             }
         } else {
-            console.log("check file")
+            textResult.textContent = "check file"
             // Handle non-image file (e.g., show message to user)
         }
     }
-
-      
-
-
 
 // Append the <p> element to the document body or any other desired element
 result.append(showImage)
 result.appendChild(textResult);
 
-/* code will only work with a server check: https://stackoverflow.com/questions/53639919/load-tensorflow-js-model-from-local-file-system-in-javascript  */
+
+/* footer */
+const d = new Date();
+const footer = document.getElementById("footerPage");
+const a = gt("a", "PIWeb", { href: "../", className: "a-decoration hover-link"});
+const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", {className: "no-transition white"});
+const p = gt("p", [span, a])
+footer.appendChild(p);
