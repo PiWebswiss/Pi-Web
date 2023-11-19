@@ -1,12 +1,11 @@
 let fossilModel, checkFossilModel;
 const imageElement = document.getElementById('fileElem');
-/* const predictButton = document.getElementById('predictButton'); */
 const result = document.getElementById('result');
 const showImage = document.createElement("img");
 const textResult = document.createElement("p");
 const dropAreaStyle = document.getElementsByClassName("drop-area");
 console.log(dropAreaStyle[0].style.width)
-/* predictButton.disabled = true; */  // Disable the predict button initially
+
 
 
 // Define progressBar in the broader scope
@@ -27,15 +26,14 @@ function simulateLoading() {
 
 // Function to load a TensorFlow.js model
 async function loadModel(path) {
-    return await tf.loadGraphModel(path);  // Load the model from a given path
+    return await tf.loadLayersModel(path);  // Load the model from a given path
 }
 
 
 // Function to initialize both models
 async function initModels() {
-    fossilModel = await loadModel('model/fossil-classifier-model/model.json');
-    checkFossilModel = await loadModel('model/model-fossil-vs-non/model.json');
-    /* predictButton.disabled = false; */  // Enable the predict button after models are loaded
+    fossilModel = await loadModel('https://piweb.ch/model/fossil-classifier-model/model.json');
+    checkFossilModel = await loadModel('https://piweb.ch/model/model-fossil-vs-non/model.json');
 }
 
 // Load models and set up the application once the models are loaded
@@ -60,11 +58,6 @@ function setupApplication() {
         }
     });
     
-    /* // Handle image upload and prediction
-    document.getElementById('predictButton').addEventListener('click', () => {
-        const file = imageElement.files[0];
-        handleImg(file);
-    }); */
 }
 
 // Function to handle drag-and-drop events
