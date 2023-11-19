@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Pi Web</title>
+<meta charset="UTF-8">
+<meta name="description" content="Custom-made website">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./index.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js"></script>
+<script defer src="script.js"></script>
+<link rel="icon" href="logo 2.png" type="image/x-icon">
+
+
+<style>
+  
+.w3-sofia {
+  font-family: "Sofia", "cursive";
+}
+.flex {
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+}
+.fwrap{
+  flex-wrap: wrap;  
+}
+body {font-family: "Arial","Helvetica", sans-serif}
+.mySlides {width:100%;}
+.w3-spelling {
+  text-decoration-line: underline;
+}
+.w3-cardV{
+  margin-right: 8px;
+}
+.drpd{
+  margin-top:46px;
+}
+.top-pading{
+  padding-top: 100px;
+}
+</style>
+<body>
+
+  <header>
+    <!-- Navbar -->
+    <div id="navbar"></div>
+  </header>
+
+  <main>
+        <!--confection-->
+    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+      <h2 class="w3-wide w3-sofia w3-padding-32">Pi Web</h2>
+      <p class="w3-justify"> Hi welcome to Pi Web this websit is still on constrution come back soon.Hi welcome to Pi Web this websit is still on constrution come back soon.
+        Hi welcome to Pi Web this websit is still on constrution come back soon.Hi welcome to Pi Web this websit is still on constrution come back soon.
+        Hi welcome to Pi Web this websit is still on constrution come back soon.
+      </p>
+    </div>
+    <!-- description1-->
+    <div class="w3-container w3-light-grey" style="padding:128px 16px">
+    <div class="w3-row-padding">
+      <div class="w3-col m6">
+        <h3>We know design.</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore.</p>
+      </div>
+      <div class="w3-col m6">
+        <img class="w3-image w3-round-large" src="Image1.jpeg" width="700" height="394">
+      </div>
+    </div>
+    </div>
+    <!-- description2-->
+    <div class="w3-container w3-theme-l4 " style="padding:128px 16px">
+    <div class="w3-row-padding">
+      <div class="w3-col m6">
+        <img class="w3-image w3-round-large" src="Image1.jpeg" width="700" height="394">
+      </div>
+      <div class="w3-col m6">
+        <h3>We know design.</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore.</p>
+      </div>
+    </div>
+    </div>
+
+  </main>
+
+<!-- Footer -->
+<div id="about"></div>
+<footer class="w3-container w3-center">
+    <div id="footerPage"></div>
+</footer>
+
+
+<script>
+
+class Website{
+  constructor(){
+    this.version = "0.0.9";
+    
+  }
+  init(){
+    /* init navbar */
+    this.navbar = new NavBar();
+      this.navbar.render();
+   /* init about */
+   const about = new About();
+    about.render();
+
+
+  }
+}
+class NavBar{
+  constructor(){
+    this.listItemClassName = "w3-bar-item w3-button w3-hover-none w3-padding-large";
+    this.content = [
+      {
+        div:true,
+        txt:false,
+        href:"#",
+        i:"fa fa-bars",
+        dropdownClassName:"w3-bar-item w3-hide-medium w3-hide-large w3-left",
+        sublistClassName:"w3-bar-block w3-theme-l1 w3-hide w3-hide-large w3-hide-medium w3-top drpd",
+        sublist:[
+          {
+            txt:"SHOP",
+            href:"shop.html",
+            i:false,
+          },{
+            txt:"CONFECTION",
+            href:"confection.html",
+            i:false,
+          }
+        ],
+      },{
+        div:false,
+        txt:"Pi Web",
+        href:"index.html",
+        i:false,
+      },{
+        div:true,
+        txt:"SHOP",
+        href:"shop.html",
+        i:"fa fa-caret-down",
+        dropdownClassName:"w3-bar-item w3-dropdown-hover w3-hide-small",
+        sublistClassName:"w3-dropdown-content w3-bar-block w3-card-4 w3-theme-l1",
+        sublist:[
+          {
+            txt:"Perle",
+            href:"shop.html#Perle"
+          },{
+            txt:"Venturi",
+            href:"shop.html#Venturi"
+          },{
+            txt:"Argent",
+            href:"shop.html#Argent"
+          },{
+            txt:"Cuivre",
+            href:"shop.html#Cuivre"
+          },
+        ],
+      },{
+        txt:"CONFECTION",
+        href:"confection.html",
+        i:false,
+      },{
+        div:false,
+        txt:false,
+        i:"fas fa-envelope",
+        href:"mailto:pi.web%40piweb.ch",
+      },{
+        div:false,
+        txt:false,
+        href:"#",
+        i:"fa fa-search",
+      },{
+        div:false,
+        txt:false,
+        href:"#cart",
+        i:"fas fa-shopping-bag",
+      },
+    ];
+  }
+  handleClick(s, e){
+    const tmp = e.currentTarget.id.split("_")
+    const listIndex = parseInt(tmp[0]);
+    const sublistIndex = parseInt(tmp[1]);
+
+    /* NavBar navigation handler */
+    switch(listIndex){
+      case 0:
+        const dropdown = document.querySelector("#navbar_sublist_0");
+        if(dropdown.className.indexOf("w3-show") === -1) dropdown.className += " w3-show";
+        else dropdown.className = dropdown.className.replace(" w3-show", "");
+
+        switch(sublistIndex){
+          case 0://to magasin
+            break;
+          case 1://to confection
+            break;
+          case 2://to contact
+            break;
+          case 3://to search
+            break;
+          default://to landing page
+            break;
+        }
+        break;
+      case 1://to Pi Web (landing page)
+        break;
+      case 2://to Magasin
+        switch(sublistIndex){
+          case 0://to Perle
+            break;
+          case 1://to Venturi
+            break;
+          case 2://to Argent
+            break;
+          case 3://to Cuivre
+            break;
+          default://to Magasin
+            break;
+        }
+        break;
+      case 3://to Confection
+        break;
+      case 4://to contact
+        break;
+      case 5://to Search
+        break;
+      case 6://to Shopping cart
+        break;
+      default://to Landing page
+        break;
+    }
+  }
+  createListItem(index){
+    const item = this.content[index];
+    if(!item.div){
+      const a = document.createElement("a");
+      a.href = item.href;
+      a.id = index + "_navbar_a";
+      a.className = this.listItemClassName + " " + this.a_classSelector(index);
+      if(item.txt) a.innerHTML = item.txt;
+      a.addEventListener("click", this.handleClick.bind(event, this));
+
+      if(item.i){
+        const icon = document.createElement("i");
+        icon.className = item.i;
+        a.appendChild(icon);
+      }
+      return a;
+    }else{
+      const div = document.createElement("div");
+      div.className = item.dropdownClassName;
+      if(index === 0) div.style.margin = "0";
+
+      const a = document.createElement("a");
+      a.href = item.href;
+      a.id = index + "_navbar_a";
+      a.className = this.listItemClassName + " " + this.a_classSelector(index);
+      if(item.txt) a.innerHTML = item.txt;
+      a.addEventListener("click", this.handleClick.bind(event, this));
+
+      if(item.i){
+        const icon = document.createElement("i");
+        icon.className = item.i;
+        a.appendChild(icon);
+      }
+      div.appendChild(a);
+
+      const listItem = this.createSublist(index, item);
+      div.appendChild(listItem);
+
+      return div;
+    }
+  }
+  a_classSelector(index){
+    switch(index){
+      case 0:
+        return "w3-hover-text-yellow w3-hide-medium w3-hide-large w3-left";
+      case 1:
+        return "w3-hover-text-yellow w3-sofia";
+      case 4:
+        return "w3-hover-text-blue w3-right";
+      case 5:
+        return "w3-hover-text-red w3-right w3-hide-small";
+      case 6 :
+        return "w3-hover-text-yellow w3-right relative";
+      default:
+        return "w3-hover-text-yellow w3-hide-small";
+    }
+  }
+  createSublist(index, item){
+    const div = document.createElement("div");
+    div.className = item.sublistClassName;
+    div.id = "navbar_sublist_" + index;
+
+    for(let i = 0; i < item.sublist.length; i++){
+      const a = document.createElement("a");
+      a.href = item.sublist[i].href;
+      a.id = index + "_" + i + "_sub_navbar_a";
+      a.className = "w3-bar-item w3-button w3-hover-none w3-hover-text-yellow w3-theme-l1";
+      if(item.sublist[i].txt) a.innerHTML = item.sublist[i].txt;
+      a.addEventListener("click", this.handleClick.bind(event, this));
+
+      if(item.sublist[i].i){
+        const icon = document.createElement("i");
+        icon.className = item.sublist[i].i;
+        a.appendChild(icon);
+      }
+      div.appendChild(a);
+    }
+
+    return div;
+  }
+  render(){
+    const navbar = document.querySelector("#navbar");
+    navbar.className = "w3-top";
+
+    const primary_container = document.createElement("div");
+    primary_container.className = "w3-bar-item w3-card w3-theme-d5";
+
+    for(let i = 0; i < this.content.length; i++){
+      const item = this.createListItem(i);
+      primary_container.appendChild(item);
+    }
+    navbar.appendChild(primary_container);
+  }
+}
+
+
+class About{
+  constructor(){
+    this.title = "ABOUT THE COMPANY";
+    this.subtitle = "Key features of our company";
+    this.content = [
+      {
+        i:"fa fa-hand-holding-heart",
+        p0:"Confection artisanale",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        href:"#",
+      },{
+        i:"far fa-credit-card",
+        p0:"Paiement",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        href:"https://www.flaticon.com/free-icon/credit-card_134592?term=card&related_id=134592",
+      },{
+        i:"fas fa-truck",
+        p0:"Livraison",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        
+      },{
+        i:"far fa-envelope",
+        p0:"Nous contacter",
+        p1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+        href:"mailto:pi.web%40piweb.ch",
+      },
+    ];
+  }
+  render(){
+    const about = document.querySelector("#about");
+    about.className = "w3-container";
+
+    const title = document.createElement("h3");
+    title.className = "w3-center";
+    title.innerHTML = this.title;
+
+    const subtitle = document.createElement("p");
+    subtitle.className = "w3-center w3-large";
+    subtitle.innerHTML = this.subtitle;
+
+    const primary_container = document.createElement("div");
+    primary_container.className = "w3-row-padding w3-center";
+    primary_container.style = "margin-top:64px;";
+
+    for(let i = 0; i < this.content.length; i++){
+      const minidiv = document.createElement("div");
+      minidiv.className = "w3-quarter";
+
+      const icon = document.createElement("i");
+      icon.className = this.content[i].i + " w3-margin-bottom w3-jumbo";
+
+      const p0 = document.createElement("p");
+      p0.className = "w3-large";
+      p0.innerHTML = this.content[i].p0;
+
+      const p1 = document.createElement("p");
+      p1.innerHTML = this.content[i].p1;
+
+      minidiv.appendChild(icon);
+      minidiv.appendChild(p0);
+      minidiv.appendChild(p1);
+
+      primary_container.appendChild(minidiv);
+    }
+
+    about.appendChild(title);
+    about.appendChild(subtitle);
+    about.appendChild(primary_container);
+  }
+}
+
+
+
+const app = new Website();
+app.init();
+
+
+</script>
+
+</body>
+</html>

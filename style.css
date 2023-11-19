@@ -1,127 +1,269 @@
 * {
-  box-sizing: border-box; 
-  font-family: "Arial", sans-serif;
-  
+   box-sizing: border-box; 
+   font-family: "Arial", sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
 }
 
-h1 {
-  text-align: center;
+a {
+    text-decoration: none;
+    color: white;
 }
 
-.center-text {
-  text-align: center; 
+.a-decoration {
+    text-decoration: underline;
 }
 
-.bottom-margin {
-  margin-bottom: 2rem;
+.a-decoration:hover {
+    color: rgb(1, 0, 0); /* Color on hover */
+    text-decoration: underline;
+    transition: color 0.3s; /* Smooth color transition */
 }
 
-.box-title {
-  background-color: rgb(213, 211, 211);
-  border-radius: 0.5rem;
-  padding: 2rem;
-}
 
-.box {
-  background-color: rgb(213, 211, 211);
-  border-radius: 0.5rem;
-  padding: 2rem;
-}
-
-.container {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+.marge-buttom {
+   margin-bottom: 2rem;
 
 }
 
-.drop-area {
-  /* existing styles for the drop area */
-  width: 100%;
-  border: 2px dashed #0d0d0d;
-  padding: 5rem;
-  margin-left: 1.5rem;
-  
-}
-.drop-area.dragover {
-  border-color: blue; /* or any other color */
+.marge-top {
+    margin-top: 3rem;
 }
 
-.img-result {
-  /* width: 50%; */ /* Adjust the width to 50% */
-  margin: 1rem;
-  padding-top: 2rem;
-  /* Additional styles for the result area */
+
+img {
+    width: auto;
+    height: auto;
+    max-width: 330px;
+    display: block;
+    border-radius: 8px;
+    object-fit: contain;
 }
-  
- 
+
+.anim-img {
+    transition: all 0.5s ease;
+}
+      
+.anim-img:hover {
+transform: scale(1.025);
+}
+
+
 .padding {
-  padding: 1rem;
+    padding: 2rem;
 }
 
 .min-padding {
-  padding: 0.5rem;
+    padding: 1rem;
+}
+
+.container {
+    display: flex;
+    background-color: rgb(217, 217, 219);
+    color: rgb(10, 10, 10);
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+/* .container > *{
+    width: 50%;
+    margin: 1rem;
+    
+} */
+
+.container-white {
+    background-color: white;
 }
 
 
-.loading-container {
-  width: 100%; /* Set the width of the container to 100% */
-  display: flex;
-  align-items: center; /* Center the loading bar vertically */
-  justify-content: center; /* Center the loading bar horizontally */
+.grad {
+    background: linear-gradient(180deg, rgb(1, 1, 13) 98% 98%, rgb(213, 212, 220) 100%);
 }
 
-.loading-bar {
-  width: 80%;
-  height: 30px; /* Adjust the height as needed */
-  background-color: #f0f0f0; /* Background color of the loading bar */
-  border-radius: 0.5rem;
+.grad3 {
+    background: linear-gradient(0deg, rgb(71, 68, 68) 1%, rgb(30, 29, 29) 100%);
+    
 }
 
-.loading-progress {
-  width: 0; /* Initial width is 0% */
-  height: 100%;
-  background-color: #58a45a; /* Color of the progress bar */
-  transition: width 0.3s ease; /* Smooth animation for width changes */
-  border-radius: 0.5rem;
-  
+.grad4 {
+    background: linear-gradient(0deg, rgb(30, 29, 29) 30%, rgb(71, 68, 68) 100%);
+    
 }
 
 
-.btn {
-  width: 100%;
-  background-color: rgb(9, 6, 59);
-  color: white;
-  padding: 12px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  font-size: x-large;
+.hero-container {
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: space-evenly;
+    
+
 }
 
-.btn:hover,
-.btn:focus {
-  background-color: #000000;
-  transform: scale(1.02); 
+.hero-container > *{
+    max-width: 40%;
+    max-height: 25rem;
+}
+
+.title-span {
+    opacity: 0;
+    transition: all 1.40s ease;
+}
+
+.title-span.fade {
+    opacity: 1;
 }
 
 
-input[type="file"]::-webkit-file-upload-button {
-  /* Your custom styles here */
-  /* For example: */
-  background-color: rgb(9, 6, 59);
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  font-size: large;
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+    .no-container {
+        width: 100%;
+    }
+    .title-big {
+        font-size: 1.6rem;
+    }
+    .min-button {
+        font-size: 1rem;
+    }
+    .big-text {
+        font-size: 2rem;
+    }
+    
 }
 
-/* Apply styles for both hover and focus states */
-input[type="file"]::-webkit-file-upload-button:hover,
-input[type="file"]::-webkit-file-upload-button:focus {
-  background-color: #000000; /* Change the background color on hover/focus */
-  transform: scale(1.02); 
+@media (min-width: 600px) {
+    .title-little {
+        font-size: 2rem;
+    }
+    .title-big {
+        font-size: 2.3rem;
+    }
+    .big-text {
+        font-size: 3.5rem;
+    }
+    .min-button {
+        font-size: 1.5rem;
+    }
+    .padding-big {
+        padding: 4rem;
+    }
+}
+
+
+.big-text {
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+
+}
+
+
+.button-big {
+    display: inline-block;
+    background-color: rgb(216, 139, 16); 
+    color: white;
+    transform: scale(1);
+    border: none;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 150ms ease-in-out, transform 150ms ease;
+}
+
+.button-big:active {
+    background-color: rgb(206, 102, 33);
+    transform: scale(1.05);
+}
+
+.button-big:hover, .button-big:focus {
+    background-color: (206, 102, 33);
+    transform: scale(1.02);
+}
+
+.min-button {
+    display: inline-block;
+    background-color: rgb(2,0,36,1); 
+    color: white;
+    transform: scale(1);
+    border: none;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+    margin: 1rem;
+    cursor: pointer;
+    transition: background-color 150ms ease-in-out, transform 150ms ease;
+}
+
+.min-button:hover, .min-button:focus {
+    background-color: rgb(206, 102, 33);
+    transform: scale(1.10);
+}
+
+
+.center {
+    text-align: center;
+    
+}
+
+.black {
+    background-color: rgb(30, 29, 29);
+}
+
+.white {
+    color: white;
+}
+ 
+.text-red {
+    color: red;
+    font-size: 3rem;
+
+
+}
+.text-link {
+    text-decoration: underline;
+}
+
+.text-link:hover {
+    color: rgb(1, 0, 0); /* Default color */
+    transition: color 0.2s; /* Smooth color transition */
+    cursor: pointer;
+}
+
+.no-transition {
+    opacity: 1;
+    transition: none; 
+}
+
+.mail-text-color {
+    color: rgb(237, 131, 10);
+    text-decoration: underline;
+}
+
+.mail-text-color:hover {
+    color: rgb(1, 0, 0); /* Default color */
+    transition: color 0.2s; /* Smooth color transition */
+    cursor: pointer;
+}
+
+.margin {
+    margin: 1rem;
+}
+
+
+
+
+.padding-bottom {
+    padding-bottom: 2rem;
 }
