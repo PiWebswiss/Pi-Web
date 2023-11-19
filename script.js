@@ -32,8 +32,8 @@ async function loadModel(path) {
 
 // Function to initialize both models
 async function initModels() {
-    fossilModel = await loadModel('https://piweb.ch/model/fossil-classifier-model/model.json');
-    checkFossilModel = await loadModel('https://piweb.ch/model/model-fossil-vs-non/model.json');
+    fossilModel = await loadModel('public/fossil-classifier-model/model.json');
+    checkFossilModel = await loadModel('public/model-fossil-vs-non/model.json');
 }
 
 // Load models and set up the application once the models are loaded
