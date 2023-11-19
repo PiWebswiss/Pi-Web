@@ -19,8 +19,9 @@
       <h1>AI Model to classify fossils</h1>
       <p>Identifying fossils can be a time-consuming task that relies on expert knowledge of fossil morphology. This task is particularly challenging due to the often fragmented and degraded nature of fossils.</p>
       <p>The goal of the model is to provide a system that can accurately identify, classify, and recognize fossils based on their images.</p>
-      <p>The model was trained on over 80,000 images across 46 different categories. We were able to achieve better results using fewer models. These models are part of my Capstone Project, which you can find on GitHub. <a href="https://github.com/PiWebswiss/Capstone-Project-Louis-Cavaleri">Capstone-Project</a></p>
+      <p>The model was trained on over 80,000 images across 46 different categories. We were able to achieve better results using fewer models. These models are part of my Capstone Project, which you can find on GitHub. <a target="_blank" href="https://github.com/PiWebswiss/Capstone-Project-Louis-Cavaleri">Capstone-Project</a></p>
       <p>This model can determine if an image is a fossil or non-fossil with 93% accuracy and has an accuracy of 90% in identifying specific types of fossils. Please note that this model is not 100% accurate and has its limitations. For instance, this model was trained on 46 different categories and therefore can only classify images based on those categories.</p>
+      <p>You can try the model below. The model is loaded and run on your computer.</p>
     </div>
   </header>
 
@@ -30,19 +31,21 @@
     <div class="box">
       
       <h2 class="center-text">Upload an image to identify its categories.</h2>
+      <p class="text-phone">Upload a fossil image by choosing a file</p>
+      <p class="text-phone">The model runs automatically when an image is given</p>
       <div class="container">
         <div id="drop-area" class="drop-area">
           <form class="my-form">
-            <p class="center-text">Upload a fossil image by dragging & dropping or chose a file</p>
-            <h4 class="center-text">The model run automatically when an image is given</h4>
+            <p class="center-text">Upload a fossil image by dragging & dropping or choose a file</p>
+            <h4 class="center-text">The model runs automatically when an image is given</h4>
           </form>
         </div>
         <div class="img-result" id="result"></div>
       </div>
 
-        <div>
-          <input class="padding" type="file" id="fileElem" accept="image/*">
-        </div>
+      <div>
+        <input class="padding" type="file" id="fileElem" accept="image/*">
+      </div>
 
       <div class="min-padding"></div>
 

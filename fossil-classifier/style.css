@@ -31,11 +31,27 @@ h1 {
 
 }
 
+.text-phone {
+  display: none; /* Hide by default */
+}
+
+
+@media screen and (max-width: 800px) { /* Example breakpoint */
+  .drop-area {
+    display: none;
+  }
+  .text-phone {
+    display: block;
+    text-align: center;
+  }
+}
+
+
 .drop-area {
   /* existing styles for the drop area */
   width: 100%;
   border: 2px dashed #0d0d0d;
-  padding: 5rem;
+  padding: 2rem;
   margin-left: 1.5rem;
   
 }
@@ -44,7 +60,7 @@ h1 {
 }
 
 .img-result {
-  /* width: 50%; */ /* Adjust the width to 50% */
+ /*  width: 50%; */  /* Adjust the width to 50% */
   margin: 1rem;
   padding-top: 2rem;
   /* Additional styles for the result area */
