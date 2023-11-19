@@ -1,7 +1,3 @@
-// Declare variables to hold the two models
-conosl
-
-
 let fossilModel, checkFossilModel;
 const imageElement = document.getElementById('fileElem');
 /* const predictButton = document.getElementById('predictButton'); */
