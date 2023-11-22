@@ -36,7 +36,7 @@ h1 {
 }
 
 
-@media screen and (max-width: 800px) { /* Example breakpoint */
+@media screen and (max-width: 600px) { /* Example breakpoint */
   .drop-area {
     display: none;
   }
