@@ -233,7 +233,7 @@ async function handleImg(file) {
     }
 
 // Append the <p> element to the document body or any other desired element
-result.append(showImage)
+result.append(showImage);
 result.appendChild(textResult);
 
 
@@ -242,5 +242,5 @@ const d = new Date();
 const footer = document.getElementById("footerPage");
 const a = gt("a", "PIWeb", { href: "../", className: "a-decoration hover-link"});
 const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", {className: "no-transition white"});
-const p = gt("p", [span, a])
+const p = gt("p", [span, a]);
 footer.appendChild(p);

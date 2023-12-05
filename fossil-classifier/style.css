@@ -171,3 +171,10 @@ input[type="file"]::-webkit-file-upload-button:focus {
   text-decoration: underline;
   transition: color 0.3s; /* Smooth color transition */
 }
+
+.model-loading-notice {
+  background-color: #f8f9fa; /* light gray background */
+  border: 1px solid #ddd;    /* light gray border */
+  padding: 1rem;             /* margin above and below the notice */
+  border-radius: 0.5rem;        /* rounded corners */
+}
