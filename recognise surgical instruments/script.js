@@ -140,44 +140,40 @@ function isImage(file) {
     return file && file.type.startsWith('image/');
 };
 
-// Function to handle image processing and prediction
 async function handleImg(file) {
-    simulateLoading();
-    if (file && isImage(file)) {
+    simulateLoading(); // Ensure this function is defined
+    if (file && isImage(file)) { // Ensure isImage is a defined function
         try {
-            const image = await loadImage(file);       // Load the image
-            // If it's a fossil, classify the type of fossil
-            const tensor = preprocessImage(image); // Preprocess the image 299x299
+            const image = await loadImage(file); // Load the image
+            const tensor = preprocessImage(image); // Preprocess the image
             const prediction = model.predict(tensor);
             const predictedClassIndex = await prediction.argMax(1).data();
-            showImage.src = image.src;  // Dispaly Image
-            // Set the desired width and height for the image
-            showImage.width = 200; // Set the width to 200 pixels
-            showImage.height = 150; // Set the height to 150 pixels
+            updateImageDisplay(image); // Refactored repeated code into a function
             const name = index[predictedClassIndex[0]];
-            textResult.textContent = 'Predicted class: ' + name;
-            tensor.dispose();  // Dispose of the tensor to free memory
-                
-            } catch (error) {
-                showImage.src = image.src;  // Dispaly Image
-                // Set the desired width and height for the image
-                showImage.width = 200; // Set the width to 200 pixels
-                showImage.height = 150; // Set the height to 150 pixels
-                textResult.textContent = 'Error handling the file:' + error
-            }
-        } else {
-            showImage.src = image.src;  // Dispaly Image
-            // Set the desired width and height for the image
-            showImage.width = 200; // Set the width to 200 pixels
-            showImage.height = 150; // Set the height to 150 pixels
-            textResult.textContent = "check file"
-            // Handle non-image file (e.g., show message to user)
+            textResult.textContent =  name;
+            tensor.dispose();
+        } catch (error) {
+            updateImageDisplay(image); // Handle this case appropriately
+            textResult.textContent = 'Error handling the file: ' + error;
         }
+    } else {
+        updateImageDisplay(); // Handle non-image file
+        textResult.textContent = "Please check the file";
     }
+}
 
-// Append the <p> element to the document body or any other desired element
-result.append(showImage);
-result.appendChild(textResult);
+function updateImageDisplay(image) {
+    if (image) {
+        showImage.src = image.src;
+        showImage.width = 200;
+        showImage.height = 150;
+    }
+    // Append or update as necessary
+    result.append(showImage);
+    textResult.className = "center-text"
+    result.appendChild(textResult);
+}
+
 
 
 /* footer */
