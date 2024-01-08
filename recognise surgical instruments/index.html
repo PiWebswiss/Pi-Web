@@ -9,8 +9,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
   <title>recognise surgical instruments</title>
   <link rel="stylesheet" href="style.css">
+  <!-- type modul defer by default -->
   <script defer src="script.js"></script>
-  <script defer src="translate-text.js"></script>
   <link rel="icon" href="../image/logo 2.png" type="image/x-icon">
 </head>
 <body>
@@ -19,39 +19,37 @@
 
   <header>
 
-    
-
-    <div class="box-title">
+   <div class="box-title">
       <div class="container-fr-en">
         <input class="translate-button" type="button" id="translateToFr" value="Fr">
         <input class="translate-button" type="button" id="translateToEn" value="En">
       </div>
-      <h1 data-translate="h1">AI Model to classify surgical instruments</h1>
-      <h2 data-translate="h2" class="center-text red-text">Model is in Beta</h2>
+      <h1 data-translate="h1"></h1>
+      <h2 data-translate="h2" class="center-text red-text"></h2>
       <div class="padding"></div>
-      <h3 data-translate="h3">Here are surgical instruments that the model can recognise.</h3>
+      <h3 data-translate="h3"></h3>
       <div class="image-grid">
         <div class="image-container">
-            <p data-translate="image-name-1" class="image-name">Ciseaux Mayo</p>
+            <p data-translate="image-name-1" class="image-name"></p>
             <img src="Ciseaux Mayo.jpg" alt="Surgical Image 1">
         
         </div>
         <div class="image-container">
-            <p data-translate="image-name-2" class="image-name">Ciseaux micro</p>
+            <p data-translate="image-name-2" class="image-name"></p>
             <img src="Ciseaux micro.jpg" alt="Surgical Image 2">
         </div>
         <div class="image-container">
-            <p data-translate="image-name-3" class="image-name">Ciseaux Stevens</p>
+            <p data-translate="image-name-3" class="image-name"></p>
             <img src="Ciseaux Stevens.jpg" alt="Surgical Image 3">
             
         </div>
         <div class="image-container">
-            <p data-translate="image-name-4" class="image-name">Ciseaux Stille</p>
+            <p data-translate="image-name-4" class="image-name"></p>
             <img src="Ciseaux Stille.jpg" alt="Surgical Image 4">
             
         </div>
         <div class="image-container">
-          <p data-translate="image-name-5" class="image-name">Ciseaux à plâtre</p>
+          <p data-translate="image-name-5" class="image-name"></p>
           <img src="Ciseaux à plâtre.jpg" alt="Surgical Image 5">
           
       </div>
@@ -65,17 +63,17 @@
     <div class="min-padding"></div>
 
     <div class="box">
-      <h2 data-translate="text-model-h2" class="center-text">Try the model</h2>
-      <h3 data-translate="text-model-h3" class="center-text">Upload an surgical instruments.</h3>
+      <h2 data-translate="text-model-h2" class="center-text"></h2>
+      <h3 data-translate="text-model-h3" class="center-text"></h3>
       <!-- text only display on phone -->
-      <p data-translate="text-model-p1" class="text-phone padding">Upload a surgical instruments image by choosing a file</p>
-      <p data-translate="text-model-p2" class="text-phone bold-text">The model runs automatically when an image is given</p>
+      <p data-translate="text-model-p1" class="text-phone padding"></p>
+      <p data-translate="text-model-p2" class="text-phone bold-text"></p>
 
       <div class="container">
         <div id="drop-area" class="drop-area">
           <form class="my-form">
-            <p data-translate="text-model-p3" class="center-text">Upload a surgical instruments image by dragging & dropping or choose a file</p>
-            <h4 data-translate="text-model-h4" class="center-text">The model runs automatically when an image is given</h4>
+            <p data-translate="text-model-p3" class="center-text"></p>
+            <h4 data-translate="text-model-h4" class="center-text"></h4>
           </form>
         </div>
         <div class="img-result" id="result"></div>
@@ -99,7 +97,7 @@
 
     <div class="container">
       <a href="../index.html">
-        <button data-translate="bth-go-back" class="btn">Go to back to PIWeb</button>
+        <button data-translate="bth-go-back" class="btn"></button>
       </a>
   </div>
 
