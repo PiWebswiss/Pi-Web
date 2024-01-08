@@ -9,6 +9,7 @@ h1 {
 }
 
 .translate-button {
+  color: #000000;
   background: none; /* Remove default background */
   border: none; /* Remove borders */
   text-decoration: underline; /* Underline like a link */
