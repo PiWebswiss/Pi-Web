@@ -59,11 +59,11 @@ function complete(){
 
 /* mail */
 const mail = document.getElementById("mail");
-mail.addEventListener("click", function() {location.href = "mailto:pi.web%40piweb.ch"})
 const span1 = gt("span", "Contact me by email:", {className: "title-big"});
-const span2 = gt("span", "pi.web@piweb.ch", {className: "mail-text-color title-big"})
+const aMail = gt("a", "pi.web@piweb.ch", {className: "mail-text-color title-big", href:"mailto:pi.web@piweb.ch"});
+
 mail.appendChild(span1);
-mail.appendChild(span2);
+mail.appendChild(aMail);
 
 
 /* mail button */
