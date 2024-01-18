@@ -1,4 +1,5 @@
 let fossilModel, checkFossilModel;
+
 const imageElement = document.getElementById('fileElem');
 const result = document.getElementById('result');
 const showImage = document.createElement("img");
@@ -189,6 +190,15 @@ const index = {
     };
 
 
+// Function to have the confidence text related to how well the model did
+function confidenceText(prediction) {
+    const roundedPrediction =  Math.round(prediction * 100);
+    const textPrediction = `${roundedPrediction}% confidence`;
+
+    return textPrediction;
+}
+
+
 // Function to check if a file is an image
 function isImage(file) {
     return file && file.type.startsWith('image/');
@@ -199,38 +209,39 @@ async function handleImg(file) {
     simulateLoading();
     if (file && isImage(file)) {
         try {
-            const image = await loadImage(file);       // Load the image
-            const checkTensor = checkPreprocessImage(image);// Preprocess the image 224x224
-            const checkPrediction = checkFossilModel.predict(checkTensor);  // Check if it's a fossil
+            const image = await loadImage(file); // Load the image
+            const checkTensor = checkPreprocessImage(image); // Preprocess the image 224x224
+            const checkPrediction = checkFossilModel.predict(checkTensor); // Check if it's a fossil
             const predictedCheck = await checkPrediction.argMax(1).data();
+
             if (predictedCheck[0] == 0) {
                 // If it's a fossil, classify the type of fossil
                 const tensor = preprocessImage(image); // Preprocess the image 299x299
-                const prediction = fossilModel.predict(tensor);
-                const predictedClassIndex = await prediction.argMax(1).data();
-                showImage.src = image.src;  // Dispaly Image
-                // Set the desired width and height for the image
+                const predictionTensor = fossilModel.predict(tensor);
+                const predictedValue = await predictionTensor.data(); // Get prediction data
+                const predictedClassIndex = await predictionTensor.argMax(1).data();
+                const maxValue = Math.max(...predictedValue); // Get max value
+                showImage.src = image.src; // Display Image
                 showImage.width = 200; // Set the width to 200 pixels
                 showImage.height = 150; // Set the height to 150 pixels
                 const name = index[predictedClassIndex[0]];
-                textResult.textContent = 'Predicted class: ' + name;
-                tensor.dispose();  // Dispose of the tensor to free memory
+                textResult.textContent = 'Predicted class: ' + name + " " + confidenceText(maxValue);
+                tensor.dispose(); // Dispose of the tensor to free memory
             } else {
-                showImage.src = image.src;  // Dispaly Image
-                // Set the desired width and height for the image
+                showImage.src = image.src; // Display Image
                 showImage.width = 200; // Set the width to 200 pixels
                 showImage.height = 150; // Set the height to 150 pixels
                 textResult.textContent = "This image is not a fossil";
-                }
-                
-            } catch (error) {
-                textResult.textContent = 'Error handling the file:' + error
             }
-        } else {
-            textResult.textContent = "check file"
-            // Handle non-image file (e.g., show message to user)
+        } catch (error) {
+            textResult.textContent = 'Error handling the file:' + error
         }
+    } else {
+        textResult.textContent = "check file"
+        // Handle non-image file (e.g., show message to user)
     }
+}
+
 
 // Append the <p> element to the document body or any other desired element
 result.append(showImage);
@@ -244,3 +255,4 @@ const a = gt("a", "PIWeb", { href: "../", className: "a-decoration hover-link"})
 const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", {className: "no-transition white"});
 const p = gt("p", [span, a]);
 footer.appendChild(p);
+    

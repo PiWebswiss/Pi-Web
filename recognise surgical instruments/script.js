@@ -1,11 +1,7 @@
 /* code to translate the text */
-let lang;
-let lastPredictedIndex = null;
-let model;
-let tensor;
-let prediction;
-let predictedClassIndex;
 let categorieName;
+let lastPredictedIndex = null;
+
 
 let index = {
     'en': {
@@ -246,22 +242,44 @@ function updateImageDisplay(image) {
     result.appendChild(textResult);
 }
 
+// Function to have the confidence text related to how well the model did
+function confidenceText(prediction) {
+    const roundedPrediction =  Math.round(prediction * 100);
+    let textPrediction;
 
+    if (lang === "fr") {
+        textPrediction = `Confiance à ${roundedPrediction}% `;
 
+    }else{
+        textPrediction = `${roundedPrediction}% confidence `;
+
+    }
+
+    return textPrediction;
+}
+
+let image;
 async function handleImg(file) {
     simulateLoading(); // Ensure this function is defined
-    let image; // Declare image here so it's accessible in both try and catch blocks
     if (file && isImage(file)) { // Ensure isImage is a defined function
         try {
             image = await loadImage(file); // Load the image
-            tensor = preprocessImage(image); // Preprocess the image
-            prediction = model.predict(tensor);
-            predictedClassIndex = await prediction.argMax(1).data();
+            const tensor = preprocessImage(image); // Preprocess the image
+            const predictionTensor = model.predict(tensor);
+            const predictedValue = await predictionTensor.data(); // Get the maximum values 
+            const maxValue = Math.max(...predictedValue); // ... points are used to pass the values of the array and retrun only the max value
+            const predictedClassIndex = await predictionTensor.argMax(1).data(); // Get the predicted class index
             updateImageDisplay(image); // Refactored repeated code into a function
-            categorieName = index[lang][predictedClassIndex[0]];
-            lastPredictedIndex = predictedClassIndex[0];
-            textResult.textContent = categorieName;
-            tensor.dispose();
+
+            if (predictedClassIndex.length > 0) {
+                categorieName = index[lang][predictedClassIndex[0]];
+                lastPredictedIndex = predictedClassIndex[0];
+                textResult.textContent = categorieName + " " + confidenceText(maxValue); // Assuming predictionData[0] is the confidence
+            } else {
+                textResult.textContent = "No prediction made";
+            }
+
+            tensor.dispose(); // Dispose the tensor to free memory
         } catch (error) {
             updateImageDisplay(image); // Handle this case appropriately
             textResult.textContent = 'Error handling the file: ' + error;
@@ -271,6 +289,7 @@ async function handleImg(file) {
         textResult.textContent = "Please check the file";
     }
 }
+
   
 
 
