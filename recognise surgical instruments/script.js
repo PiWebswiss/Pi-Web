@@ -1,5 +1,5 @@
 /* code to translate the text */
-let categorieName;
+let categorieName, maxValue;
 let lastPredictedIndex = null;
 
 
@@ -36,9 +36,10 @@ let index = {
     // Update the prediction text if a prediction has been made
     if (lastPredictedIndex !== null) {
         categorieName = index[lang][lastPredictedIndex];
-        textResult.textContent = categorieName;
+        textResult.textContent = categorieName + " " + confidenceText(maxValue);
     }
 }
+
 
 document.getElementById('translateToFr').addEventListener('click', function() {
   lang = "fr";
@@ -297,7 +298,7 @@ async function handleImg(file) {
             const tensor = preprocessImage(image); // Preprocess the image
             const predictionTensor = model.predict(tensor);
             const predictedValue = await predictionTensor.data(); // Get the maximum values 
-            const maxValue = Math.max(...predictedValue); // ... points are used to pass the values of the array and retrun only the max value
+            maxValue = Math.max(...predictedValue); // ... points are used to pass the values of the array and retrun only the max value
             const predictedClassIndex = await predictionTensor.argMax(1).data(); // Get the predicted class index
             updateImageDisplay(image); // Refactored repeated code into a function
 
