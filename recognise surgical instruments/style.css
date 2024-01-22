@@ -135,6 +135,11 @@ h1 {
   padding: 1rem;
 }
 
+
+.min-padding {
+  padding: 0.4rem;
+}
+
 .loading-container {
   width: 100%; /* Set the width of the container to 100% */
   display: flex;
