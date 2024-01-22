@@ -191,7 +191,7 @@ const index = {
 // Function to have the confidence text related to how well the model did
 function confidenceText(prediction) {
     const roundedPrediction =  Math.round(prediction * 100);
-    const textPrediction = `${roundedPrediction}% confidence`;
+    const textPrediction = `at ${roundedPrediction}% confidence`;
 
     return textPrediction;
 }
@@ -262,10 +262,10 @@ async function handleImg(file) {
                 textResult.textContent = "This image is not a fossil";
             }
         } catch (error) {
-            textResult.textContent = 'Error handling the file:' + error
+            textResult.textContent = 'Error handling the file, please check the file'
         }
     } else {
-        textResult.textContent = "check file"
+        textResult.textContent = "Please check the file"
         // Handle non-image file (e.g., show message to user)
     }
 }

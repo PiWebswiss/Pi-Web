@@ -277,22 +277,22 @@ function confidenceText(prediction) {
     let textPrediction;
 
     if (lang === "fr") {
-        textPrediction = `Confiance à ${roundedPrediction}% `;
+        textPrediction = `à ${roundedPrediction}% `;
 
     }else{
-        textPrediction = `${roundedPrediction}% confidence `;
+        textPrediction = `at ${roundedPrediction}% `;
 
     }
 
     return textPrediction;
 }
 
-let image;
+
 async function handleImg(file) {
     simulateLoading(); // Ensure this function is defined
     if (file && isImage(file)) { // Ensure isImage is a defined function
         try {
-            image = await loadImage(file); // Load the image
+            const image = await loadImage(file); // Load the image
             const tensor = preprocessImage(image); // Preprocess the image
             const predictionTensor = model.predict(tensor);
             const predictedValue = await predictionTensor.data(); // Get the maximum values 
@@ -311,7 +311,7 @@ async function handleImg(file) {
             tensor.dispose(); // Dispose the tensor to free memory
         } catch (error) {
             updateImageDisplay(image); // Handle this case appropriately
-            textResult.textContent = 'Error handling the file: ' + error;
+            textResult.textContent = 'Error handling the file, please check the file';
         }
     } else {
         updateImageDisplay(); // Handle non-image file
@@ -319,7 +319,6 @@ async function handleImg(file) {
     }
 }
 
-  
 
 
 /* footer */
