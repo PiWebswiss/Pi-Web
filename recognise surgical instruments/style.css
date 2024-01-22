@@ -252,3 +252,10 @@ h1 {
   padding: 1rem;             /* margin above and below the notice */
   border-radius: 0.5rem;        /* rounded corners */
 }
+
+.icon {
+  width: "auto";
+  height: 1.2rem;
+  margin-right: 10px;
+
+}

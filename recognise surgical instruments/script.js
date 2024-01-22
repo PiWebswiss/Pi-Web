@@ -21,18 +21,24 @@ let index = {
   };
 
 
-function translatePage(lang) {
-document.querySelectorAll("[data-translate]").forEach(el => {
-    el.textContent = translations[lang][el.dataset.translate];
-});
+  function translatePage(lang) {
+    document.querySelectorAll("[data-translate]").forEach(el => {
+        // Check if the element has a specific child to translate
+        const textContainer = el.querySelector("span");
+        if (textContainer) {
+            textContainer.textContent = translations[lang][el.dataset.translate];
+        } else {
+            // If no specific child, update the entire element
+            el.textContent = translations[lang][el.dataset.translate];
+        }
+    });
 
-// Update the prediction text if a prediction has been made
-if (lastPredictedIndex !== null) {
-    categorieName = index[lang][lastPredictedIndex];
-    textResult.textContent = categorieName;
+    // Update the prediction text if a prediction has been made
+    if (lastPredictedIndex !== null) {
+        categorieName = index[lang][lastPredictedIndex];
+        textResult.textContent = categorieName;
+    }
 }
-}
-  
 
 document.getElementById('translateToFr').addEventListener('click', function() {
   lang = "fr";
