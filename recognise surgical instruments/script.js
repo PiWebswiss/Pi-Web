@@ -238,11 +238,33 @@ function isImage(file) {
 };
 
 
+const btnUpleadContainer = document.getElementById("btn-uplead-container"); // ID to add class for magine in small scren
+const displayImage = document.querySelector(".display-image");
+const displayNon = document.querySelector(".display-non")
+
 function updateImageDisplay(image) {
     if (image) {
         showImage.src = image.src;
-        showImage.width = 200;
-        showImage.height = 150;
+        showImage.className = "img-result";
+
+        /* For small screen only display the image by default is "none" this is done to remove the blank space */
+        if (displayImage) {
+            displayImage.style.display = "block";
+        }
+
+            /* Add magine 5rem when scren is belowe 600px */
+            /* we add the class magrin-top that is in the @media screen and (max-width: 600px)  */
+        if (btnUpleadContainer) {
+            btnUpleadContainer.classList.add("margin-top");
+        }
+
+        /* Change flex box for the images by diplaying it  */
+        if(displayNon) {
+            displayNon.style.display = "block";
+        }
+
+        
+
     }
     // Append or update as necessary
     result.append(showImage);

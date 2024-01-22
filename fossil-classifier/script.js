@@ -199,6 +199,41 @@ function confidenceText(prediction) {
 }
 
 
+const btnUpleadContainer = document.getElementById("btn-uplead-container"); // ID to add class for magine in small scren
+const displayImage = document.querySelector(".display-image");
+const displayNon = document.querySelector(".display-non")
+
+function updateImageDisplay(image) {
+    if (image) {
+        showImage.src = image.src;
+        showImage.className = "img-result";
+
+        /* For small screen only display the image by default is "none" this is done to remove the blank space */
+        if (displayImage) {
+            displayImage.style.display = "block";
+        }
+
+            /* Add magine 5rem when scren is belowe 600px */
+            /* we add the class magrin-top that is in the @media screen and (max-width: 600px)  */
+        if (btnUpleadContainer) {
+            btnUpleadContainer.classList.add("margin-top");
+        }
+
+        /* Change flex box for the images by diplaying it  */
+        if(displayNon) {
+            displayNon.style.display = "block";
+        }
+
+        
+
+    }
+    // Append or update as necessary
+    result.append(showImage);
+    textResult.className = "center-text"
+    result.appendChild(textResult);
+}
+
+
 // Function to check if a file is an image
 function isImage(file) {
     return file && file.type.startsWith('image/');
@@ -213,6 +248,7 @@ async function handleImg(file) {
             const checkTensor = checkPreprocessImage(image); // Preprocess the image 224x224
             const checkPrediction = checkFossilModel.predict(checkTensor); // Check if it's a fossil
             const predictedCheck = await checkPrediction.argMax(1).data();
+            updateImageDisplay(image);
 
             if (predictedCheck[0] == 0) {
                 // If it's a fossil, classify the type of fossil
@@ -220,17 +256,11 @@ async function handleImg(file) {
                 const predictionTensor = fossilModel.predict(tensor);
                 const predictedValue = await predictionTensor.data(); // Get prediction data
                 const predictedClassIndex = await predictionTensor.argMax(1).data();
-                const maxValue = Math.max(...predictedValue); // Get max value
-                showImage.src = image.src; // Display Image
-                showImage.width = 200; // Set the width to 200 pixels
-                showImage.height = 150; // Set the height to 150 pixels
+                const maxValue = Math.max(...predictedValue); // Get max value           
                 const name = index[predictedClassIndex[0]];
                 textResult.textContent = 'Predicted class: ' + name + " " + confidenceText(maxValue);
                 tensor.dispose(); // Dispose of the tensor to free memory
             } else {
-                showImage.src = image.src; // Display Image
-                showImage.width = 200; // Set the width to 200 pixels
-                showImage.height = 150; // Set the height to 150 pixels
                 textResult.textContent = "This image is not a fossil";
             }
         } catch (error) {

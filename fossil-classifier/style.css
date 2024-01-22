@@ -8,14 +8,64 @@ h1 {
   text-align: center;
 }
 
+.translate-button {
+  color: #000000;
+  background: none; /* Remove default background */
+  border: none; /* Remove borders */
+  text-decoration: underline; /* Underline like a link */
+  cursor: pointer; /* Cursor like a link */
+  padding: 0; /* Remove padding */
+  margin: 2px; /* Remove margins */
+  font-family: inherit; /* Inherit font from parent */
+  font-size: inherit; /* Inherit font size from parent */
+  
+}
+
+
 .center-text {
   text-align: center; 
+}
+
+.red-text {
+  color: red;
+}
+
+/* Style the container for the image grid */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 0.5rem;
+  justify-items: center;
+  text-align: center;
+}
+
+/* Style individual image containers */
+.image-container {
+  position: relative; /* Ensure relative positioning for child elements */
+}
+
+/* Style individual images */
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Style image names */
+.image-name {
+  position: relative;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.8); /* Background color for text */
+  padding: 4px; /* Adjust for padding around the text */; /* Half of the height to center vertically */
+  margin-bottom: -0px;
 }
 
 .box-title {
   background-color: rgb(213, 211, 211);
   border-radius: 0.5rem;
   padding: 2rem;
+
 }
 
 .box {
@@ -31,19 +81,37 @@ h1 {
 
 }
 
+
+
 .text-phone {
   display: none; /* Hide by default */
 }
 
 
-@media screen and (max-width: 600px) { /* Example breakpoint */
+@media screen and (max-width: 600px) {
+  .display-image {
+    display: none; /* Defaut "none" */
+
+  }
   .drop-area {
     display: none;
+    
   }
   .text-phone {
     display: block;
     text-align: center;
   }
+  /* Centering the file upload container */
+  .file-upload-container {
+    display: block; 
+    text-align: center; 
+    width: 100%; 
+  }
+
+  .margin-top {
+    margin-top: 5rem;
+  }
+
 }
 
 
@@ -51,8 +119,8 @@ h1 {
   /* existing styles for the drop area */
   width: 100%;
   border: 2px dashed #0d0d0d;
-  padding: 2rem;
-  margin-left: 1.5rem;
+  padding: 3.5rem;
+  margin-right: 1rem;
   
 }
 .drop-area.dragover {
@@ -60,10 +128,9 @@ h1 {
 }
 
 .img-result {
- /*  width: 50%; */  /* Adjust the width to 50% */
-  margin: 1rem;
-  padding-top: 2rem;
-  /* Additional styles for the result area */
+  width: 200px;
+  height: 250px;  
+
 }
   
  
@@ -71,8 +138,13 @@ h1 {
   padding: 1rem;
 }
 
+
 .min-padding {
   padding: 0.4rem;
+}
+
+.display-non {
+  display: none;
 }
 
 .loading-container {
@@ -159,6 +231,7 @@ h1 {
   transform: scale(1.02);
 }
 
+ 
 .footer-text {
   color: black;
   text-align: center;
@@ -201,7 +274,7 @@ h1 {
 }
 
 .icon {
-  width: auto;
+  width: "auto";
   height: 1.2rem;
   margin-right: 10px;
 

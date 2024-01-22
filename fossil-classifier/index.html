@@ -44,17 +44,19 @@
       <p class="text-phone padding">Upload a fossil image by choosing a file</p>
       <p class="text-phone bold-text">The model runs automatically when an image is given</p>
 
-      <div class="container">
-        <div id="drop-area" class="drop-area">
-          <form class="my-form">
-            <p class="center-text">Upload a fossil image by dragging & dropping or choose a file</p>
-            <h4 class="center-text">The model runs automatically when an image is given</h4>
-          </form>
+      <div class="display-image">
+        <div class="container">
+          <div id="drop-area" class="drop-area">
+            <form class="my-form">
+              <p class="center-text">Upload a fossil image by dragging & dropping or choose a file</p>
+              <h4 class="center-text">The model runs automatically when an image is given</h4>
+            </form>
+          </div>
+          <div class="display-non img-result" id="result"></div>
         </div>
-        <div class="img-result" id="result"></div>
       </div>
 
-      <div class="file-upload-container">
+      <div id="btn-uplead-container" class="file-upload-container">
         <input type="file" id="fileElem" class="file-upload-input" accept="image/*">
         <label for="fileElem" class="file-upload-button">
             <img src="../image/upload-icon.png" alt="Icon" class="icon">Choose file

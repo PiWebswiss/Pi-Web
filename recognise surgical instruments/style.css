@@ -92,9 +92,14 @@ h1 {
 }
 
 
-@media screen and (max-width: 600px) { /* Example breakpoint */
+@media screen and (max-width: 600px) {
+  .display-image {
+    display: none; /* Defaut "none" */
+
+  }
   .drop-area {
     display: none;
+    
   }
   .text-phone {
     display: block;
@@ -102,10 +107,13 @@ h1 {
   }
   /* Centering the file upload container */
   .file-upload-container {
-    display: block; /* Change to block to allow centering */
-    text-align: center; /* Center the content */
-    width: 100%; /* Set width to 100% if not already set */
-    margin-top: -1rem;
+    display: block; 
+    text-align: center; 
+    width: 100%; 
+  }
+
+  .margin-top {
+    margin-top: 5rem;
   }
 
 }
@@ -115,8 +123,8 @@ h1 {
   /* existing styles for the drop area */
   width: 100%;
   border: 2px dashed #0d0d0d;
-  padding: 2rem;
-  margin-left: 1.5rem;
+  padding: 3.5rem;
+  margin-right: 1rem;
   
 }
 .drop-area.dragover {
@@ -124,10 +132,9 @@ h1 {
 }
 
 .img-result {
- /*  width: 50%; */  /* Adjust the width to 50% */
-  margin: 1rem;
-  padding-top: 2rem;
-  /* Additional styles for the result area */
+  width: 200px;
+  height: 250px;  
+
 }
   
  
@@ -138,6 +145,10 @@ h1 {
 
 .min-padding {
   padding: 0.4rem;
+}
+
+.display-non {
+  display: none;
 }
 
 .loading-container {
