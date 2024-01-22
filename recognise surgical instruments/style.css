@@ -191,6 +191,7 @@ h1 {
 }
 
 .file-upload-button {
+  -webkit-tap-highlight-color: transparent;
   background-color: rgb(9, 6, 59);
   color: white;
   padding: 10px 15px;
@@ -206,6 +207,7 @@ h1 {
   background-color: #000000;
   transform: scale(1.02);
 }
+
  
 .footer-text {
   color: black;

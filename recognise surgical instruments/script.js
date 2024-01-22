@@ -65,6 +65,7 @@ const translations = {
     'text-model-p3': 'Upload a surgical instrument image by dragging & dropping or choose a file',
     'text-model-h4': 'The model runs automatically when an image is given',
     'bth-go-back': 'Go back to PIWeb',
+    'text-btn-upload': 'Choose File',
   },
   'fr': {
     'h1': 'Modèle IA pour classer les instruments chirurgicaux',
@@ -82,6 +83,7 @@ const translations = {
     'text-model-p3': 'Téléchargez une image d\'instrument chirurgical en la glissant et la déposant ou choisissez un fichier',
     'text-model-h4': 'Le modèle se lance automatiquement lorsqu\'une image est fournie',
     'bth-go-back': 'Retourner à PIWeb',
+    'text-btn-upload': 'Choisir un fichier',
   }
 };
 
