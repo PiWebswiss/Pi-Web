@@ -299,7 +299,6 @@ async function handleImg(file) {
             maxValue = Math.max(...predictedValue); // ... points are used to pass the values of the array and retrun only the max value
             const predictedClassIndex = await predictionTensor.argMax(1).data(); // Get the predicted class index
             updateImageDisplay(image); // Refactored repeated code into a function
-            console.log(predictedValue)
 
             if (predictedClassIndex.length > 0) {
                 categorieName = index[lang][predictedClassIndex[0]];
