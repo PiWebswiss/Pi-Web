@@ -127,7 +127,6 @@ h1 {
   padding: 1rem;
 }
 
-
 .loading-container {
   width: 100%; /* Set the width of the container to 100% */
   display: flex;
@@ -175,10 +174,12 @@ h1 {
 }
 
 .file-upload-container {
+  position: relative;
   display: inline-block;
 }
 
 .file-upload-input {
+  position: absolute;
   opacity: 0;
   left: 0;
   top: 0;
@@ -187,14 +188,16 @@ h1 {
   cursor: pointer;
   z-index: 1;
   overflow: hidden;
+  visibility: hidden;
 
 }
 
 .file-upload-button {
+  margin-top: 1rem;
   -webkit-tap-highlight-color: transparent;
   background-color: rgb(9, 6, 59);
   color: white;
-  padding: 10px 15px;
+  padding: 1rem 1rem;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
