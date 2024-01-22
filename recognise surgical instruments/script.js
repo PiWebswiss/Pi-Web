@@ -90,7 +90,7 @@ const translations = {
     'text-model-p3': 'Téléchargez une image d\'instrument chirurgical en la glissant et la déposant ou choisissez un fichier',
     'text-model-h4': 'Le modèle se lance automatiquement lorsqu\'une image est fournie',
     'bth-go-back': 'Retourner à PIWeb',
-    'text-btn-upload': 'Choisir un fichier',
+    'text-btn-upload': 'Choisir une image',
   }
 };
 
@@ -170,8 +170,6 @@ function setupApplication() {
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropArea.addEventListener(eventName, handleDrag, false);
         });
-    } else {
-        console.error('Drop area element not found');
     }
 
     // Attach a change event listener to the image input element

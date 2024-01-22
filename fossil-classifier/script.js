@@ -62,8 +62,6 @@ function setupApplication() {
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropArea.addEventListener(eventName, handleDrag, false);
         });
-    } else {
-        console.error('Drop area element not found');
     }
 
     // Attach a change event listener to the image input element
