@@ -18,6 +18,7 @@
   <!-- © Copyright: Powered by PIWeb : https://piweb.ch -->
 
   <header>
+    <!-- box to explain the model -->
     <div class="box-title">
       <h1 data-translate="title">AI Model to classify fossils</h1>
       <p>Identifying fossils can be a time-consuming task that relies on expert knowledge of fossil morphology. This task is particularly challenging due to the often fragmented and degraded nature of fossils.</p>
@@ -38,8 +39,8 @@
   <main>
     <div class="min-padding"></div>
 
+    <!-- Inference -->
     <div class="box">
-      
       <h2 class="center-text">Upload an image to identify its categorie.</h2>
       <!-- text only display on phone -->
       <p class="text-phone padding">Upload a fossil image by choosing a file</p>
@@ -56,7 +57,6 @@
           <div class="display-non img-result" id="result"></div>
         </div>
       </div>
-
       <div id="btn-uplead-container" class="file-upload-container">
         <input type="file" id="fileElem" class="file-upload-input" accept="image/*">
         <label for="fileElem" class="file-upload-button">
@@ -64,36 +64,33 @@
         </label>
       </div>
 
+      <!-- loading bar -->
       <div class="padding"></div>
-
-      <div class="loading-container">
-        <div class="loading-bar">
-          <div class="loading-progress"></div>
+        <div class="loading-container">
+          <div class="loading-bar">
+            <div class="loading-progress"></div>
+          </div>
         </div>
       </div>
-    </div>
 
-    
-    <div class="min-padding display-image "></div>
-    <div class="box display-image">
-      <h3 class="center-text">Here are the fossils that the model can recognise.</h3>
-      <div id="myImageGrid" class="image-grid display-image">
-        
-        <!-- Images will be added here -->
+      <!-- Grid for fossil images -->    
+      <div class="min-padding display-image"></div>
+        <div class="box display-image">
+          <h3 class="center-text">Here are the fossils that the model can recognise.</h3>
+          <!-- Images will be added here -->
+          <div id="myImageGrid" class="image-grid display-image"></div>
       </div>
-  </div>
 
-    <div class="min-padding"></div>
+      <div class="min-padding"></div>
 
-    <div class="container">
-      <a href="../index.html">
-        <button class="btn">Go to back to PIWeb</button>
-      </a>
-  </div>
+      <!-- btn back to PIWeb -->
+      <div class="container">
+        <a href="../index.html">
+          <button class="btn">Go to back to PIWeb</button>
+        </a>
+      </div>
 
-  <div class="padding"></div>
-
-
+      <div class="padding"></div>
   </main>
 
   <footer>
