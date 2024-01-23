@@ -7,7 +7,7 @@ const fileNames = {
     'belemnite': 'belemnite.jpg',
     'bivalve': 'bivalve.jpg',
     'blastoid': 'blastoid.jpg',
-    'bone_fragment': 'bone fragment.jpg',
+    'bone fragment': 'bone fragment.jpg',
     'brachiopod': 'brachiopod.jpg',
     'bryozoan': 'bryozoan.jpg',
     'chelicerate': 'chelicerate.jpg',
