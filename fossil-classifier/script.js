@@ -276,6 +276,8 @@ result.append(showImage);
 result.appendChild(textResult);
 
 
+
+
 /* footer */
 const d = new Date();
 const footer = document.getElementById("footerPage");
