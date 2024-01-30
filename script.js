@@ -17,7 +17,7 @@ const translations = {
     'fr': {
       'title': 'Pi Web - Site web et application web sur mesure',
       'h1': 'Pi Web',
-      'text-1': "Modèles d'IA et site web sur mesure",
+      'text-1': "AI modèles et site web sur mesure",
       'text-2': 'Modèle pour classer les instruments chirurgicaux',
       'text-3': 'Modèle pour classer les fossiles',
       'text-4': 'Nouveaux web site',
