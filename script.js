@@ -150,7 +150,7 @@ function createContainerElements(item, lang) {
 
     // Create an image element
     const img = document.createElement("img");
-    img.classList.add("style-img");
+    img.classList.add("style-img", "anim-img");
     img.src = item.imgSrc;
     img.alt = item.altText;
 
