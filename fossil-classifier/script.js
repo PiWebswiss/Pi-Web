@@ -52,7 +52,7 @@ const translations = {
     'text-model-p-2': 'Le modèle s’exécute automatiquement lorsqu’une image est fournie',
     'text-use-model-1': 'Téléchargez une image de fossile par glisser-déposer ou choisissez un fichier',
     'text-use-model-2': 'Le modèle s’exécute automatiquement lorsqu’une image est fournie',
-    'text-btn-upload': 'Télécharger une image',
+    'text-btn-upload': 'Choisir une image',
     'text-image-recognise': 'Voici les fossiles que le modèle peut reconnaître.',
     'bth-go-back': 'Retour à PIWeb',
       
