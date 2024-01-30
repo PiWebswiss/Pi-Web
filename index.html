@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="rgb(1, 1, 13)"/>
-    <meta http-equiv="Content-Security-Policy" 
-      content="default-src 'self'; 
-              script-src 'self'; 
-              style-src 'self'; 
-              img-src 'self' https://piweb.ch/;">
-
-    <title>Pi Web - Custom-made website & web app</title>
+ <!--    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                  script-src 'self'; 
+                  style-src 'self'; 
+                  img-src 'self' https://piweb.ch/;"> -->
+    <!-- <script defer src="translate.js"></script> -->
     <script defer src="script.js"></script>
+    <title data-translate="title">Pi Web - Custom-made website & web app</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="image/logo 2.png" type="image/x-icon">
 </head>
@@ -23,34 +23,18 @@
     <!-- © Copyright: Powered by PIWeb : https://piweb.ch -->
 
     <header>
+        <div class="container-fr-en padding-right">
+            <input class="translate-button" type="button" id="translateToFr" value="Fr">
+            <input class="translate-button" type="button" id="translateToEn" value="En">
+        </div>
         <div class="hero-container grad">
-            <h1 id="textAnimation" class="big-text">Welcome to Pi Web</h1>
+            <h1 data-translate="h1" id="textAnimation" class="big-text piweb-logo">Welcome to Pi Web</h1>
             <img class="marge-buttom" src="image/logo 2.png" alt="pi web logo">
         </div>
     </header>
 
     <main>
-
-        <div class="container padding">
-            <h2 class="title-big no-container">Custom-made AI models & website</h2> 
-            <img  class="style-img" src="image/AI-model.jpg" alt="costum code">
-        </div>
-
-        <div class="container padding">
-            <h2 class="title-big no-container">New AI Model to classify surgical instruments<a class="min-button" href="recognise surgical instruments/index.html">Check it!</a></h2> 
-            <a href="recognise surgical instruments/index.html"><img class="style-img anim-img" src="image/surgical-instruments.png" alt="AI Model to classify fossils"></a>
-        </div>
-
-        <div class="container padding">
-            <h2 class="title-big no-container">AI Model to classify fossils<a class="min-button" href="fossil-classifier/index.html">Check it!</a></h2> 
-            <a href="fossil-classifier/index.html"><img class="style-img anim-img" src="image/AI fossil.png" alt="AI Model to classify fossils"></a>
-        </div>
-
-        <div class="container padding">
-            <h2 class="title-big no-container">My latest web site build!<a class="min-button" href="PiWebaffutage/index.html">Check it!</a></h2> 
-            <a href="PiWebaffutage/index.html"><img class=" style-img anim-img" src="image/Pi web site 1.png" alt="Pi web site affutage "></a>
-        </div>
-        
+        <div id="container-image"></div>
         <div class="container min-padding black"></div>
         <div class="container padding white grad3">
             <h2 class="no-container title-little hover-link">

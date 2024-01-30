@@ -1,4 +1,334 @@
-let fossilModel, checkFossilModel;
+let lastPredictedIndex = null;
+let error = 0; // used to save the error to transalte it 
+let fossilModel, checkFossilModel, maxValue;
+
+const translations = {
+    'en': {
+    'title': 'fossil classifier',
+    'h1': 'AI Model to classify fossils',
+    'p-1': 'Identifying fossils can be a time-consuming task that relies on expert knowledge of fossil morphology. This task is particularly challenging due to the often fragmented and degraded nature of fossils.',
+    'p-2': 'These models are part of my Capstone Project, which you can find on GitHub.',
+    'p-2-link': 'Capstone-Project',
+    'li-1': 'The accuracy rate for distinguishing between fossils and non-fossils is 93%.',
+    'li-2': 'The accuracy rate in identifying specific fossil types is 90%.',
+    'p-3': 'These models were trained on 8 0000 and 80 0000 respectively.',
+    'p-4': 'You can try the model below. The model is loaded and run on your device.',
+        'p-note-1': 'Please Note:',
+        'p-note-2': 'The first time you use this application for inference, it may take a while. This is because the pre-trained models',
+        'p-2-strong-1': ' MobileNetV3Small ',
+        'p-2-text-1': ' and ',
+        'p-2-strong-2': ' InceptionV3 ',
+        'p-2-text-2': 'are being loaded on your device.',
+        'p-note-3': "It is important to note that these models are not 100% accurate and have their limitations. For example, the fossil classifier was trained only on 46 different categories, meaning it can classify images only within those predefined categories.",
+    'text-model-title': 'Upload a fossil image by choosing a file',
+    'text-model-p-1': 'Upload a surgical instrument image by choosing a file',
+    'text-model-p-2': 'The model runs automatically when an image is given',
+    'text-use-model-1': 'Upload a fossil image by dragging & dropping or choose a file',
+    'text-use-model-2': 'The model runs automatically when an image is given',
+    'text-btn-upload': 'Upload an image',
+    'text-image-recognise': 'Here are the fossils that the model can recognise.',
+    'bth-go-back': 'Go back to PIWeb',
+
+    },
+    'fr': {
+    'title': 'classificateur de fossiles',
+    'h1': 'Modèle IA pour classifier les fossiles',
+    'p-1': "L'identification des fossiles peut être une tâche fastidieuse qui repose sur une connaissance experte de la morphologie des fossiles. Cette tâche est particulièrement difficile en raison de la nature souvent fragmentée et dégradée des fossiles.",
+    'p-2': "Ces modèles font partie de mon projet de fin d'études, que vous pouvez trouver sur GitHub. ",
+    'p-2-link': 'Capstone-Project',
+    'li-1': "Le taux de précision pour distinguer entre les fossiles et les non-fossiles est de 93 %.",
+    'li-2': "Le taux de précision pour identifier des types spécifiques de fossiles est de 90 %.",
+    'p-3': 'Ces modèles ont été entraînés sur 8 0000 et 80 0000 respectivement.',
+    'p-4': "Vous pouvez essayer le modèle ci-dessous. Le modèle est chargé et exécuté sur votre appareil.",
+        'p-note-1': "Veuillez noter:",
+        'p-note-2': 'La première fois que vous utilisez cette application pour l\'inférence, cela peut prendre un certain temps. Cela est dû au chargement sur votre appareil des modèles pré-entraînés',
+        'p-2-strong-1': ' MobileNetV3Small ',
+        'p-2-text-1': ' et ',
+        'p-2-strong-2': ' InceptionV3 ',
+        'p-2-text-2': ' sont en train de se charger sur votre appareil.',
+        'p-note-3': "Il est important de noter que ces modèles ne sont pas précis à 100 % et ont leurs limites. Par exemple, le classificateur de fossiles a été entraîné uniquement sur 46 catégories différentes, ce qui signifie qu'il ne peut classer les images que dans ces catégories prédéfinies.",
+    'text-model-title': 'Téléchargez une image de fossile en choisissant un fichier',
+    'text-model-p-1': 'Téléchargez une image d’instrument chirurgical en choisissant un fichier',
+    'text-model-p-2': 'Le modèle s’exécute automatiquement lorsqu’une image est fournie',
+    'text-use-model-1': 'Téléchargez une image de fossile par glisser-déposer ou choisissez un fichier',
+    'text-use-model-2': 'Le modèle s’exécute automatiquement lorsqu’une image est fournie',
+    'text-btn-upload': 'Télécharger une image',
+    'text-image-recognise': 'Voici les fossiles que le modèle peut reconnaître.',
+    'bth-go-back': 'Retour à PIWeb',
+      
+    }
+};
+
+// index for the models 
+const index = {
+    'en': {
+    0: 'agnatha',
+    1: 'ammonoid',
+    2: 'amphibian',
+    3: 'angiosperm',
+    4: 'avialae',
+    5: 'belemnite',
+    6: 'bivalve',
+    7: 'blastoid',
+    8: 'bone_fragment',
+    9: 'brachiopod',
+    10: 'bryozoan',
+    11: 'chelicerate',
+    12: 'chondrichthyes',
+    13: 'conodont',
+    14: 'coral',
+    15: 'crinoid',
+    16: 'crocodylomorph',
+    17: 'crustacean',
+    18: 'echinoid',
+    19: 'gastropod',
+    20: 'graptolite',
+    21: 'gymnosperm',
+    22: 'insect',
+    23: 'mammal',
+    24: 'mammal_teeth',
+    25: 'marine_reptile',
+    26: 'myriapod',
+    27: 'nautiloid',
+    28: 'ophiuroid',
+    29: 'ornithischian',
+    30: 'osteichthyes',
+    31: 'petrified_wood',
+    32: 'placoderms',
+    33: 'pteridophyte',
+    34: 'pterosaurs',
+    35: 'reptile_teeth',
+    36: 'sauropodomorph',
+    37: 'shark_teeth',
+    38: 'snake',
+    39: 'sponge',
+    40: 'starfish',
+    41: 'stromatolite',
+    42: 'theropod',
+    43: 'trace_fossil',
+    44: 'trilobite',
+    45: 'turtle',
+    },
+    'fr': {
+    0: 'agnathe',
+    1: 'ammonoïde',
+    2: 'amphibien',
+    3: 'angiosperme',
+    4: 'avialae',
+    5: 'bélemnite',
+    6: 'bivalve',
+    7: 'blastozoaire',
+    8: 'fragment_d_os',
+    9: 'brachiopode',
+    10: 'bryozoaire',
+    11: 'chélicérate',
+    12: 'chondrichthyen',
+    13: 'conodonte',
+    14: 'corail',
+    15: 'crinoïde',
+    16: 'crocodylomorphe',
+    17: 'crustacé',
+    18: 'échinide',
+    19: 'gastéropode',
+    20: 'graptolite',
+    21: 'gymnosperme',
+    22: 'insecte',
+    23: 'mammifère',
+    24: 'dents_de_mammifère',
+    25: 'reptile_marin',
+    26: 'myriapode',
+    27: 'nautiloïde',
+    28: 'ophiure',
+    29: 'ornithischien',
+    30: 'osteichthyen',
+    31: 'bois_pétrifié',
+    32: 'placodermes',
+    33: 'ptéridophyte',
+    34: 'ptérosaures',
+    35: 'dents_de_reptile',
+    36: 'sauropodomorphe',
+    37: 'dents_de_requin',
+    38: 'serpent',
+    39: 'éponge',
+    40: 'étoile_de_mer',
+    41: 'stromatolithe',
+    42: 'théropode',
+    43: 'trace_fossile',
+    44: 'trilobite',
+    45: 'tortue',
+
+    },
+  
+};
+    /* Result model 1 index  */
+    /* const indexNonFossil = {
+        'en': {
+            0: "fossil",
+            1: "non fossil",
+        },
+        'fr':{
+            0: "fossile",
+            1: "non fossile"
+        },
+
+    }; */
+
+/* Result and errors response */
+const text_translate = {
+    'en': {
+        'Predicted class': 'Predicted class: ',
+        'not fossil': 'This image is not a fossil',
+        'error': 'Error handling the file, please check the file',
+        'check file': 'Please check the file',
+    },
+    'fr':{
+        'Predicted class': 'Classe prédite : ',
+        'not fossil': "Cette image n'est pas un fossil",
+        'error': 'Erreur lors du traitement du fichier, veuillez vérifier le fichier',
+        'check file': 'Veuillez vérifier le fichier',
+    }
+}
+
+
+// Function to have the confidence text related to how well the model did
+function confidenceText(prediction) {
+    const roundedPrediction =  Math.round(prediction * 100);
+    let textPrediction;
+
+    if (lang === "fr") {
+        textPrediction = `à ${roundedPrediction}%`;
+
+    }else{
+        textPrediction = `at ${roundedPrediction}%`;
+
+    }
+
+    return textPrediction;
+}
+
+
+
+function linkText(lang) {
+    // Remove any existing elements before adding new ones
+    const existingLinkPara = document.getElementById("text-link-Capstone-Project");
+    if (existingLinkPara) {
+        existingLinkPara.innerHTML = ''; // Clear the contents
+    }
+
+    // Create a new paragraph element
+    const linkpara = document.createElement('p');
+    linkpara.textContent = translations[lang]["p-2"];
+
+    // Create a new anchor (link) element
+    const link = document.createElement('a');
+    link.setAttribute('href', 'https://github.com/PiWebswiss/Capstone-Project-Louis-Cavaleri');
+    link.setAttribute('target', '_blank');
+    link.textContent = translations[lang]["p-2-link"];
+
+    // Append the link to the paragraph
+    linkpara.appendChild(link);
+
+    // Append the paragraph to the element with ID 'text-link-Capstone-Project'
+    document.getElementById("text-link-Capstone-Project").appendChild(linkpara); // or append to another element as needed
+}
+
+function noteText(lang) {
+    // Remove any existing elements before adding new ones
+    const existingNotePara = document.getElementById("text-note-mode");
+    if (existingNotePara) {
+        existingNotePara.innerHTML = ''; // Clear the contents
+    }
+
+    // Create a new paragraph element
+    const para = document.createElement('p');
+
+    // Text part before the first strong element
+    para.appendChild(document.createTextNode(translations[lang]['p-note-2']));
+
+    // Create strong element for MobileNetV3Small
+    const strong1 = document.createElement('strong');
+    strong1.textContent = translations[lang]['p-2-strong-1'];
+    para.appendChild(strong1);
+
+    // Text part between the strong elements
+    para.appendChild(document.createTextNode(translations[lang]['p-2-text-1']));
+
+    // Create strong element for InceptionV3
+    const strong2 = document.createElement('strong');
+    strong2.textContent = translations[lang]['p-2-strong-2'];
+    para.appendChild(strong2);
+
+    // Text part after the second strong element
+    para.appendChild(document.createTextNode(translations[lang]['p-2-text-2']));
+
+    // Append the paragraph to the element with ID 'text-note-mode'
+    document.getElementById("text-note-mode").appendChild(para);
+}
+
+
+// Function to translate page content based on selected language
+function translatePage(lang) {
+    document.querySelectorAll("[data-translate]").forEach(el => {
+        // Fetch the translation key from the element's data attribute
+        const translationKey = el.dataset.translate;
+        const translatedText = translations[lang][translationKey];
+        el.textContent = translatedText; // Update element text with translation
+    });
+    // Update the prediction text if a prediction has been made
+    if (lastPredictedIndex !== null) {
+        categorieName = index[lang][lastPredictedIndex];
+        textResult.textContent = categorieName + " " + confidenceText(maxValue);
+    }
+    /* error translate */
+    switch (error) {
+        case 0:
+            break;
+        case 1:
+            textResult.textContent = text_translate[lang]["not fossil"];
+            break; // This break statement is important to exit the switch after setting textContent.
+        case 2:
+            textResult.textContent = text_translate[lang]["error"];
+            break;
+        case 3:
+            textResult.textContent = text_translate[lang]["check file"];
+            break;
+        default:
+            break;
+    }
+
+    /* Change html lang and add elements */
+    document.documentElement.lang = lang;
+    linkText(lang);
+    noteText(lang);
+}
+
+
+
+/* Translate buttons   */
+document.getElementById('translateToFr').addEventListener('click', function() {
+  lang = "fr";
+  localStorage.setItem('lang', lang);
+  translatePage(lang);
+
+  
+});
+
+document.getElementById('translateToEn').addEventListener('click', function() {
+  lang = "en";
+  localStorage.setItem('lang', lang);
+  translatePage(lang);
+ 
+});
+
+// Set initial language default ("en")
+lang = localStorage.getItem('lang') || 'en';
+/* Translate page */
+translatePage(lang);
+
+
+
+
+/* Setup models for inference */
 
 const imageElement = document.getElementById('fileElem');
 const result = document.getElementById('result');
@@ -133,70 +463,6 @@ function checkPreprocessImage(image) {
     return tensor;
 }
 
-// index 
-const index = {
-    0: 'agnatha',
-    1: 'ammonoid',
-    2: 'amphibian',
-    3: 'angiosperm',
-    4: 'avialae',
-    5: 'belemnite',
-    6: 'bivalve',
-    7: 'blastoid',
-    8: 'bone_fragment',
-    9: 'brachiopod',
-    10: 'bryozoan',
-    11: 'chelicerate',
-    12: 'chondrichthyes',
-    13: 'conodont',
-    14: 'coral',
-    15: 'crinoid',
-    16: 'crocodylomorph',
-    17: 'crustacean',
-    18: 'echinoid',
-    19: 'gastropod',
-    20: 'graptolite',
-    21: 'gymnosperm',
-    22: 'insect',
-    23: 'mammal',
-    24: 'mammal_teeth',
-    25: 'marine_reptile',
-    26: 'myriapod',
-    27: 'nautiloid',
-    28: 'ophiuroid',
-    29: 'ornithischian',
-    30: 'osteichthyes',
-    31: 'petrified_wood',
-    32: 'placoderms',
-    33: 'pteridophyte',
-    34: 'pterosaurs',
-    35: 'reptile_teeth',
-    36: 'sauropodomorph',
-    37: 'shark_teeth',
-    38: 'snake',
-    39: 'sponge',
-    40: 'starfish',
-    41: 'stromatolite',
-    42: 'theropod',
-    43: 'trace_fossil',
-    44: 'trilobite',
-    45: 'turtle'};
-
-    indexNonFossil = {
-        0: "fossil",
-        1: "non fossil"
-    };
-
-
-// Function to have the confidence text related to how well the model did
-function confidenceText(prediction) {
-    const roundedPrediction =  Math.round(prediction * 100);
-    const textPrediction = `at ${roundedPrediction}% confidence`;
-
-    return textPrediction;
-}
-
-
 const btnUpleadContainer = document.getElementById("btn-uplead-container"); // ID to add class for magine in small scren
 const displayImage = document.querySelector(".display-image");
 const displayNon = document.querySelector(".display-non")
@@ -232,10 +498,14 @@ function updateImageDisplay(image) {
 }
 
 
+
+
 // Function to check if a file is an image
 function isImage(file) {
     return file && file.type.startsWith('image/');
 };
+
+
 
 // Function to handle image processing and prediction
 async function handleImg(file) {
@@ -254,18 +524,22 @@ async function handleImg(file) {
                 const predictionTensor = fossilModel.predict(tensor);
                 const predictedValue = await predictionTensor.data(); // Get prediction data
                 const predictedClassIndex = await predictionTensor.argMax(1).data();
-                const maxValue = Math.max(...predictedValue); // Get max value           
-                const name = index[predictedClassIndex[0]];
-                textResult.textContent = 'Predicted class: ' + name + " " + confidenceText(maxValue);
+                lastPredictedIndex = predictedClassIndex[0];
+                maxValue = Math.max(...predictedValue); // Get max value           
+                const name = index[lang][predictedClassIndex[0]];
+                textResult.textContent = text_translate[lang]["Predicted class"] + name + " " + confidenceText(maxValue);
                 tensor.dispose(); // Dispose of the tensor to free memory
             } else {
-                textResult.textContent = "This image is not a fossil";
+                error = 1; 
+                textResult.textContent = text_translate[lang]["not fossil"];
             }
         } catch (error) {
-            textResult.textContent = 'Error handling the file, please check the file'
+            error = 2; 
+            textResult.textContent = text_translate[lang]["error"];
         }
     } else {
-        textResult.textContent = "Please check the file"
+        error = 3; 
+        textResult.textContent = text_translate[lang]["check file"];
         // Handle non-image file (e.g., show message to user)
     }
 }
@@ -274,7 +548,6 @@ async function handleImg(file) {
 // Append the <p> element to the document body or any other desired element
 result.append(showImage);
 result.appendChild(textResult);
-
 
 
 

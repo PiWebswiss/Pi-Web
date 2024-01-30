@@ -127,7 +127,10 @@ transform: scale(1.025);
         font-size: 1rem;
     }
     .big-text {
-        font-size: 2rem;
+        font-size: 3.6rem;
+    }
+    .padding-right {
+        padding-right: 1rem;
     }
     
 }
@@ -137,16 +140,19 @@ transform: scale(1.025);
         font-size: 2rem;
     }
     .title-big {
-        font-size: 2.3rem;
+        font-size: 2.5rem;
     }
     .big-text {
-        font-size: 3.5rem;
+        font-size: 6rem;
     }
     .min-button {
         font-size: 1.5rem;
     }
     .padding-big {
-        padding: 4rem;
+        padding: 5rem;
+    }
+    .padding-right {
+        padding-right: 2.5rem;
     }
 }
 
@@ -261,3 +267,26 @@ transform: scale(1.025);
 .padding-bottom {
     padding-bottom: 2rem;
 }
+
+.translate-button {
+  color: #ffffff;
+  background: none; /* Remove default background */
+  border: none; /* Remove borders */
+  text-decoration: underline; /* Underline like a link */
+  cursor: pointer; /* Cursor like a link */
+  padding: 0; /* Remove padding */
+  margin: 2.5px; /* Remove margins */
+  font-family: inherit; /* Inherit font from parent */
+  font-size: large; /* Inherit font size from parent */
+ 
+  
+}
+
+.container-fr-en {
+  display: flex;
+  justify-content: flex-end; /* Aligns children (buttons) to the right */
+  padding-top: 0.5rem;
+  background-color:  rgb(1, 1, 13);
+}
+
+

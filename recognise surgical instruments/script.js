@@ -1,27 +1,104 @@
 /* code to translate the text */
-let categorieName, maxValue;
+let categorieName, maxValue, lang;
 let lastPredictedIndex = null;
+let error = 0; // used to save the error to transalte it 
 
 
-let index = {
+const index = {
     'en': {
-      0: 'Mayo Scissors',
-      1: 'Stevens Scissors',
-      2: 'Stille Scissors',
-      3: 'Micro Scissors', 
-      4: 'Plaster Scissors',
+        0: 'Mayo Scissors',
+        1: 'Stevens Scissors',
+        2: 'Stille Scissors',
+        3: 'Micro Scissors', 
+        4: 'Plaster Scissors',
     },
     'fr': {
-      0: 'Ciseaux Mayo',
-      1: 'Ciseaux Stevens',
-      2: 'Ciseaux Stille',
-      3: 'Ciseaux micro', 
-      4: 'Ciseaux à plâtre',
+        0: 'Ciseaux Mayo',
+        1: 'Ciseaux Stevens',
+        2: 'Ciseaux Stille',
+        3: 'Ciseaux micro', 
+        4: 'Ciseaux à plâtre',
+    }
+};
+
+const translations = {
+    'en': {
+      'title': 'Recognize surgical instruments',
+      'h1': 'AI Model to classify surgical instruments',
+      'h2': 'Model is in Beta',
+      'h3': 'Here are surgical instruments that the model can recognise.',
+      'text-strong': 'Please Note:',
+      'note-model-text': "There is no safeguard in place if images outside of the categories displayed below are provided. The model is only equipped to recognize and classify images within the predefined set of surgical instruments. Therefore, for all images that fall outside of these specified categories, the results should be treated as not accurate.",
+      'image-name-1': 'Mayo Scissors',
+      'image-name-2': 'Micro Scissors',
+      'image-name-3': 'Stevens Scissors',
+      'image-name-4': 'Stille Scissors',
+      'image-name-5': 'Plaster scissors',
+      'text-model-h2': 'Try the model',
+      'text-model-h3': 'Upload a surgical instrument.',
+      'text-model-p1': 'Upload a surgical instrument image by choosing a file',
+      'text-model-p2': 'The model runs automatically when an image is given',
+      'text-model-p3': 'Upload a surgical instrument image by dragging & dropping or choose a file',
+      'text-model-h4': 'The model runs automatically when an image is given',
+      'bth-go-back': 'Go back to PIWeb',
+      'text-btn-upload': 'Upload an image',
+    },
+    'fr': {
+      'title': 'Reconnaître les instruments chirurgicaux',
+      'h1': 'Modèle IA pour classer les instruments chirurgicaux',
+      'h2': 'Le modèle est en version bêta',
+      'h3': 'Voici les instruments chirurgicaux que le modèle peut reconnaître.',
+      'text-strong': 'Veuillez noter:',
+      'note-model-text': "Il n'y a pas de protection en place si des images en dehors des catégories affichées ci-dessous sont fournies. Le modèle n'est équipé que pour reconnaître et classer les images dans l'ensemble prédéfini d'instruments chirurgicaux. Par conséquent, pour toutes les images qui n'entrent pas dans les catégories spécifiées, les résultats doivent être considérés comme inexacts.",
+      'image-name-1': 'Ciseaux Mayo',
+      'image-name-2': 'Ciseaux micro',
+      'image-name-3': 'Ciseaux Stevens',
+      'image-name-4': 'Ciseaux Stille',
+      'image-name-5': 'Ciseaux à plâtre',
+      'text-model-h2': 'Essayez le modèle',
+      'text-model-h3': 'Téléchargez un instrument chirurgical.',
+      'text-model-p1': 'Téléchargez une image d\'instrument chirurgical en choisissant un fichier',
+      'text-model-p2': 'Le modèle se lance automatiquement lorsqu\'une image est fournie',
+      'text-model-p3': 'Téléchargez une image d\'instrument chirurgical en la glissant et la déposant ou choisissez un fichier',
+      'text-model-h4': 'Le modèle se lance automatiquement lorsqu\'une image est fournie',
+      'bth-go-back': 'Retourner à PIWeb',
+      'text-btn-upload': 'Choisir une image',
     }
   };
 
+    /* Result and errors response */
+    const text_translate = {
+        'en': {
+            'no prediction': 'No prediction made',
+            'error': 'Error handling the file, please check the file',
+            'check file': 'Please check the file',
+        },
+        'fr':{
+            'no prediction': "Aucune prédiction n'a été faite",
+            'error': 'Erreur lors du traitement du fichier, veuillez vérifier le fichier',
+            'check file': 'Veuillez vérifier le fichier',
+        }
+    }
 
-  function translatePage(lang) {
+  
+// Function to have the confidence text related to how well the model did
+function confidenceText(prediction) {
+    const roundedPrediction =  Math.round(prediction * 100);
+    let textPrediction;
+
+    if (lang === "fr") {
+        textPrediction = `à ${roundedPrediction}%`;
+
+    }else{
+        textPrediction = `at ${roundedPrediction}%`;
+
+    }
+
+    return textPrediction;
+}
+
+
+function translatePage(lang) {
     document.querySelectorAll("[data-translate]").forEach(el => {
         // Check if the element has a specific child to translate
         const textContainer = el.querySelector("span");
@@ -32,15 +109,37 @@ let index = {
             el.textContent = translations[lang][el.dataset.translate];
         }
     });
-
+  
+  
     // Update the prediction text if a prediction has been made
     if (lastPredictedIndex !== null) {
         categorieName = index[lang][lastPredictedIndex];
         textResult.textContent = categorieName + " " + confidenceText(maxValue);
     }
+
+    /* error translate */
+    switch (error) {
+        case 0:
+            break;
+        case 1:
+            textResult.textContent = text_translate[lang]["not fossil"];
+            break; // This break statement is important to exit the switch after setting textContent.
+        case 2:
+            textResult.textContent = text_translate[lang]["error"];
+            break;
+        case 3:
+            textResult.textContent = text_translate[lang]["check file"];
+            break;
+        default:
+            break;
+    }
+
+    /* Change HTML lang */
+    document.documentElement.lang = lang;
+   
 }
 
-
+/* Buttons  */
 document.getElementById('translateToFr').addEventListener('click', function() {
   lang = "fr";
   localStorage.setItem('lang', lang);
@@ -55,63 +154,15 @@ document.getElementById('translateToEn').addEventListener('click', function() {
 });
 
 
-const translations = {
-  'en': {
-    'h1': 'AI Model to classify surgical instruments',
-    'h2': 'Model is in Beta',
-    'h3': 'Here are surgical instruments that the model can recognise.',
-    'text-strong': 'Please Note:',
-    'note-model-text': "There is no safeguard in place if images outside of the categories displayed below are provided. The model is only equipped to recognize and classify images within the predefined set of surgical instruments. Therefore, for all images that fall outside of these specified categories, the results should be treated as not accurate.",
-    'image-name-1': 'Mayo Scissors',
-    'image-name-2': 'Micro Scissors',
-    'image-name-3': 'Stevens Scissors',
-    'image-name-4': 'Stille Scissors',
-    'image-name-5': 'Plaster scissors',
-    'text-model-h2': 'Try the model',
-    'text-model-h3': 'Upload a surgical instrument.',
-    'text-model-p1': 'Upload a surgical instrument image by choosing a file',
-    'text-model-p2': 'The model runs automatically when an image is given',
-    'text-model-p3': 'Upload a surgical instrument image by dragging & dropping or choose a file',
-    'text-model-h4': 'The model runs automatically when an image is given',
-    'bth-go-back': 'Go back to PIWeb',
-    'text-btn-upload': 'Upload an image',
-  },
-  'fr': {
-    'h1': 'Modèle IA pour classer les instruments chirurgicaux',
-    'h2': 'Le modèle est en version bêta',
-    'h3': 'Voici les instruments chirurgicaux que le modèle peut reconnaître.',
-    'text-strong': 'Veuillez noter:',
-    'note-model-text': "Il n'y a pas de protection en place si des images en dehors des catégories affichées ci-dessous sont fournies. Le modèle n'est équipé que pour reconnaître et classer les images dans l'ensemble prédéfini d'instruments chirurgicaux. Par conséquent, pour toutes les images qui n'entrent pas dans les catégories spécifiées, les résultats doivent être considérés comme inexacts.",
-    'image-name-1': 'Ciseaux Mayo',
-    'image-name-2': 'Ciseaux micro',
-    'image-name-3': 'Ciseaux Stevens',
-    'image-name-4': 'Ciseaux Stille',
-    'image-name-5': 'Ciseaux à plâtre',
-    'text-model-h2': 'Essayez le modèle',
-    'text-model-h3': 'Téléchargez un instrument chirurgical.',
-    'text-model-p1': 'Téléchargez une image d\'instrument chirurgical en choisissant un fichier',
-    'text-model-p2': 'Le modèle se lance automatiquement lorsqu\'une image est fournie',
-    'text-model-p3': 'Téléchargez une image d\'instrument chirurgical en la glissant et la déposant ou choisissez un fichier',
-    'text-model-h4': 'Le modèle se lance automatiquement lorsqu\'une image est fournie',
-    'bth-go-back': 'Retourner à PIWeb',
-    'text-btn-upload': 'Choisir une image',
-  }
-};
 
-
-// Set a default language if it's not available in localStorage
-if (localStorage.getItem('lang') !== null) {
-    lang = localStorage.getItem('lang');
-} else {
-    lang = "en"; // Default language
-    localStorage.setItem('lang', lang); // Optionally, store this default in localStorage
-}
-
-// Apply the language settings
+// Set initial language default ("en")
+lang = localStorage.getItem('lang') || 'en';
+/* Translate page */
 translatePage(lang);
 
 
 
+/* Setup models for inference */
 /* code to run the model */
 const imageElement = document.getElementById('fileElem');
 const result = document.getElementById('result');
@@ -275,21 +326,6 @@ function updateImageDisplay(image) {
     result.appendChild(textResult);
 }
 
-// Function to have the confidence text related to how well the model did
-function confidenceText(prediction) {
-    const roundedPrediction =  Math.round(prediction * 100);
-    let textPrediction;
-
-    if (lang === "fr") {
-        textPrediction = `à ${roundedPrediction}% `;
-
-    }else{
-        textPrediction = `at ${roundedPrediction}% `;
-
-    }
-
-    return textPrediction;
-}
 
 
 async function handleImg(file) {
@@ -309,17 +345,18 @@ async function handleImg(file) {
                 lastPredictedIndex = predictedClassIndex[0];
                 textResult.textContent = categorieName + " " + confidenceText(maxValue); // Assuming predictionData[0] is the confidence
             } else {
-                textResult.textContent = "No prediction made";
+                error = 1; 
+                textResult.textContent = text_translate[lang]["no prediction"];
             }
 
             tensor.dispose(); // Dispose the tensor to free memory
         } catch (error) {
-            updateImageDisplay(image); // Handle this case appropriately
-            textResult.textContent = 'Error handling the file, please check the file';
+            error = 2; 
+            textResult.textContent = text_translate[lang]["error"];
         }
     } else {
-        updateImageDisplay(); // Handle non-image file
-        textResult.textContent = "Please check the file";
+        error = 3; 
+        textResult.textContent = text_translate[lang]["check file"];
     }
 }
 

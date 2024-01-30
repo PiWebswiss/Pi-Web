@@ -8,7 +8,7 @@
   <!-- Include TensorFlow.js -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
   <link rel="stylesheet" href="style.css">
-  <title>fossil classifier</title>
+  <title data-translate="title">fossil classifier</title>
   <script defer src="script.js"></script>
   <script defer src="display-img.js"></script>
   <link rel="icon" href="../image/logo 2.png" type="image/x-icon">
@@ -20,18 +20,27 @@
   <header>
     <!-- box to explain the model -->
     <div class="box-title">
-      <h1 data-translate="title">AI Model to classify fossils</h1>
-      <p>Identifying fossils can be a time-consuming task that relies on expert knowledge of fossil morphology. This task is particularly challenging due to the often fragmented and degraded nature of fossils.</p>
-      <p>The goal of the model is to provide a system that can accurately identify, classify, and recognize fossils based on their images.</p>
-      <p>These models are part of my Capstone Project, which you can find on GitHub.<a target="_blank" href="https://github.com/PiWebswiss/Capstone-Project-Louis-Cavaleri">Capstone-Project</a></p>
-      <p>These models were trained on 8,000 images for the fossil vs non-fossil distinction and on 80,000 images across 46 different categories for the fossil classifier. The first model can determine if an image is a fossil or non-fossil with 93% accuracy, while the second has a 90% accuracy rate in identifying specific types of fossils.</p>
-      <p>It is important to note that these models are not 100% accurate and have their limitations. For example, the fossil classifier was trained only on 46 different categories, meaning it can classify images only within those predefined categories.</p>
-      <p>You can try the model below. The model is loaded and run on your computer.</p>
+      <div class="container-fr-en ">
+        <input class="translate-button" type="button" id="translateToFr" value="Fr">
+        <input class="translate-button" type="button" id="translateToEn" value="En">
+    </div>
+      <h1 data-translate="h1"></h1>
+      <p data-translate="p-1"></p>
+      <!-- text link for the Capstone-Project -->
+      <div id="text-link-Capstone-Project"></div>
+      <ul>
+        <li data-translate="li-1"></li>
+        <li data-translate="li-2"></li>
+      </ul>
+      <p data-translate="p-3"></p>
+      <p data-translate="p-4"></p>
+    
+      
+      <!-- text note model -->
       <div class="model-loading-notice">
-        <p><strong >Please Note:</strong></p>
-        <p>The first time you use this application for inference, it may take a while. This is because the pre-trained models <strong>MobileNetV3Small</strong> and <strong>InceptionV3</strong> are being loaded on your device.</p>
-        <p>I've chosen these models for their accuracy and efficiency, but their size means they require some time to become operational.</p>
-        <p>This loading process is a one-time event subsequent uses will be much faster. Thank you for your understanding.</p>
+        <p><strong data-translate="p-note-1"></strong></p>
+        <div id="text-note-mode"></div>
+        <p data-translate="p-note-3"></p>
       </div>
     </div>
   </header>
@@ -41,17 +50,17 @@
 
     <!-- Inference -->
     <div class="box">
-      <h2 class="center-text">Upload an image to identify its categorie.</h2>
+      <h2 data-translate="text-model-title" class="center-text"></h2>
       <!-- text only display on phone -->
-      <p class="text-phone padding">Upload a fossil image by choosing a file</p>
-      <p class="text-phone bold-text">The model runs automatically when an image is given</p>
+      <p data-translate="text-model-p-1" class="text-phone padding"></p>
+      <p data-translate="text-model-p-2" class="text-phone bold-text"></p>
 
       <div class="display-image">
         <div class="container">
           <div id="drop-area" class="drop-area">
             <form class="my-form">
-              <p class="center-text">Upload a fossil image by dragging & dropping or choose a file</p>
-              <h4 class="center-text">The model runs automatically when an image is given</h4>
+              <p data-translate="text-use-model-1" class="center-text"></p>
+              <h4 data-translate="text-use-model-2" class="center-text"></h4>
             </form>
           </div>
           <div class="display-non img-result" id="result"></div>
@@ -59,8 +68,9 @@
       </div>
       <div id="btn-uplead-container" class="file-upload-container">
         <input type="file" id="fileElem" class="file-upload-input" accept="image/*">
-        <label for="fileElem" class="file-upload-button">
-            <img src="../image/upload-icon.png" alt="Icon" class="icon">Upload an image
+        <label for="fileElem" class="file-upload-button" >
+            <img src="../image/upload-icon.png" alt="Icon" class="icon">
+            <span data-translate="text-btn-upload"></span>
         </label>
       </div>
 
@@ -76,7 +86,7 @@
       <!-- Grid for fossil images -->    
       <div class="min-padding display-image"></div>
         <div class="box display-image">
-          <h3 class="center-text">Here are the fossils that the model can recognise.</h3>
+          <h3 data-translate="text-image-recognise" class="center-text"></h3>
           <!-- Images will be added here -->
           <div id="myImageGrid" class="image-grid display-image"></div>
       </div>
@@ -86,7 +96,7 @@
       <!-- btn back to PIWeb -->
       <div class="container">
         <a href="../index.html">
-          <button class="btn">Go to back to PIWeb</button>
+          <button data-translate="bth-go-back" class="btn"></button>
         </a>
       </div>
 
