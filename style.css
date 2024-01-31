@@ -59,6 +59,19 @@ transform: scale(1.025);
     padding: 1rem;
 }
 
+.padding-top {
+    padding-top: 6rem;
+}
+
+.padding-bottom {
+    padding-bottom: 2rem;
+}
+
+.margin {
+    margin: 1rem;
+}
+
+
 .container {
     display: flex;
     background-color: rgb(217, 217, 219);
@@ -120,8 +133,11 @@ transform: scale(1.025);
     .no-container {
         width: 100%;
     }
+    .title-litle {
+        font-size: 1.2rem;
+    }
     .title-big {
-        font-size: 1.6rem;
+        font-size: 1.55rem;
     }
     .min-button {
         font-size: 1.2rem;
@@ -132,15 +148,18 @@ transform: scale(1.025);
     .padding-right {
         padding-right: 1rem;
     }
+    .padding-top {
+        padding-top: 3.5rem;
+    }
     
 }
 
 @media (min-width: 600px) {
-    .title-little {
-        font-size: 2rem;
+    .title-litle {
+        font-size: 1.6rem;
     }
     .title-big {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     .big-text {
         font-size: 6rem;
@@ -227,8 +246,6 @@ transform: scale(1.025);
  
 .text-red {
     color: red;
-    font-size: 3rem;
-
 
 }
 .text-link {
@@ -257,16 +274,7 @@ transform: scale(1.025);
     cursor: pointer;
 }
 
-.margin {
-    margin: 1rem;
-}
 
-
-
-
-.padding-bottom {
-    padding-bottom: 2rem;
-}
 
 .translate-button {
   color: #ffffff;

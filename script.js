@@ -4,11 +4,13 @@ let splitText = []; // Array to store individual characters of the text
 let timer; // Timer for controlling the animation interval
 
 const container = document.getElementById("container-image");
+const containerEPFL = document.getElementById("container-EPFL");
 
 const translations = {
     'en': {
       'title': 'Pi Web - Custom-made website & web app',
       'h1': 'Pi Web',
+      'h2': 'I have recently been certified from the EPFL Extension School',
       'text-1': 'Custom-made AI models & website',
       'text-2': 'New AI Model to classify surgical instruments',
       'text-3': 'AI Model to classify fossils',
@@ -16,6 +18,7 @@ const translations = {
     },
     'fr': {
       'title': 'Pi Web - Site web et application web sur mesure',
+      'h2': "J'ai récemment été certifiée par l'EPFL Extension School",
       'h1': 'Pi Web',
       'text-1': "AI modèles et site web sur mesure",
       'text-2': 'Modèle pour classer les instruments chirurgicaux',
@@ -50,6 +53,102 @@ const containers = [
         link: "PiWebaffutage/index.html"
     }
 ];
+
+function createContainerElements(item, lang) {
+    // Create a container div
+    const divContainer = document.createElement("div");
+    divContainer.classList.add("container", "padding");
+
+    // Create an h2 element
+    const h2 = document.createElement("h2");
+    h2.classList.add("title-big", "no-container");
+    h2.textContent = translations[lang][item.title];
+
+    // Create an image element
+    const img = document.createElement("img");
+    img.classList.add("style-img", "anim-img");
+    img.src = item.imgSrc;
+    img.alt = item.altText;
+
+    // If there's a link, create an anchor element
+    if (item.link) {
+        const link = document.createElement("a");
+        link.classList.add("min-button");
+        link.href = item.link;
+        link.textContent = "Check it!";
+        
+        // Append the link to the h2 element
+        h2.appendChild(link);
+
+        // Add an event listener to the image to navigate to the link when clicked
+        img.addEventListener("click", () => {
+            window.location.href = item.link;
+        });
+    }
+
+    // Append the h2 and image elements to the container div
+    divContainer.appendChild(h2);
+    divContainer.appendChild(img);
+
+    return divContainer;
+}
+
+
+const EPFLcontainers = [
+    {
+        title: "I have recently been certified from the EPFL Extension School",
+        text: "EPLF ",
+        link: "https://www.epfl.ch/education/continuing-education/applied-data-science-machine-learning/",
+        textLink: "Certificate of Open Studies (COS)",
+        imgSrc: "image/ai.jpg",
+        altText: "AI image",
+    }
+]
+
+function  createEPLFContainerElements(item, lang) {
+    // Create a container div
+    const divContainer = document.createElement("div");
+    divContainer.classList.add("container", "padding", "padding-top", "white", "grad3");
+
+    // Create an h2 element
+    const h2 = document.createElement("h2");
+    h2.classList.add("no-container", "title-big", "hover-link");
+    h2.textContent = translations[lang]["h2"];
+
+    // Create an p element
+    const p = document.createElement("p");
+    p.classList.add("text-red", "title-litle");
+    p.textContent = item.text;
+    
+
+    // If there's a link, create an anchor element
+    const link = document.createElement("a");
+    link.classList.add("text-link");
+    link.href = item.link;
+    link.textContent = item.textLink;
+    
+
+    // Create an image element
+    const img = document.createElement("img");
+    img.classList.add("style-img", "anim-img", "padding-bottom");
+    img.src = item.imgSrc;
+    img.alt = item.altText;
+
+    // Add an event listener to the image to navigate to the link when clicked
+    img.addEventListener("click", () => {
+        window.location.href = item.link;
+    });
+    
+
+    // Append elements to the container div
+    p.appendChild(link)
+    h2.appendChild(p);
+    divContainer.appendChild(h2);
+    divContainer.appendChild(img);
+
+    return divContainer;
+}
+
 
 
 // Function to initialize text animation
@@ -120,6 +219,14 @@ function translatePage(lang) {
         const divContainer = createContainerElements(item, lang);
         container.appendChild(divContainer); // Append the new elements to the main container
     });
+
+    // Inside the loop
+    containerEPFL.innerHTML = ''; // Clear the existing content of the main container
+
+    EPFLcontainers.forEach(item => {
+        const container = createEPLFContainerElements(item, lang);
+        containerEPFL.appendChild(container); // Append the new elements to the main container
+    });
 }
 
 
@@ -138,44 +245,6 @@ document.getElementById('translateToEn').addEventListener('click', function() {
 // Set initial language default ("en")
 lang = localStorage.getItem('lang') || 'en';
 
-function createContainerElements(item, lang) {
-    // Create a container div
-    const divContainer = document.createElement("div");
-    divContainer.classList.add("container", "padding");
-
-    // Create an h2 element
-    const h2 = document.createElement("h2");
-    h2.classList.add("title-big", "no-container");
-    h2.textContent = translations[lang][item.title];
-
-    // Create an image element
-    const img = document.createElement("img");
-    img.classList.add("style-img", "anim-img");
-    img.src = item.imgSrc;
-    img.alt = item.altText;
-
-    // If there's a link, create an anchor element
-    if (item.link) {
-        const link = document.createElement("a");
-        link.classList.add("min-button");
-        link.href = item.link;
-        link.textContent = "Check it!";
-        
-        // Append the link to the h2 element
-        h2.appendChild(link);
-
-        // Add an event listener to the image to navigate to the link when clicked
-        img.addEventListener("click", () => {
-            window.location.href = item.link;
-        });
-    }
-
-    // Append the h2 and image elements to the container div
-    divContainer.appendChild(h2);
-    divContainer.appendChild(img);
-
-    return divContainer;
-}
 
 
 translatePage(lang);
