@@ -130,7 +130,7 @@ function  createEPLFContainerElements(item, lang) {
 
     // Create an image element
     const img = document.createElement("img");
-    img.classList.add("style-img", "anim-img", "padding-bottom");
+    img.classList.add("style-img", "anim-img");
     img.src = item.imgSrc;
     img.alt = item.altText;
 
@@ -139,12 +139,16 @@ function  createEPLFContainerElements(item, lang) {
         window.location.href = item.link;
     });
     
+    const divpadding = document.createElement("div");
+    divpadding.className = "img-padding-bottom";
 
     // Append elements to the container div
     p.appendChild(link)
     h2.appendChild(p);
     divContainer.appendChild(h2);
     divContainer.appendChild(img);
+    divContainer.appendChild(divpadding);
+
 
     return divContainer;
 }
