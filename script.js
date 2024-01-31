@@ -97,7 +97,7 @@ function createContainerElements(item, lang) {
 const EPFLcontainers = [
     {
         title: "I have recently been certified from the EPFL Extension School",
-        text: "EPLF ",
+        text: "EPFL ",
         link: "https://www.epfl.ch/education/continuing-education/applied-data-science-machine-learning/",
         textLink: "Certificate of Open Studies (COS)",
         imgSrc: "image/ai.jpg",
