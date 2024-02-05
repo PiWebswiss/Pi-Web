@@ -361,11 +361,10 @@ async function handleImg(file) {
 }
 
 
-
-/* footer */
+/* copyright */
 const d = new Date();
-const footer = document.getElementById("footerPage");
-const a = gt("a", "PIWeb", { href: "../", className: "a-decoration hover-link"});
-const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", {className: "no-transition white"});
-const p = gt("p", [span, a]);
-footer.appendChild(p);
+const copyright = document.getElementById("footer-copyright");
+const a = gt("a", "PIWeb.ch", { href: "#", className: "a-decoration hover-link"});
+const span = gt("span", "© " + d.getFullYear() + " Copyright : ", {className: "no-transition"});
+const p = gt("p", [span, a])
+copyright.appendChild(p);

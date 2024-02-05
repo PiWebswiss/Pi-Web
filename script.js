@@ -5,6 +5,7 @@ let timer; // Timer for controlling the animation interval
 
 const container = document.getElementById("container-image");
 const containerEPFL = document.getElementById("container-EPFL");
+const containerFooter = document.getElementById("footer");
 
 const translations = {
     'en': {
@@ -15,6 +16,7 @@ const translations = {
       'text-2': 'New AI Model to classify surgical instruments',
       'text-3': 'AI Model to classify fossils',
       'text-4': 'My latest web site build!',
+      'footerText': 'My portfolio website, PIWeb, showcases various projects, including custom-made websites and AI models. All my projects are open source.',
     },
     'fr': {
       'title': 'Pi Web - Site web et application web sur mesure',
@@ -24,6 +26,7 @@ const translations = {
       'text-2': 'Modèle pour classer les instruments chirurgicaux',
       'text-3': 'Modèle pour classer les fossiles',
       'text-4': 'Nouveaux web site',
+      'footerText': "Mon site web, PIWeb, présente divers projets, notamment des sites web sur mesure et des modèles d'IA. Tous mes projets sont open source.",
     }
 };
 
@@ -73,7 +76,7 @@ function createContainerElements(item, lang) {
     // If there's a link, create an anchor element
     if (item.link) {
         const link = document.createElement("a");
-        link.classList.add("min-button");
+        link.classList.add("min-button", "no-underline-link");
         link.href = item.link;
         link.textContent = "Check it!";
         
@@ -108,11 +111,11 @@ const EPFLcontainers = [
 function  createEPLFContainerElements(item, lang) {
     // Create a container div
     const divContainer = document.createElement("div");
-    divContainer.classList.add("container", "padding", "padding-top", "white", "grad3");
+    divContainer.classList.add("container", "padding", "padding-top", "grad3");
 
     // Create an h2 element
     const h2 = document.createElement("h2");
-    h2.classList.add("no-container", "title-big", "hover-link");
+    h2.classList.add("no-container", "title-litle", "hover-link", "white");
     h2.textContent = translations[lang]["h2"];
 
     // Create an p element
@@ -123,7 +126,7 @@ function  createEPLFContainerElements(item, lang) {
 
     // If there's a link, create an anchor element
     const link = document.createElement("a");
-    link.classList.add("text-link");
+    link.classList.add("text-link", "white");
     link.href = item.link;
     link.textContent = item.textLink;
     
@@ -199,6 +202,100 @@ function complete() {
     char = 0; // Reset the character index for possible re-animation
 }
 
+
+/* Footer */
+
+function crateFooter(lang) {
+    // footer
+    const containerFooter = document.createElement("div");
+    containerFooter.classList.add("footer-content");
+    
+
+    // Section 1
+    const footerSectionOne = document.createElement("div");
+    footerSectionOne.classList.add("footer-section");
+
+    // img logo
+    const div = document.createElement("div");
+    div.classList.add("footer-image-section");
+    const footerLogo = document.createElement("img");
+    footerLogo.setAttribute('src', 'image/logo 2.png');
+    footerLogo.setAttribute('alt', 'footer logo');
+    footerLogo.setAttribute('class', 'footer-logo');
+    // website name
+    const h2 = document.createElement("h2");
+    h2.innerText = "PIWeb";
+
+    div.appendChild(footerLogo);
+    div.appendChild(h2);
+
+    // paragraph one
+    const paraOne = document.createElement("p");
+    paraOne.classList.add("footer-text");
+    paraOne.innerText = translations[lang]["footerText"]
+
+    // Section 2
+    const footerSectionTwo = document.createElement("div");
+    footerSectionTwo.classList.add("footer-section", "social-links");
+
+    // My mail
+    const mailContainer = document.createElement("div"); // Container for mail text and link
+    mailContainer.classList.add("link-container", "footer-padding-top");
+    const mailLogo = document.createElement("img");
+    mailLogo.setAttribute('src', 'icons/email.png');
+    mailLogo.setAttribute('alt', 'Icon');
+    mailLogo.setAttribute('class', 'icon');
+    const myMail = document.createElement("a");
+    myMail.classList.add("social-links");
+    myMail.setAttribute("href", "mailto:pi.web@piweb.ch");
+    myMail.innerText = "pi.web@piweb.ch";
+    mailContainer.appendChild(mailLogo);
+    mailContainer.appendChild(myMail);
+
+    // GitHub link
+    const gitHubContainer = document.createElement("div"); // Container for GitHub text and link
+    gitHubContainer.classList.add("link-container");
+    const gitHubLogo = document.createElement("img");
+    gitHubLogo.setAttribute('src', 'icons/github.png');
+    gitHubLogo.setAttribute('alt', 'Icon');
+    gitHubLogo.setAttribute('class', 'icon');
+    const gitHubLink = document.createElement("a");
+    gitHubLink.classList.add("social-links");
+    gitHubLink.setAttribute("href", "https://github.com/PiWebswiss");
+    gitHubLink.innerText = "github.com/PiWebswiss";
+    gitHubContainer.appendChild(gitHubLogo);
+    gitHubContainer.appendChild(gitHubLink);
+
+    // LinkedIn link
+    const linkedinContainer = document.createElement("div"); // Container for LinkedIn text and link
+    linkedinContainer.classList.add("link-container");
+    const linkedinLogo = document.createElement("img");
+    linkedinLogo.setAttribute('src', 'icons/linkedin.png');
+    linkedinLogo.setAttribute('alt', 'Icon');
+    linkedinLogo.setAttribute('class', 'icon');
+    const linkedinLink = document.createElement("a");
+    linkedinLink.classList.add("social-links");
+    linkedinLink.setAttribute("href", "https://linkedin.com/in/pilink");
+    linkedinLink.innerText = "linkedin.com/in/pilink";
+    linkedinContainer.appendChild(linkedinLogo);
+    linkedinContainer.appendChild(linkedinLink);
+
+    // Create elements
+    footerSectionOne.appendChild(div);
+    footerSectionOne.appendChild(paraOne);
+
+    footerSectionTwo.appendChild(mailContainer);
+    footerSectionTwo.appendChild(gitHubContainer);
+    footerSectionTwo.appendChild(linkedinContainer);
+
+    containerFooter.appendChild(footerSectionOne);
+    containerFooter.appendChild(footerSectionTwo);
+
+    return containerFooter;
+}
+
+
+
 // Function to translate page content based on selected language
 function translatePage(lang) {
     document.querySelectorAll("[data-translate]").forEach(el => {
@@ -231,6 +328,10 @@ function translatePage(lang) {
         const container = createEPLFContainerElements(item, lang);
         containerEPFL.appendChild(container); // Append the new elements to the main container
     });
+
+   /* Create footer */
+   containerFooter.innerHTML = ''; // Clear the existing content of the main container
+   containerFooter.appendChild(crateFooter(lang))
 }
 
 
@@ -248,7 +349,6 @@ document.getElementById('translateToEn').addEventListener('click', function() {
 
 // Set initial language default ("en")
 lang = localStorage.getItem('lang') || 'en';
-
 
 
 translatePage(lang);
@@ -273,31 +373,56 @@ const gt = (tag, children, attributes) => {
 };
 
 
-/* mail */
-const mail = document.getElementById("mail");
-const span1 = gt("span", "Contact me by email:", {className: "title-big"});
-const aMail = gt("a", "pi.web@piweb.ch", {className: "mail-text-color title-big", href:"mailto:pi.web@piweb.ch"});
+/* Code I'm woking on  */
 
-mail.appendChild(span1);
-mail.appendChild(aMail);
-
-
-/* mail button */
-const btnMail = document.getElementById("btnMail");
-const newButton = document.createElement("button");
-newButton.addEventListener("click", function() {
-    location.href = "mailto:pi.web%40piweb.ch";
-});
-newButton.textContent = "Send me a mail";
-newButton.className = "button-big";
-btnMail.appendChild(newButton);
+/* html code */
+/* <!--  code animation -->
+<<div id="aiModelBox">
+    <pre id="codeSimulation"></pre>
+</div>  */
 
 
 
-/* footer */
+
+/* const codeBox = document.getElementById('codeSimulation');
+const codeLines = [
+    "import tensorflow as tf\n",
+    "model = tf.keras.Sequential([\n",
+    "    tf.keras.layers.Dense(units=1, input_shape=[1])\n",
+    "])\n",
+    "model.compile(optimizer='sgd', loss='mean_squared_error')\n",
+    "xs = [1, 2, 3, 4, 5, 6]\n",
+    "ys = [1, 1.5, 2, 2.5, 3, 3.5]\n",
+    "model.fit(xs, ys, epochs=500)\n",
+    "print(model.predict([10.0]))\n"
+];
+
+let currentLine = 0;
+let currentChar = 0;
+
+function typeCode() {
+    if (currentLine < codeLines.length) {
+        if (currentChar < codeLines[currentLine].length) {
+            codeBox.textContent += codeLines[currentLine][currentChar];
+            currentChar++;
+            setTimeout(typeCode, 50); // Speed of typing
+        } else {
+            codeBox.textContent += "\n";
+            currentLine++;
+            currentChar = 0;
+            setTimeout(typeCode, 200); // Delay before starting new line
+        }
+    }
+}
+
+typeCode(); */
+
+
+
+/* copyright */
 const d = new Date();
-const footer = document.getElementById("footerPage");
-const a = gt("a", "PIWeb", { href: "#", className: "a-decoration hover-link"});
-const span = gt("span", "© " + d.getFullYear() + " Copyright : Powered by ", {className: "no-transition white"});
+const copyright = document.getElementById("footer-copyright");
+const a = gt("a", "PIWeb.ch", { href: "#", className: "a-decoration hover-link"});
+const span = gt("span", "© " + d.getFullYear() + " Copyright : ", {className: "no-transition"});
 const p = gt("p", [span, a])
-footer.appendChild(p);
+copyright.appendChild(p);
