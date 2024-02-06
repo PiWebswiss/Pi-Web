@@ -34,24 +34,24 @@ const translations = {
 const containers = [
     {
         title: "text-1",
-        imgSrc: "image/AI-model.jpg",
+        imgSrc: "image/AI-model.webp",
         altText: "custom code"
     },
     {
         title: "text-2",
-        imgSrc: "image/surgical-instruments.png",
+        imgSrc: "image/surgical-instruments.webp",
         altText: "AI Model to classify surgical instruments",
         link: "recognise surgical instruments/index.html"
     },
     {
         title: "text-3",
-        imgSrc: "image/AI fossil.png",
+        imgSrc: "image/AI fossil.webp",
         altText: "AI Model to classify fossils",
         link: "fossil-classifier/index.html"
     },
     {
         title: "text-4",
-        imgSrc: "image/Pi web site 1.png",
+        imgSrc: "image/Pi web site 1.webp",
         altText: "Pi web site affutage",
         link: "PiWebaffutage/index.html"
     }
@@ -111,7 +111,7 @@ const EPFLcontainers = [
         text: "EPFL ",
         link: "https://www.epfl.ch/education/continuing-education/applied-data-science-machine-learning/",
         textLink: "Certificate of Open Studies (COS)",
-        imgSrc: "image/ai.jpg",
+        imgSrc: "image/ai.webp",
         altText: "AI image",
     }
 ]
@@ -165,6 +165,23 @@ function  createEPLFContainerElements(item, lang) {
 }
 
 
+// Function for creating elements, already defined in your codebase
+const gt = (tag, children, attributes) => {
+    const element = document.createElement(tag);
+    for (const key in attributes) {
+        element[key] = attributes[key];
+    }
+    if (children) {
+        if (typeof children === "string") element.innerText = children;
+        else if (Array.isArray(children)){
+            for (let i = 0; i < children.length; i++) element.appendChild(children[i]);
+        }else element.appendChild(children);
+    }
+    return element;
+  };
+  
+
+
 
 // Function to initialize text animation
 function initializeTextAnimation(textContent) {
@@ -212,95 +229,42 @@ function complete() {
 
 
 /* Footer */
-
 function crateFooter(lang) {
-    // footer
-    const containerFooter = document.createElement("div");
-    containerFooter.classList.add("footer-content");
-    
+    // Create the main footer container
+    const containerFooter = gt("div", null, { className: "footer-content" });
 
-    // Section 1
-    const footerSectionOne = document.createElement("div");
-    footerSectionOne.classList.add("footer-section");
+    // Section 1: Logo and Text
+    const footerLogo = gt("img", null, { src: 'image/logo 2.webp', alt: 'footer logo', className: 'footer-logo' });
+    const h2 = gt("h2", "PiWeb", {});
+    const div = gt("div", [footerLogo, h2], { className: "footer-image-section" });
+    const paraOne = gt("p", translations[lang]["footerText"], { className: "footer-text" });
+    const footerSectionOne = gt("div", [div, paraOne], { className: "footer-section" });
 
-    // img logo
-    const div = document.createElement("div");
-    div.classList.add("footer-image-section");
-    const footerLogo = document.createElement("img");
-    footerLogo.setAttribute('src', 'image/logo 2.png');
-    footerLogo.setAttribute('alt', 'footer logo');
-    footerLogo.setAttribute('class', 'footer-logo');
-    // website name
-    const h2 = document.createElement("h2");
-    h2.innerText = "PiWeb";
+    // Section 2: Social Links
+    // Mail
+    const mailLogo = gt("img", null, { src: 'icons/email.png', alt: 'Icon', className: 'icon' });
+    const myMail = gt("a", "pi.web@piweb.ch", { href: "mailto:pi.web@piweb.ch", className: "social-links" });
+    const mailContainer = gt("div", [mailLogo, myMail], { className: "link-container footer-padding-top" });
 
-    div.appendChild(footerLogo);
-    div.appendChild(h2);
+    // GitHub
+    const gitHubLogo = gt("img", null, { src: 'icons/github.png', alt: 'Icon', className: 'icon' });
+    const gitHubLink = gt("a", "github.com/PiWebswiss", { href: "https://github.com/PiWebswiss", className: "social-links" });
+    const gitHubContainer = gt("div", [gitHubLogo, gitHubLink], { className: "link-container" });
 
-    // paragraph one
-    const paraOne = document.createElement("p");
-    paraOne.classList.add("footer-text");
-    paraOne.innerText = translations[lang]["footerText"]
+    // LinkedIn
+    const linkedinLogo = gt("img", null, { src: 'icons/linkedin.png', alt: 'Icon', className: 'icon' });
+    const linkedinLink = gt("a", "linkedin.com/in/pilink", { href: "https://linkedin.com/in/pilink", className: "social-links" });
+    const linkedinContainer = gt("div", [linkedinLogo, linkedinLink], { className: "link-container" });
 
-    // Section 2
-    const footerSectionTwo = document.createElement("div");
-    footerSectionTwo.classList.add("footer-section", "social-links");
+    const footerSectionTwo = gt("div", [mailContainer, gitHubContainer, linkedinContainer], { className: "footer-section social-links" });
 
-    // My mail
-    const mailContainer = document.createElement("div"); // Container for mail text and link
-    mailContainer.classList.add("link-container", "footer-padding-top");
-    const mailLogo = document.createElement("img");
-    mailLogo.setAttribute('src', 'icons/email.png');
-    mailLogo.setAttribute('alt', 'Icon');
-    mailLogo.setAttribute('class', 'icon');
-    const myMail = document.createElement("a");
-    myMail.classList.add("social-links");
-    myMail.setAttribute("href", "mailto:pi.web@piweb.ch");
-    myMail.innerText = "pi.web@piweb.ch";
-    mailContainer.appendChild(mailLogo);
-    mailContainer.appendChild(myMail);
-
-    // GitHub link
-    const gitHubContainer = document.createElement("div"); // Container for GitHub text and link
-    gitHubContainer.classList.add("link-container");
-    const gitHubLogo = document.createElement("img");
-    gitHubLogo.setAttribute('src', 'icons/github.png');
-    gitHubLogo.setAttribute('alt', 'Icon');
-    gitHubLogo.setAttribute('class', 'icon');
-    const gitHubLink = document.createElement("a");
-    gitHubLink.classList.add("social-links");
-    gitHubLink.setAttribute("href", "https://github.com/PiWebswiss");
-    gitHubLink.innerText = "github.com/PiWebswiss";
-    gitHubContainer.appendChild(gitHubLogo);
-    gitHubContainer.appendChild(gitHubLink);
-
-    // LinkedIn link
-    const linkedinContainer = document.createElement("div"); // Container for LinkedIn text and link
-    linkedinContainer.classList.add("link-container");
-    const linkedinLogo = document.createElement("img");
-    linkedinLogo.setAttribute('src', 'icons/linkedin.png');
-    linkedinLogo.setAttribute('alt', 'Icon');
-    linkedinLogo.setAttribute('class', 'icon');
-    const linkedinLink = document.createElement("a");
-    linkedinLink.classList.add("social-links");
-    linkedinLink.setAttribute("href", "https://linkedin.com/in/pilink");
-    linkedinLink.innerText = "linkedin.com/in/pilink";
-    linkedinContainer.appendChild(linkedinLogo);
-    linkedinContainer.appendChild(linkedinLink);
-
-    // Create elements
-    footerSectionOne.appendChild(div);
-    footerSectionOne.appendChild(paraOne);
-
-    footerSectionTwo.appendChild(mailContainer);
-    footerSectionTwo.appendChild(gitHubContainer);
-    footerSectionTwo.appendChild(linkedinContainer);
-
+    // Append sections to the footer container
     containerFooter.appendChild(footerSectionOne);
     containerFooter.appendChild(footerSectionTwo);
 
     return containerFooter;
 }
+
 
 
 
@@ -364,21 +328,6 @@ translatePage(lang);
 // Initial text animation setup
 initializeTextAnimation(document.getElementById("textAnimation").textContent);
 
-
-// Function for creating elements, already defined in your codebase
-const gt = (tag, children, attributes) => {
-  const element = document.createElement(tag);
-  for (const key in attributes) {
-      element[key] = attributes[key];
-  }
-  if (children) {
-      if (typeof children === "string") element.innerText = children;
-      else if (Array.isArray(children)){
-          for (let i = 0; i < children.length; i++) element.appendChild(children[i]);
-      }else element.appendChild(children);
-  }
-  return element;
-};
 
 
 /* waves is an array where each element represents a wave with its own set of properties: amplitude, frequency, and verticalOffset.
