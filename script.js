@@ -444,7 +444,6 @@ const codeLines = [
     "MaxPooling2D(pool_size=(2, 2)\n",
     "GlobalAveragePooling2D()\n",
     "Dense(64, activation='relu')\n",
-    "Dense(32, activation='relu')\n",
     "Dense(6, activation='sigmoid')",
 ];
 
