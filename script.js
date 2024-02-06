@@ -64,7 +64,13 @@ function createContainerElements(item, lang) {
 
     // Create an h2 element
     const h2 = document.createElement("h2");
-    h2.classList.add("title-big", "no-container");
+    if (item.title === "text-1") {
+        h2.classList.add("title-big", "center-text-container")
+    }
+    else{
+        h2.classList.add("title-big");
+    }
+   
     h2.textContent = translations[lang][item.title];
 
     // Create an image element
@@ -87,6 +93,8 @@ function createContainerElements(item, lang) {
         img.addEventListener("click", () => {
             window.location.href = item.link;
         });
+
+   
     }
 
     // Append the h2 and image elements to the container div
