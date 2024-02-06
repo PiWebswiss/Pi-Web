@@ -18,12 +18,18 @@
 
     <header>
         <div class="container-fr-en padding-right">
+            <img class="img-logo" src="image/logo 2.png" alt="pi web logo">
+            <p class="logo-margin text-logo">PiWeb</p>
             <input class="translate-button" type="button" id="translateToFr" value="Fr">
             <input class="translate-button" type="button" id="translateToEn" value="En">
         </div>
-        <div class="hero-container grad">
-            <h1 data-translate="h1" id="textAnimation" class="big-text piweb-logo"></h1>
-            <img class="marge-buttom" src="image/logo 2.png" alt="pi web logo">
+        <div class="hero-container grad3">
+            <h1 id="textAnimation" data-translate="h1" ></h1>
+            <canvas id="waveCanvas"></canvas>
+            <!--  code animation -->
+            <div class="ai-box">
+                <pre class="ai-box-text" id="codeSimulation"></pre>
+            </div>
         </div>
     </header>
 

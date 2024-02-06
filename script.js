@@ -9,10 +9,10 @@ const containerFooter = document.getElementById("footer");
 
 const translations = {
     'en': {
-      'title': 'Pi Web - Custom-made website & web app',
-      'h1': 'Pi Web',
+      'title': 'Pi Web - Custom-made AI models & website',
+      'h1': 'Custom-made AI models & website',
       'h2': 'I have recently been certified from the EPFL Extension School',
-      'text-1': 'Custom-made AI models & website',
+      'text-1': 'Custom-made website',
       'text-2': 'New AI Model to classify surgical instruments',
       'text-3': 'AI Model to classify fossils',
       'text-4': 'My latest web site build!',
@@ -20,8 +20,8 @@ const translations = {
     },
     'fr': {
       'title': 'Pi Web - Site web et application web sur mesure',
+      'h1': 'Custom-made AI models & website',
       'h2': "J'ai récemment été certifiée par l'EPFL Extension School",
-      'h1': 'Pi Web',
       'text-1': "AI modèles et site web sur mesure",
       'text-2': 'Modèle pour classer les instruments chirurgicaux',
       'text-3': 'Modèle pour classer les fossiles',
@@ -224,7 +224,7 @@ function crateFooter(lang) {
     footerLogo.setAttribute('class', 'footer-logo');
     // website name
     const h2 = document.createElement("h2");
-    h2.innerText = "PIWeb";
+    h2.innerText = "PiWeb";
 
     div.appendChild(footerLogo);
     div.appendChild(h2);
@@ -373,28 +373,79 @@ const gt = (tag, children, attributes) => {
 };
 
 
-/* Code I'm woking on  */
+/* waves is an array where each element represents a wave with its own set of properties: amplitude, frequency, and verticalOffset.
+Each wave has its own set of points that are updated and drawn independently.
+The animate function now loops through each wave, updating and drawing its points. */
+document.addEventListener("DOMContentLoaded", function() {
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
 
-/* html code */
-/* <!--  code animation -->
-<<div id="aiModelBox">
-    <pre id="codeSimulation"></pre>
-</div>  */
+    // Set canvas to full container size
+    canvas.width = canvas.parentElement.offsetWidth;
+    canvas.height = canvas.parentElement.offsetHeight;
 
+    const waves = [
+        // First wave
+        { 
+            points: [], 
+            amplitude: 40, // Height of the wave
+            frequency: 0.01, 
+            verticalOffset: 400 // Vertical starting position
+        },
+        // Second wave
+        { 
+            points: [], 
+            amplitude: 30, // Height of the wave
+            frequency: 0.01, 
+            verticalOffset: 300 // Vertical starting position
+        },
+    
+    ];
+    const pointCount = 60; // Number of points
 
+    // Initialize points for each wave
+    waves.forEach(wave => {
+        for (let i = 0; i < pointCount; i++) {
+            wave.points.push({
+                x: i / pointCount * canvas.width,
+                y: wave.verticalOffset
+            });
+        }
+    });
 
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-/* const codeBox = document.getElementById('codeSimulation');
+        waves.forEach(wave => {
+            ctx.beginPath();
+            wave.points.forEach((point, i) => {
+                ctx.fillStyle = 'rgb(176, 143, 127)'; // Point color
+                ctx.fillRect(point.x, point.y, 3, 3); // Draw each point
+
+                // Update point position for wave animation
+                point.y = wave.verticalOffset + wave.amplitude * Math.sin((i + performance.now() * wave.frequency) / pointCount * 2 * Math.PI);
+            });
+            ctx.stroke();
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+});
+const codeBox = document.getElementById('codeSimulation');
+const cursor = document.createElement('span');
+cursor.textContent = '|';
+cursor.className = 'cursor'; // Add a class for styling
+codeBox.appendChild(cursor); // Append the cursor to the code box
+
 const codeLines = [
-    "import tensorflow as tf\n",
-    "model = tf.keras.Sequential([\n",
-    "    tf.keras.layers.Dense(units=1, input_shape=[1])\n",
-    "])\n",
-    "model.compile(optimizer='sgd', loss='mean_squared_error')\n",
-    "xs = [1, 2, 3, 4, 5, 6]\n",
-    "ys = [1, 1.5, 2, 2.5, 3, 3.5]\n",
-    "model.fit(xs, ys, epochs=500)\n",
-    "print(model.predict([10.0]))\n"
+    "Conv2D(32, (3, 3), activation='relu')\n",
+    "MaxPooling2D(pool_size=(2, 2)\n",
+    "GlobalAveragePooling2D()\n",
+    "Dense(64, activation='relu')\n",
+    "Dense(32, activation='relu')\n",
+    "Dense(6, activation='sigmoid')",
 ];
 
 let currentLine = 0;
@@ -403,26 +454,31 @@ let currentChar = 0;
 function typeCode() {
     if (currentLine < codeLines.length) {
         if (currentChar < codeLines[currentLine].length) {
-            codeBox.textContent += codeLines[currentLine][currentChar];
+            const textNode = document.createTextNode(codeLines[currentLine][currentChar]);
+            codeBox.insertBefore(textNode, cursor); // Insert new character before the cursor
             currentChar++;
-            setTimeout(typeCode, 50); // Speed of typing
+            setTimeout(typeCode, 140); // Speed of typing
         } else {
-            codeBox.textContent += "\n";
+            codeBox.insertBefore(document.createTextNode("\n"), cursor); // Insert new line before the cursor
             currentLine++;
             currentChar = 0;
             setTimeout(typeCode, 200); // Delay before starting new line
         }
+    } else {
+        // Handle completion, if needed
+        codeBox.removeChild(cursor); // Optionally remove the cursor at the end
     }
 }
 
-typeCode(); */
-
+// Start typing with a delay
+const startDelay = 6000; // Delay in milliseconds (e.g., 2000ms = 2 seconds)
+setTimeout(typeCode, startDelay);
 
 
 /* copyright */
 const d = new Date();
 const copyright = document.getElementById("footer-copyright");
-const a = gt("a", "PIWeb.ch", { href: "#", className: "a-decoration hover-link"});
+const a = gt("a", "PiWeb.ch", { href: "#", className: "a-decoration hover-link"});
 const span = gt("span", "© " + d.getFullYear() + " Copyright : ", {className: "no-transition"});
 const p = gt("p", [span, a])
 copyright.appendChild(p);

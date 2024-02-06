@@ -554,7 +554,7 @@ result.appendChild(textResult);
 /* footer */
 const d = new Date();
 const footer = document.getElementById("footerPage");
-const a = gt("a", "PIWeb.ch", { href: "../", className: "a-decoration hover-link"});
+const a = gt("a", "PiWeb.ch", { href: "../", className: "a-decoration hover-link"});
 const span = gt("span", "© " + d.getFullYear() + " Copyright : ", {className: "no-transition white"});
 const p = gt("p", [span, a]);
 footer.appendChild(p);

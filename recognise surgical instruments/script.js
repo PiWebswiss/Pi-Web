@@ -364,7 +364,7 @@ async function handleImg(file) {
 /* copyright */
 const d = new Date();
 const copyright = document.getElementById("footer-copyright");
-const a = gt("a", "PIWeb.ch", { href: "#", className: "a-decoration hover-link"});
+const a = gt("a", "PiWeb.ch", { href: "#", className: "a-decoration hover-link"});
 const span = gt("span", "© " + d.getFullYear() + " Copyright : ", {className: "no-transition"});
 const p = gt("p", [span, a])
 copyright.appendChild(p);
