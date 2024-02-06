@@ -15,7 +15,7 @@ const translations = {
       'text-1': 'Custom-made website',
       'text-2': 'New AI Model to classify surgical instruments',
       'text-3': 'AI Model to classify fossils',
-      'text-4': 'custom-made website example',
+      'text-4': 'Custom-made website example',
       'footerText': 'My portfolio website, PIWeb, showcases various projects, including custom-made websites and AI models. All my projects are open source.',
     },
     'fr': {
