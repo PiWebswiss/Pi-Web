@@ -225,6 +225,9 @@ transform: scale(1.025);
 
 
 @media (max-width: 600px) {
+    .display-small-screen {
+        display: none;
+    }
     .container {
         flex-direction: column;
     }
