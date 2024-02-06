@@ -22,7 +22,7 @@ const translations = {
       'title': 'Pi Web - Site web et application web sur mesure',
       'h1': 'Custom-made AI models & website',
       'h2': "J'ai récemment été certifiée par l'EPFL Extension School",
-      'text-1': "AI modèles et site web sur mesure",
+      'text-1': "Custom-made website",
       'text-2': 'Modèle pour classer les instruments chirurgicaux',
       'text-3': 'Modèle pour classer les fossiles',
       'text-4': 'Nouveaux web site',
