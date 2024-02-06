@@ -316,7 +316,8 @@ transform: scale(1.025);
     }
     .ai-box {
         width: 100%;
-        max-width: 30rem;
+        height: 20rem;
+        max-width: 28rem;
         margin-right: 5rem;
 
     }
