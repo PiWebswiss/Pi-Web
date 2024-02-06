@@ -186,7 +186,7 @@ function initializeTextAnimation(textContent) {
         // Reset the animation parameters
         char = 0; // Reset character index
         clearInterval(timer); // Clear any existing animation timer
-        timer = setInterval(onTick, 200); // Start the animation interval
+        timer = setInterval(onTick, 120); // Start the animation interval
     }
 }
 
