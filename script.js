@@ -15,17 +15,17 @@ const translations = {
       'text-1': 'Custom-made website',
       'text-2': 'New AI Model to classify surgical instruments',
       'text-3': 'AI Model to classify fossils',
-      'text-4': 'My latest web site build!',
+      'text-4': 'custom-made website example',
       'footerText': 'My portfolio website, PIWeb, showcases various projects, including custom-made websites and AI models. All my projects are open source.',
     },
     'fr': {
       'title': 'Pi Web - Site web et application web sur mesure',
-      'h1': 'Custom-made AI models & website',
+      'h1': "Modèles d'IA et site web sur mesure",
       'h2': "J'ai récemment été certifiée par l'EPFL Extension School",
-      'text-1': "Custom-made website",
+      'text-1': "Site web sur mesure",
       'text-2': 'Modèle pour classer les instruments chirurgicaux',
       'text-3': 'Modèle pour classer les fossiles',
-      'text-4': 'Nouveaux web site',
+      'text-4': 'Exemple de site web sur mesure',
       'footerText': "Mon site web, PIWeb, présente divers projets, notamment des sites web sur mesure et des modèles d'IA. Tous mes projets sont open source.",
     }
 };
