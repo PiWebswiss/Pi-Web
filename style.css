@@ -272,7 +272,9 @@ body {
         justify-self: center;
         max-width: 26rem;
     }
-    
+    .style-img {
+        max-width: 19rem;
+    }
 }
 
 @media (min-width: 600px) {
