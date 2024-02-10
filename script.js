@@ -527,7 +527,7 @@ function debounce(func, wait) {
     };
 }
 // Add resize event listener with debounce
-window.addEventListener('resize', debounce(toggleClassOnScreenSize, 100));
+window.addEventListener('orientationchange', debounce(toggleClassOnScreenSize, 100));
 
 
 /* copyright */
