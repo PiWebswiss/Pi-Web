@@ -516,6 +516,16 @@ function simulateEnterKeyPress() {
 const startDelay = 6000; // Delay in milliseconds
 setTimeout(typeCode, startDelay);
 
+
+// Debounce function to limit how often the resize event can fire
+function debounce(func, wait) {
+    let timeout;
+    return function() {
+        const context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+}
 // Attach the function to the window's resize event
 window.addEventListener('resize', toggleClassOnScreenSize);
 
