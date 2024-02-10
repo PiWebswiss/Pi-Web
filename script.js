@@ -434,6 +434,7 @@ function creatAnimeModel() {
 
   
 /* Code Simulation animation */
+const aiBox = document.getElementById('ai-box');
 const codeBox = document.getElementById('codeSimulation');
 const cursor = document.createElement('span');
 cursor.textContent = '|';
@@ -471,6 +472,23 @@ function typeCode() {
         }
     }
 }
+
+// Function to toggle class based on screen size
+function toggleClassOnScreenSize() {
+    const smallScreenSize = 600; // Define the breakpoint for small screen size
+
+    if (window.innerWidth <= smallScreenSize) {
+        // If the screen is small
+        aiBox.className = 'display-small-screen';
+        codeBox.className = 'display-small-screen';
+        /* neroCanvas.classList.add('neg-margin-top'); */
+    } else {
+        // If the screen is not small
+        aiBox.className = 'ai-box';
+        codeBox.className = 'ai-box-text';
+       /*  neroCanvas.classList.remove('neg-margin-top'); */
+    }
+}
 function simulateEnterKeyPress() {
     const enterKey = document.createElement('span');
     enterKey.textContent = '↵ Enter';
@@ -486,6 +504,8 @@ function simulateEnterKeyPress() {
     // Simulate the release
     setTimeout(() => {
         enterKey.classList.remove('pressed');
+        // remove typed code only on small screen
+        toggleClassOnScreenSize();
     }, 1500); // Delay to end the press effect
 
     // Call creatAnimeModel to initiate the process
@@ -495,6 +515,9 @@ function simulateEnterKeyPress() {
 // Start typing with a delay
 const startDelay = 6000; // Delay in milliseconds
 setTimeout(typeCode, startDelay);
+
+// Attach the function to the window's resize event
+window.addEventListener('resize', toggleClassOnScreenSize);
 
 
 /* copyright */

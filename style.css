@@ -185,7 +185,6 @@ body {
     grid-column: 2; /* AI box in the second column */
     max-width: 30rem; /* Full width of the column */
     display: inline-flex;
-    margin: 0; 
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -216,8 +215,8 @@ body {
 
 .enter-key {
 display: inline-block;
-margin-left: 2rem;
-padding: 2px 5px;
+margin-left: 3rem;
+padding: 2px 8px;
 border: 1px solid #ccc; /* Light gray border */
 border-radius: 3px; /* Slightly rounded corners */
 background-color: #f9f9f9; /* Light background */
@@ -256,6 +255,7 @@ transform: translateY(1px); /* Slightly shift down to simulate press */
         grid-row: 3; /* Place neural network canvas in the second row */
         grid-column: 1; /* Both items in the first column */
     }
+
     .display-small-screen {
         display: none;
     }
@@ -300,6 +300,9 @@ transform: translateY(1px); /* Slightly shift down to simulate press */
     }
     .style-img {
         max-width: 19rem;
+    }
+    .neg-margin-top {
+        margin-top: -3rem; 
     }
 }
 
