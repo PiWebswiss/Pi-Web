@@ -526,8 +526,8 @@ function debounce(func, wait) {
         timeout = setTimeout(() => func.apply(context, args), wait);
     };
 }
-// Attach the function to the window's resize event
-window.addEventListener('resize', toggleClassOnScreenSize);
+// Add resize event listener with debounce
+window.addEventListener('resize', debounce(toggleClassOnScreenSize, 100));
 
 
 /* copyright */
