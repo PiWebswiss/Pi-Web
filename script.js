@@ -329,67 +329,111 @@ translatePage(lang);
 initializeTextAnimation(document.getElementById("textAnimation").textContent);
 
 
+/* The following code is from ChatGPT-4 demonstrates a delayed setup and display of a neural network. 
+To achieve this, the model's setup and drawing logic are encapsulated in a function, which is then executed after a delay using setTimeout. */
+ // Access the canvas element and its 2D drawing context
+const neroCanvas = document.getElementById('neural-network'); 
+const ctx = neroCanvas.getContext('2d');
 
-/* waves is an array where each element represents a wave with its own set of properties: amplitude, frequency, and verticalOffset.
-Each wave has its own set of points that are updated and drawn independently.
-The animate function now loops through each wave, updating and drawing its points. */
-document.addEventListener("DOMContentLoaded", function() {
-    const canvas = document.getElementById('waveCanvas');
-    const ctx = canvas.getContext('2d');
+// Set the dimensions of the canvas
+neroCanvas.width = 600;
+neroCanvas.height = 550;
 
-    // Set canvas to full container size
-    canvas.width = canvas.parentElement.offsetWidth;
-    canvas.height = canvas.parentElement.offsetHeight;
+// Define the structure of the neural network
+const layers = [3, 4, 4, 2]; // Number of neurons in each layer
+const neuronRadius = 20;
+const layerDistance = 140;
 
-    const waves = [
-        // First wave
-        { 
-            points: [], 
-            amplitude: 40, // Height of the wave
-            frequency: 0.01, 
-            verticalOffset: 400 // Vertical starting position
-        },
-        // Second wave
-        { 
-            points: [], 
-            amplitude: 30, // Height of the wave
-            frequency: 0.01, 
-            verticalOffset: 300 // Vertical starting position
-        },
-    
-    ];
-    const pointCount = 60; // Number of points
-
-    // Initialize points for each wave
-    waves.forEach(wave => {
-        for (let i = 0; i < pointCount; i++) {
-            wave.points.push({
-                x: i / pointCount * canvas.width,
-                y: wave.verticalOffset
-            });
+function creatAnimeModel() {
+    function setupAndAnimateNetwork() {
+        // Function to draw a single neuron
+        function drawNeuron(x, y, color = 'blue') {
+            ctx.beginPath(); // Begin a new path
+            ctx.arc(x, y, neuronRadius, 0, Math.PI * 2); // Draw a circle for the neuron
+            ctx.fillStyle = color; // Set the color for the neuron
+            ctx.fill(); // Fill the neuron with color
+            ctx.stroke(); // Draw the outline of the neuron
         }
-    });
 
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Function to draw a synapse (line) between two neurons
+        function drawSynapse(x1, y1, x2, y2, color = 'rgba(128, 128, 128, 0.5)') {
+            ctx.beginPath(); // Begin a new path
+            ctx.moveTo(x1, y1); // Start point of the synapse
+            ctx.lineTo(x2, y2); // End point of the synapse
+            ctx.strokeStyle = color; // Set the color of the synapse
+            ctx.stroke(); // Draw the synapse
+        }
 
-        waves.forEach(wave => {
-            ctx.beginPath();
-            wave.points.forEach((point, i) => {
-                ctx.fillStyle = 'rgb(176, 143, 127)'; // Point color
-                ctx.fillRect(point.x, point.y, 3, 3); // Draw each point
+        // Function to draw the entire neural network
+        function drawNeuralNetwork(path = [], color = 'rgb(209, 96, 30)') {
+            // Default color for synapses not in the path
+            const defaultSynapseColor = 'rgba(128, 128, 128, 0.5)'; 
 
-                // Update point position for wave animation
-                point.y = wave.verticalOffset + wave.amplitude * Math.sin((i + performance.now() * wave.frequency) / pointCount * 2 * Math.PI);
-            });
-            ctx.stroke();
-        });
+            for (let i = 0; i < layers.length; i++) { // Loop through each layer
+                let layerY = neroCanvas.height / (layers[i] + 1); // Calculate vertical position
 
-        requestAnimationFrame(animate);
+                for (let j = 0; j < layers[i]; j++) { // Loop through each neuron in the layer
+                    let x = i * layerDistance + 100; // Calculate horizontal position
+                    let y = (j + 1) * layerY; // Calculate vertical position
+                    let neuronColor = 'rgb(209, 96, 30)'; // Default color for neurons
+
+                    // Check if the current neuron is part of the path
+                    if (i < path.length && j === path[i]) {
+                        neuronColor = color; // Change color for neurons in the path
+                    }
+
+                    // Draw synapses from each neuron
+                    if (i < layers.length - 1) {
+                        let nextLayerY = neroCanvas.height / (layers[i + 1] + 1);
+                        for (let k = 0; k < layers[i + 1]; k++) {
+                            let nextX = (i + 1) * layerDistance + 100;
+                            let nextY = (k + 1) * nextLayerY;
+                            let synapseColor = (i < path.length && j === path[i] && k === path[i + 1]) ? color : defaultSynapseColor;
+                            drawSynapse(x, y, nextX, nextY, synapseColor); // Draw the synapse
+                        }
+                    }
+
+                    drawNeuron(x, y, neuronColor); // Draw the neuron
+                }
+            }
+        }
+
+        // Arrays to store the paths and their colors
+        const paths = [];
+        const pathColors = [];
+
+        // Generate 20 random paths and their corresponding colors
+        for (let i = 0; i < 20; i++) {
+            const path = []; // Array to store one path
+            const color = 'white'; // Set color to white
+
+            // Generate a random path through all layers
+            for (let l = 0; l < layers.length; l++) {
+                path.push(Math.floor(Math.random() * layers[l]));
+            }
+
+            paths.push(path); // Add the path to the paths array
+            pathColors.push(color); // Add the color to the pathColors array
+        }
+
+        // Function to animate the neural network by highlighting different paths
+        function animatePaths() {
+            let index = 0;
+            let interval = setInterval(() => {
+                ctx.clearRect(0, 0, neroCanvas.width, neroCanvas.height); // Clear the canvas for redrawing
+                drawNeuralNetwork(paths[index], pathColors[index]); // Draw the network with the current path highlighted
+                index = (index + 1) % paths.length; // Increment the index to animate the next path
+            }, 1000); // Change path every 1000 milliseconds (1 second)
+        }
+
+        return animatePaths();
     }
+    // Delay the setup and animation of the network
+    setTimeout(setupAndAnimateNetwork, 1000); // 200000 milliseconds delay
+}
 
-    animate();
-});
+  
+/* Code Simulation animation */
 const codeBox = document.getElementById('codeSimulation');
 const cursor = document.createElement('span');
 cursor.textContent = '|';
@@ -397,11 +441,11 @@ cursor.className = 'cursor'; // Add a class for styling
 codeBox.appendChild(cursor); // Append the cursor to the code box
 
 const codeLines = [
-    "Conv2D(32, (3, 3), activation='relu')\n",
-    "MaxPooling2D(pool_size=(2, 2)\n",
-    "GlobalAveragePooling2D()\n",
-    "Dense(64, activation='relu')\n",
-    "Dense(6, activation='sigmoid')",
+    "Dense(3, activation='relu')\n",
+    "Dense(4, activation='relu')\n",
+    "Dense(4, activation='relu')\n",
+    "Dense(2, activation='sigmoid')\n",
+    "Train Model", 
 ];
 
 let currentLine = 0;
@@ -415,19 +459,41 @@ function typeCode() {
             currentChar++;
             setTimeout(typeCode, 140); // Speed of typing
         } else {
-            codeBox.insertBefore(document.createTextNode("\n"), cursor); // Insert new line before the cursor
-            currentLine++;
-            currentChar = 0;
-            setTimeout(typeCode, 200); // Delay before starting new line
+            if (currentLine === codeLines.length - 1) {
+                // Handle the Enter key press simulation after 'Train'
+                simulateEnterKeyPress();
+            } else {
+                codeBox.insertBefore(document.createTextNode("\n"), cursor); // Insert new line
+                currentLine++;
+                currentChar = 0;
+                setTimeout(typeCode, 200); // Delay before starting new line
+            }
         }
-    } else {
-        // Handle completion, if needed
-        codeBox.removeChild(cursor); // Optionally remove the cursor at the end
     }
+}
+function simulateEnterKeyPress() {
+    const enterKey = document.createElement('span');
+    enterKey.textContent = '↵ Enter';
+    enterKey.className = 'enter-key';
+    codeBox.insertBefore(enterKey, cursor);
+    // Remove the cursor after the animation
+    codeBox.removeChild(cursor);
+    // Simulate the press
+    setTimeout(() => {
+        enterKey.classList.add('pressed');
+    }, 800); // Delay to start the press effect
+
+    // Simulate the release
+    setTimeout(() => {
+        enterKey.classList.remove('pressed');
+    }, 1500); // Delay to end the press effect
+
+    // Call creatAnimeModel to initiate the process
+    creatAnimeModel(); 
 }
 
 // Start typing with a delay
-const startDelay = 6000; // Delay in milliseconds (e.g., 2000ms = 2 seconds)
+const startDelay = 6000; // Delay in milliseconds
 setTimeout(typeCode, startDelay);
 
 

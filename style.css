@@ -156,47 +156,42 @@ body {
 .hero-container {
     position: relative;
     display: grid;
-    grid-template-rows: auto auto; /* Two rows */
+    grid-template-columns: 1fr 1fr; /* Two columns of equal width */
     gap: 1rem; /* Space between grid items */
-    align-items: start; /* Align items to the start vertically */
-    justify-items: start; /* Align items to the start horizontally */
+    align-items: start; /* Vertically align items to the start */
+    justify-content: center; /* Horizontally center the content */
     padding: 1.5rem;
     color: rgb(251, 251, 251);
     overflow: hidden;
 }
 
-
-
 .hero-container h1 {
-    margin: 1rem;
-    grid-row: 1;
+    grid-column: 1 / -1; /* Title spans across all columns */
+    margin-bottom: 1rem;
+    text-align: start;
 }
 
-.hero-container canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
+.hero-container .neural-network {
+    grid-column: 1;
+    display: inline-flex;
     width: 100%;
-    height: 100%;
-    z-index: 0; /* Behind the content of hero-container */
+    max-width: 20rem;
+    margin: 0 auto;
+    z-index: 1;
 }
 
 .ai-box {
-    grid-row: 2;
-    justify-self: end;
+    margin-top: 2rem;
+    grid-column: 2; /* AI box in the second column */
+    max-width: 30rem; /* Full width of the column */
     display: inline-flex;
-    height: 15rem;
-    padding: 1rem;
-    width: 100%;
+    margin: 0; 
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    font-family: 'Courier New', Courier, monospace;
     background-color: rgba(22, 22, 22, 0.911); /* Solid background color */
     color: rgb(209, 96, 30);
-    overflow-wrap: break-word;
     word-wrap: break-word;
-    white-space: pre-wrap;
     border-radius: 1rem;
     position: relative;
     z-index: 1; /* This ensures the box is above the starry background */
@@ -219,6 +214,26 @@ body {
 }
 
 
+.enter-key {
+display: inline-block;
+margin-left: 2rem;
+padding: 2px 5px;
+border: 1px solid #ccc; /* Light gray border */
+border-radius: 3px; /* Slightly rounded corners */
+background-color: #f9f9f9; /* Light background */
+box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+transition: all 0.2s; /* Smooth transition for the press effect */
+}
+
+.enter-key.pressed {
+color: #fff; /* Change text color */
+background-color: rgb(228, 94, 16); /* Change background color */
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2); /* Adjust shadow to look pressed */
+transform: translateY(1px); /* Slightly shift down to simulate press */
+}
+
+
+
 /* .hero-container > *{
     /* max-width: 40%; 
     max-height: 25rem;
@@ -226,6 +241,21 @@ body {
 
 
 @media (max-width: 600px) {
+    .hero-container {
+        display: grid;
+        grid-template-columns: 1fr; /* Stack in one column on smaller screens */
+        grid-template-rows: auto auto; /* Two rows, auto-sized */
+    }
+
+    .hero-container .ai-box {
+        grid-row: 2; /* Place AI box in the first row */
+        grid-column: 1; /* Both items in the first column */
+    }
+
+    .hero-container .neural-network {
+        grid-row: 3; /* Place neural network canvas in the second row */
+        grid-column: 1; /* Both items in the first column */
+    }
     .display-small-screen {
         display: none;
     }
@@ -268,10 +298,6 @@ body {
     .hero-container {
         grid-template-rows: auto;
     }
-    .ai-box {
-        justify-self: center;
-        max-width: 26rem;
-    }
     .style-img {
         max-width: 19rem;
     }
@@ -304,10 +330,6 @@ body {
         margin-left: 5rem;
         margin: 3rem;
     }
-    .ai-box {
-        width: 100%;
-        max-width: 26rem;
-    }
 }
 
 @media (min-width: 800px) {
@@ -316,17 +338,9 @@ body {
         margin-left: 10rem;
         margin: 5rem;
     }
-    .ai-box {
-        width: 100%;
-        height: 16rem;
-        max-width: 28rem;
-        margin-right: 5rem;
-    }
+
     .ai-box-text {
         font-size: 1.2rem;
-    }
-    .hero-container h1 {
-        margin-left: 5rem;
     }
     .style-img {
         max-width: 20rem;
@@ -486,5 +500,3 @@ body {
     margin-right: 10px;
     vertical-align: middle;
   }
-
-  
