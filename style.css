@@ -215,8 +215,8 @@ body {
 
 .enter-key {
 display: inline-block;
-margin-left: 3rem;
-padding: 2px 8px;
+margin-left: 2rem;
+padding: 2px 6px;
 border: 1px solid #ccc; /* Light gray border */
 border-radius: 3px; /* Slightly rounded corners */
 background-color: #f9f9f9; /* Light background */
