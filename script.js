@@ -416,21 +416,38 @@ function creatAnimeModel() {
             pathColors.push(color); // Add the color to the pathColors array
         }
 
+        // Global variables
+        let isAnimating = true;
+        let animationInterval;
         // Function to animate the neural network by highlighting different paths
         function animatePaths() {
             let index = 0;
-            let interval = setInterval(() => {
-                ctx.clearRect(0, 0, neroCanvas.width, neroCanvas.height); // Clear the canvas for redrawing
-                drawNeuralNetwork(paths[index], pathColors[index]); // Draw the network with the current path highlighted
-                index = (index + 1) % paths.length; // Increment the index to animate the next path
-            }, 1000); // Change path every 1000 milliseconds (1 second)
-        }
+        
+            function updateAnimation() {
+                ctx.clearRect(0, 0, neroCanvas.width, neroCanvas.height);
+                drawNeuralNetwork(paths[index], pathColors[index]);
+                index = (index + 1) % paths.length;
+            }
+        
+            if (isAnimating && !animationInterval) {
+                animationInterval = setInterval(updateAnimation, 1000);
+            } else if (!isAnimating && animationInterval) {
+                clearInterval(animationInterval);
+                animationInterval = null;
+            }
+        }        
+        animatePaths();
 
-        return animatePaths();
+        const playButton = document.getElementById('toggleAnimation');
+        playButton.addEventListener('click', () => {
+            isAnimating = !isAnimating;
+            animatePaths();
+        });
     }
     // Delay the setup and animation of the network
-    setTimeout(setupAndAnimateNetwork, 1000); // 200000 milliseconds delay
+    setTimeout(setupAndAnimateNetwork, 1000); 
 }
+
 
   
 /* Code Simulation animation */
@@ -489,6 +506,23 @@ function toggleClassOnScreenSize() {
        /*  neroCanvas.classList.remove('neg-margin-top'); */
     }
 }
+// Resize depending on the device used 
+const ua = navigator.userAgent;
+
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
+    // It's a mobile device
+    window.addEventListener('orientationchange', toggleClassOnScreenSize);
+} else {
+    // It's likely a desktop device
+    window.addEventListener('resize', toggleClassOnScreenSize);
+}
+
+
+
+
+
+
 function simulateEnterKeyPress() {
     const enterKey = document.createElement('span');
     enterKey.textContent = '↵ Enter';
@@ -526,8 +560,6 @@ function debounce(func, wait) {
         timeout = setTimeout(() => func.apply(context, args), wait);
     };
 }
-// Add resize event listener with debounce
-window.addEventListener('orientationchange', debounce(toggleClassOnScreenSize, 100));
 
 
 /* copyright */
