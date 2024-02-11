@@ -2,6 +2,7 @@
 let char = 0; // Current character index for animation
 let splitText = []; // Array to store individual characters of the text
 let timer; // Timer for controlling the animation interval
+let neuralNetwork = false;
 
 const container = document.getElementById("container-image");
 const containerEPFL = document.getElementById("container-EPFL");
@@ -228,6 +229,48 @@ function complete() {
 }
 
 
+
+/* typing simulation */
+const aiBox = document.getElementById('ai-box');
+const codeBox = document.getElementById('codeSimulation');
+const cursor = document.createElement('span');
+cursor.textContent = '|';
+cursor.className = 'cursor'; // Add a class for styling
+codeBox.appendChild(cursor); // Append the cursor to the code box
+
+const codeLines = {
+    "en": "Simulating AI Model Training Process:",
+    "fr":'Simulation du processus de formation de modèle IA:',
+};
+
+let currentLine = 0;
+let currentChar = 0;
+
+
+function typeCode() {
+    // Check if there are more characters to type
+    if (currentChar < codeLines[lang].length) {
+        const textNode = document.createTextNode(codeLines[lang][currentChar]);
+        codeBox.insertBefore(textNode, cursor); // Insert new character before the cursor
+        currentChar++;
+        setTimeout(typeCode, 140); // Continue typing
+    } else {
+        // End of text, remove cursor and potentially call creatAnimeModel
+        if (codeBox.contains(cursor)) {
+            codeBox.removeChild(cursor); // Remove the cursor safely
+        }
+        if (!neuralNetwork) {
+            creatAnimeModel(); // Call if neural network animation hasn't been created
+        }
+    }
+}
+
+// Start typing with a delay
+const startDelay = 6000; // Delay in milliseconds
+setTimeout(typeCode, startDelay);
+
+
+
 /* Footer */
 function crateFooter(lang) {
     // Create the main footer container
@@ -284,6 +327,14 @@ function translatePage(lang) {
 
     /* Change HTML lang */
     document.documentElement.lang = lang;
+
+    // Update the typing simulation
+    currentLine = 0;
+    currentChar = 0;
+    codeBox.innerHTML = ''; // Clear existing text
+    codeBox.appendChild(cursor); // Re-append the cursor
+    typeCode(lang); // Restart the typing simulation
+    
 
     // Inside the loop
     container.innerHTML = ''; // Clear the existing content of the main container
@@ -345,6 +396,7 @@ const neuronRadius = 20;
 const layerDistance = 140;
 
 function creatAnimeModel() {
+    neuralNetwork = true;
     function setupAndAnimateNetwork() {
         // Function to draw a single neuron
         function drawNeuron(x, y, color = 'blue') {
@@ -464,119 +516,6 @@ function creatAnimeModel() {
     }
     // Delay the setup and animation of the network
     setTimeout(setupAndAnimateNetwork, 1000); 
-}
-
-
-  
-/* Code Simulation animation */
-const aiBox = document.getElementById('ai-box');
-const codeBox = document.getElementById('codeSimulation');
-const cursor = document.createElement('span');
-cursor.textContent = '|';
-cursor.className = 'cursor'; // Add a class for styling
-codeBox.appendChild(cursor); // Append the cursor to the code box
-
-const codeLines = [
-    "Dense(3, activation='relu')\n",
-    "Dense(4, activation='relu')\n",
-    "Dense(4, activation='relu')\n",
-    "Dense(2, activation='sigmoid')\n",
-    "Train Model", 
-];
-
-let currentLine = 0;
-let currentChar = 0;
-
-function typeCode() {
-    if (currentLine < codeLines.length) {
-        if (currentChar < codeLines[currentLine].length) {
-            const textNode = document.createTextNode(codeLines[currentLine][currentChar]);
-            codeBox.insertBefore(textNode, cursor); // Insert new character before the cursor
-            currentChar++;
-            setTimeout(typeCode, 140); // Speed of typing
-        } else {
-            if (currentLine === codeLines.length - 1) {
-                // Handle the Enter key press simulation after 'Train'
-                simulateEnterKeyPress();
-            } else {
-                codeBox.insertBefore(document.createTextNode("\n"), cursor); // Insert new line
-                currentLine++;
-                currentChar = 0;
-                setTimeout(typeCode, 200); // Delay before starting new line
-            }
-        }
-    }
-}
-
-// Function to toggle class based on screen size
-function toggleClassOnScreenSize() {
-    const smallScreenSize = 600; // Define the breakpoint for small screen size
-
-    if (window.innerWidth <= smallScreenSize) {
-        // If the screen is small
-        aiBox.className = 'display-small-screen';
-        codeBox.className = 'display-small-screen';
-        /* neroCanvas.classList.add('neg-margin-top'); */
-    } else {
-        // If the screen is not small
-        aiBox.className = 'ai-box';
-        codeBox.className = 'ai-box-text';
-       /*  neroCanvas.classList.remove('neg-margin-top'); */
-    }
-}
-// Resize depending on the device used 
-const ua = navigator.userAgent;
-
-
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
-    // It's a mobile device
-    window.addEventListener('orientationchange', toggleClassOnScreenSize);
-} else {
-    // It's likely a desktop device
-    window.addEventListener('resize', toggleClassOnScreenSize);
-}
-
-
-
-
-
-
-function simulateEnterKeyPress() {
-    const enterKey = document.createElement('span');
-    enterKey.textContent = '↵ Enter';
-    enterKey.className = 'enter-key';
-    codeBox.insertBefore(enterKey, cursor);
-    // Remove the cursor after the animation
-    codeBox.removeChild(cursor);
-    // Simulate the press
-    setTimeout(() => {
-        enterKey.classList.add('pressed');
-    }, 800); // Delay to start the press effect
-
-    // Simulate the release
-    setTimeout(() => {
-        enterKey.classList.remove('pressed');
-        // remove typed code only on small screen
-        toggleClassOnScreenSize();
-    }, 1500); // Delay to end the press effect
-
-    // Call creatAnimeModel to initiate the process
-    creatAnimeModel(); 
-}
-
-// Start typing with a delay
-const startDelay = 6000; // Delay in milliseconds
-setTimeout(typeCode, startDelay);
-
-
-// Debounce function to limit how often the resize event can fire
-function debounce(func, wait) {
-    let timeout;
-    return function() {
-        const context = this, args = arguments;
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(context, args), wait);
-    };
 }
 
 

@@ -154,37 +154,21 @@ body {
 
 
 .hero-container {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns of equal width */
-    gap: 1rem; /* Space between grid items */
-    align-items: start; /* Vertically align items to the start */
-    justify-content: center; /* Horizontally center the content */
     padding: 1.5rem;
     color: rgb(251, 251, 251);
     overflow: hidden;
 }
 
 .hero-container h1 {
-    grid-column: 1 / -1; /* Title spans across all columns */
     margin-bottom: 1rem;
-    text-align: start;
-}
-
-.hero-container .neural-network {
-    grid-column: 1;
-    display: inline-flex;
-    width: 100%;
-    max-width: 20rem;
-    margin: 0 auto;
-    z-index: 1;
+  
 }
 
 .ai-box {
-    margin-top: 2rem;
-    grid-column: 2; /* AI box in the second column */
-    max-width: 30rem; /* Full width of the column */
-    display: inline-flex;
+    margin-left: 1rem;
+    min-width: 10rem; /* minimum size */
+    max-width: 25rem; /* maximum size */
+    width: auto; /* allow automatic resizing within the min-max range */
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -195,7 +179,6 @@ body {
     position: relative;
     z-index: 1; /* This ensures the box is above the starry background */
 }
-
 
 
 .ai-box::-webkit-scrollbar {
@@ -212,23 +195,12 @@ body {
     
 }
 
-
-.enter-key {
-display: inline-block;
-margin-left: 2rem;
-padding: 2px 6px;
-border: 1px solid #ccc; /* Light gray border */
-border-radius: 3px; /* Slightly rounded corners */
-background-color: #f9f9f9; /* Light background */
-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
-transition: all 0.2s; /* Smooth transition for the press effect */
-}
-
-.enter-key.pressed {
-color: #fff; /* Change text color */
-background-color: rgb(228, 94, 16); /* Change background color */
-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2); /* Adjust shadow to look pressed */
-transform: translateY(1px); /* Slightly shift down to simulate press */
+.neural-network {
+    display: flex;
+    justify-content: center;
+    width: 20rem;
+    margin: 0 auto;
+    z-index: 1;
 }
 
 .play-pause-btn {
@@ -238,6 +210,7 @@ transform: translateY(1px); /* Slightly shift down to simulate press */
     background-color: rgb(182, 182, 190);
     border-radius: 1rem;
     cursor: pointer;
+    margin-top: -3rem;
 }
 
 
@@ -248,22 +221,9 @@ transform: translateY(1px); /* Slightly shift down to simulate press */
 
 
 @media (max-width: 600px) {
-    .hero-container {
-        display: grid;
-        grid-template-columns: 1fr; /* Stack in one column on smaller screens */
-        grid-template-rows: auto auto; /* Two rows, auto-sized */
+    .ai-box {
+        margin-left: 0;
     }
-
-    .hero-container .ai-box {
-        grid-row: 2; /* Place AI box in the first row */
-        grid-column: 1; /* Both items in the first column */
-    }
-
-    .hero-container .neural-network {
-        grid-row: 2; /* Place neural network canvas in the second row */
-        grid-column: 1; /* Both items in the first column */
-    }
-
     .display-small-screen {
         display: none;
     }
@@ -344,15 +304,15 @@ transform: translateY(1px); /* Slightly shift down to simulate press */
 }
 
 @media (min-width: 800px) {
+    .neural-network{
+        width: 24rem;
+    }
     .footer-content {
         gap: 10rem;
         margin-left: 10rem;
         margin: 5rem;
     }
 
-    .ai-box-text {
-        font-size: 1.2rem;
-    }
     .style-img {
         max-width: 20rem;
     }
