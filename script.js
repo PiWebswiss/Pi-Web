@@ -265,11 +265,6 @@ function typeCode() {
     }
 }
 
-// Start typing with a delay
-const startDelay = 6000; // Delay in milliseconds
-setTimeout(typeCode, startDelay);
-
-
 
 /* Footer */
 function crateFooter(lang) {
@@ -333,8 +328,10 @@ function translatePage(lang) {
     currentChar = 0;
     codeBox.innerHTML = ''; // Clear existing text
     codeBox.appendChild(cursor); // Re-append the cursor
-    typeCode(lang); // Restart the typing simulation
-    
+    // Start typing with a delay
+    const startDelay = 5000; // Delay in milliseconds
+    setTimeout(() => typeCode(lang), startDelay);
+
 
     // Inside the loop
     container.innerHTML = ''; // Clear the existing content of the main container
