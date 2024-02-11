@@ -403,7 +403,7 @@ function creatAnimeModel() {
         const pathColors = [];
 
         // Generate 20 random paths and their corresponding colors
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 100; i++) {
             const path = []; // Array to store one path
             const color = 'white'; // Set color to white
 
@@ -438,10 +438,28 @@ function creatAnimeModel() {
         }        
         animatePaths();
 
-        const playButton = document.getElementById('toggleAnimation');
-        playButton.addEventListener('click', () => {
+        const toggleAnimationDiv = document.getElementById('toggleAnimation');
+
+        // Correctly create an img element using document.createElement
+        const buttonImage = document.createElement('img');
+        buttonImage.src = 'icons/pause.png'; // Set initial source for the play icon
+        buttonImage.alt = 'pause'; // Set the initial alt text
+        buttonImage.classList.add('play-pause-btn')
+
+        // Append the newly created img element to the toggleAnimationDiv
+        toggleAnimationDiv.appendChild(buttonImage);
+
+        toggleAnimationDiv.addEventListener('click', () => {
             isAnimating = !isAnimating;
             animatePaths();
+
+            if (isAnimating) {
+                buttonImage.src = 'icons/pause.png'; // Change to pause icon
+                buttonImage.alt = 'Pause'; // Update the alt text
+            } else {
+                buttonImage.src = 'icons/play.png'; // Change to play icon
+                buttonImage.alt = 'Play'; // Update the alt text
+            }
         });
     }
     // Delay the setup and animation of the network

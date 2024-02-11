@@ -231,6 +231,14 @@ box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2); /* Adjust shadow to look pressed */
 transform: translateY(1px); /* Slightly shift down to simulate press */
 }
 
+.play-pause-btn {
+    width: auto;
+    height: 3rem;
+    margin-left: 2rem;
+    background-color: rgb(182, 182, 190);
+    border-radius: 1rem;
+    cursor: pointer;
+}
 
 
 /* .hero-container > *{
@@ -252,7 +260,7 @@ transform: translateY(1px); /* Slightly shift down to simulate press */
     }
 
     .hero-container .neural-network {
-        grid-row: 3; /* Place neural network canvas in the second row */
+        grid-row: 2; /* Place neural network canvas in the second row */
         grid-column: 1; /* Both items in the first column */
     }
 
