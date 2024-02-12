@@ -1,8 +1,7 @@
 // Define global variables
 let char = 0; // Current character index for animation
-let splitText = []; // Array to store individual characters of the text
 let timer; // Timer for controlling the animation interval
-let neuralNetwork = false;
+
 
 // Set initial language default ("en")
 lang = localStorage.getItem('lang') || 'en';
@@ -184,27 +183,6 @@ const gt = (tag, children, attributes) => {
     return element;
   };
 
-// Function called at each interval tick to animate text
-function onTick() {
-    const textElement = document.getElementById("textAnimation");
-    if (char < splitText.length) {
-        // Select the span corresponding to the current character
-        const span = textElement.querySelectorAll('span')[char];
-        span.classList.add('fade'); // Apply the fade effect
-        char++; // Move to the next character
-    } else {
-        complete(); // If all characters processed, call complete function
-    }
-}
-
-// Function to execute when the animation is complete
-function complete() {
-    clearInterval(timer); // Stop the animation interval
-    timer = null; // Clear the timer variable
-    char = 0; // Reset the character index for possible re-animation
-}
-
-
 
 /* typing simulation */
 const aiBox = document.getElementById('ai-box');
@@ -219,27 +197,33 @@ const codeLines = {
     "fr": "Visualisation de l'entraînement d'une IA.",
 };
 
-let currentLine = 0;
+
 let currentChar = 0;
 
 
 function typeCode(language) {
+    console.log(language)
     // Check if there are more characters to type
     if (currentChar < codeLines[language].length) {
         const textNode = document.createTextNode(codeLines[language][currentChar]);
-        codeBox.insertBefore(textNode, cursor); // Insert new character before the cursor
-        currentChar++;
-        setTimeout(() => typeCode(language), 140); // Continue typing in the same language
-    } else {
-        // End of text, remove cursor and potentially call creatAnimeModel
+    
+        // Check if cursor is still a child of codeBox
         if (codeBox.contains(cursor)) {
-            codeBox.removeChild(cursor); // Remove the cursor safely
+            codeBox.insertBefore(textNode, cursor);
+        } else {
+            codeBox.appendChild(textNode);
         }
-        if (!neuralNetwork) {
-            creatAnimeModel(); // Call if neural network animation hasn't been created
+    
+        currentChar++;
+        setTimeout(() => typeCode(lang), 140);
+    } else {
+        // When typing is complete, remove the cursor
+        if (codeBox.contains(cursor)) {
+            codeBox.removeChild(cursor);
         }
     }
 }
+
 
 
 
