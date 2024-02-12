@@ -304,8 +304,6 @@ function crateFooter(lang) {
 }
 
 
-
-
 // Function to translate page content based on selected language
 function translatePage(lang) {
     document.querySelectorAll("[data-translate]").forEach(el => {
@@ -329,7 +327,7 @@ function translatePage(lang) {
     codeBox.innerHTML = ''; // Clear existing text
     codeBox.appendChild(cursor); // Re-append the cursor
     // Start typing with a delay
-    const startDelay = 5000; // Delay in milliseconds
+    const startDelay = 1000; // Delay in milliseconds
     setTimeout(() => typeCode(lang), startDelay);
 
 
