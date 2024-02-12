@@ -1,6 +1,7 @@
 // Define global variables
 let char = 0; // Current character index for animation
 let timer; // Timer for controlling the animation interval
+let typingTimeout; // Global variable for the typing timeout
 
 
 // Set initial language default ("en")
@@ -200,30 +201,24 @@ const codeLines = {
 
 let currentChar = 0;
 
-
 function typeCode(language) {
-    console.log(language)
-    // Check if there are more characters to type
     if (currentChar < codeLines[language].length) {
         const textNode = document.createTextNode(codeLines[language][currentChar]);
-    
-        // Check if cursor is still a child of codeBox
+
         if (codeBox.contains(cursor)) {
             codeBox.insertBefore(textNode, cursor);
         } else {
             codeBox.appendChild(textNode);
         }
-    
+
         currentChar++;
-        setTimeout(() => typeCode(lang), 140);
+        typingTimeout = setTimeout(() => typeCode(language), 140); // Set the global timeout variable
     } else {
-        // When typing is complete, remove the cursor
         if (codeBox.contains(cursor)) {
             codeBox.removeChild(cursor);
         }
     }
 }
-
 
 
 
@@ -276,7 +271,12 @@ function translatePage(lang) {
     
     /* Change HTML lang */
     document.documentElement.lang = lang;
-
+    
+    // Clear any ongoing typing simulation
+    if (typingTimeout) {
+        clearTimeout(typingTimeout);
+        typingTimeout = null;
+    }
     // Update the typing simulation
     currentChar = 0;
     codeBox.innerHTML = ''; // Clear existing text
