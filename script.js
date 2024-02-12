@@ -4,6 +4,9 @@ let splitText = []; // Array to store individual characters of the text
 let timer; // Timer for controlling the animation interval
 let neuralNetwork = false;
 
+// Set initial language default ("en")
+lang = localStorage.getItem('lang') || 'en';
+
 const container = document.getElementById("container-image");
 const containerEPFL = document.getElementById("container-EPFL");
 const containerFooter = document.getElementById("footer");
@@ -180,33 +183,6 @@ const gt = (tag, children, attributes) => {
     }
     return element;
   };
-  
-
-
-
-// Function to initialize text animation
-function initializeTextAnimation(textContent) {
-    const textElement = document.getElementById("textAnimation");
-    if (textElement) {
-        // Clear the existing content of the text element
-        textElement.innerHTML = "";
-
-        // Split the provided text into individual characters
-        splitText = textContent.split("");
-        splitText.forEach(char => {
-            // Create a span for each character
-            const span = document.createElement('span');
-            span.textContent = char;
-            span.className = 'title-span'; // Assign a class for styling
-            textElement.appendChild(span); // Append the span to the text element
-        });
-
-        // Reset the animation parameters
-        char = 0; // Reset character index
-        clearInterval(timer); // Clear any existing animation timer
-        timer = setInterval(onTick, 120); // Start the animation interval
-    }
-}
 
 // Function called at each interval tick to animate text
 function onTick() {
@@ -239,21 +215,21 @@ cursor.className = 'cursor'; // Add a class for styling
 codeBox.appendChild(cursor); // Append the cursor to the code box
 
 const codeLines = {
-    "en": "Simulating AI Model Training Process:",
-    "fr":'Simulation du processus de formation de modèle IA:',
+    "en": "Visual Representation of an AI Training.",
+    "fr": "Visualisation de l'entraînement d'une IA.",
 };
 
 let currentLine = 0;
 let currentChar = 0;
 
 
-function typeCode() {
+function typeCode(language) {
     // Check if there are more characters to type
-    if (currentChar < codeLines[lang].length) {
-        const textNode = document.createTextNode(codeLines[lang][currentChar]);
+    if (currentChar < codeLines[language].length) {
+        const textNode = document.createTextNode(codeLines[language][currentChar]);
         codeBox.insertBefore(textNode, cursor); // Insert new character before the cursor
         currentChar++;
-        setTimeout(typeCode, 140); // Continue typing
+        setTimeout(() => typeCode(language), 140); // Continue typing in the same language
     } else {
         // End of text, remove cursor and potentially call creatAnimeModel
         if (codeBox.contains(cursor)) {
@@ -264,6 +240,7 @@ function typeCode() {
         }
     }
 }
+
 
 
 /* Footer */
@@ -313,22 +290,16 @@ function translatePage(lang) {
         el.textContent = translatedText; // Update element text with translation
     });
     
-
-    // Reinitialize the text animation with the translated text
-    const newText = document.getElementById("textAnimation").textContent;
-    initializeTextAnimation(newText); // Restart the animation with new text
-
     /* Change HTML lang */
     document.documentElement.lang = lang;
 
     // Update the typing simulation
-    currentLine = 0;
     currentChar = 0;
     codeBox.innerHTML = ''; // Clear existing text
     codeBox.appendChild(cursor); // Re-append the cursor
-    // Start typing with a delay
-    const startDelay = 1000; // Delay in milliseconds
-    setTimeout(() => typeCode(lang), startDelay);
+    // Start function typeCode with a delay 
+    setTimeout(() => typeCode(lang), 1000);// Delay in milliseconds
+
 
 
     // Inside the loop
@@ -365,15 +336,8 @@ document.getElementById('translateToEn').addEventListener('click', function() {
 });
 
 
-// Set initial language default ("en")
-lang = localStorage.getItem('lang') || 'en';
-
 
 translatePage(lang);
-
-// Initial text animation setup
-initializeTextAnimation(document.getElementById("textAnimation").textContent);
-
 
 /* The following code is from ChatGPT-4 demonstrates a delayed setup and display of a neural network. 
 To achieve this, the model's setup and drawing logic are encapsulated in a function, which is then executed after a delay using setTimeout. */
