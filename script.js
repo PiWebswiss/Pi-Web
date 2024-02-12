@@ -199,27 +199,36 @@ const codeLines = {
 };
 
 
-let currentChar = 0;
+let currentChar = 0; // Index of the current character to be typed
 
+
+// Function to simulate typing effect for code lines in a specific language.
 function typeCode(language) {
+    // Check if there are more characters to type
     if (currentChar < codeLines[language].length) {
+        // Create a text node for the current character
         const textNode = document.createTextNode(codeLines[language][currentChar]);
 
+        // Insert the character before the cursor if it exists, otherwise append it
         if (codeBox.contains(cursor)) {
             codeBox.insertBefore(textNode, cursor);
         } else {
             codeBox.appendChild(textNode);
         }
 
+        // Move to the next character and set a timeout for the next typing action
         currentChar++;
         typingTimeout = setTimeout(() => typeCode(language), 140); // Set the global timeout variable
     } else {
+        // Once all characters are typed
         if (codeBox.contains(cursor)) {
+            // Remove the cursor from the code box
             codeBox.removeChild(cursor);
+        
         }
     }
+  
 }
-
 
 
 /* Footer */
@@ -339,7 +348,6 @@ const neuronRadius = 20;
 const layerDistance = 140;
 
 function creatAnimeModel() {
-    neuralNetwork = true;
     function setupAndAnimateNetwork() {
         // Function to draw a single neuron
         function drawNeuron(x, y, color = 'blue') {
@@ -461,6 +469,7 @@ function creatAnimeModel() {
     setTimeout(setupAndAnimateNetwork, 1000); 
 }
 
+creatAnimeModel()
 
 /* copyright */
 const d = new Date();
