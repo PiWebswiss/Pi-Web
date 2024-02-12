@@ -166,9 +166,7 @@ body {
 
 .ai-box {
     margin-left: 1rem;
-    min-width: 20rem; /* minimum size */
-    max-width: 25rem; /* maximum size */
-    width: auto; /* allow automatic resizing within the min-max range */
+    max-width: 19.5rem; /* maximum size */
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
