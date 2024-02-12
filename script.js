@@ -334,7 +334,7 @@ translatePage(lang);
 
 /* The following code is from ChatGPT-4 demonstrates a delayed setup and display of a neural network. 
 To achieve this, the model's setup and drawing logic are encapsulated in a function, which is then executed after a delay using setTimeout. */
- // Access the canvas element and its 2D drawing context
+// Access the canvas element and its 2D drawing context
 const neroCanvas = document.getElementById('neural-network'); 
 const ctx = neroCanvas.getContext('2d');
 
@@ -350,7 +350,7 @@ const layerDistance = 140;
 function creatAnimeModel() {
     function setupAndAnimateNetwork() {
         // Function to draw a single neuron
-        function drawNeuron(x, y, color = 'blue') {
+        function drawNeuron(x, y, color = 'rgb(209, 96, 30)') {
             ctx.beginPath(); // Begin a new path
             ctx.arc(x, y, neuronRadius, 0, Math.PI * 2); // Draw a circle for the neuron
             ctx.fillStyle = color; // Set the color for the neuron
@@ -406,7 +406,7 @@ function creatAnimeModel() {
         const pathColors = [];
 
         // Generate 20 random paths and their corresponding colors
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 40; i++) {
             const path = []; // Array to store one path
             const color = 'white'; // Set color to white
 
