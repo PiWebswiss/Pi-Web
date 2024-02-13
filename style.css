@@ -222,6 +222,9 @@ body {
     .ai-box {
         margin-left: 0;
     }
+    .play-pause-btn {
+        margin-top: -1rem;
+    }
     .display-small-screen {
         display: none;
     }
