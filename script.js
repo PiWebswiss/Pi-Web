@@ -346,11 +346,15 @@ neroCanvas.height = 550;
 const layers = [3, 4, 4, 2]; // Number of neurons in each layer
 const neuronRadius = 20;
 const layerDistance = 140;
+const defaultNeuronColor = 'rgb(209, 96, 30)';
+const defaultSynapseColor = 'rgba(128, 128, 128, 0.5)';
+const animationIntervalDuration = 1000;
+
 
 function creatAnimeModel() {
     function setupAndAnimateNetwork() {
         // Function to draw a single neuron
-        function drawNeuron(x, y, color = 'rgb(209, 96, 30)') {
+        function drawNeuron(x, y, color = defaultNeuronColor) {
             ctx.beginPath(); // Begin a new path
             ctx.arc(x, y, neuronRadius, 0, Math.PI * 2); // Draw a circle for the neuron
             ctx.fillStyle = color; // Set the color for the neuron
@@ -359,7 +363,7 @@ function creatAnimeModel() {
         }
 
         // Function to draw a synapse (line) between two neurons
-        function drawSynapse(x1, y1, x2, y2, color = 'rgba(128, 128, 128, 0.5)') {
+        function drawSynapse(x1, y1, x2, y2, color = defaultSynapseColor) {
             ctx.beginPath(); // Begin a new path
             ctx.moveTo(x1, y1); // Start point of the synapse
             ctx.lineTo(x2, y2); // End point of the synapse
@@ -368,9 +372,8 @@ function creatAnimeModel() {
         }
 
         // Function to draw the entire neural network
-        function drawNeuralNetwork(path = [], color = 'rgb(209, 96, 30)') {
-            // Default color for synapses not in the path
-            const defaultSynapseColor = 'rgba(128, 128, 128, 0.5)'; 
+        function drawNeuralNetwork(path = [], color = defaultNeuronColor) {
+
 
             for (let i = 0; i < layers.length; i++) { // Loop through each layer
                 let layerY = neroCanvas.height / (layers[i] + 1); // Calculate vertical position
@@ -378,7 +381,7 @@ function creatAnimeModel() {
                 for (let j = 0; j < layers[i]; j++) { // Loop through each neuron in the layer
                     let x = i * layerDistance + 100; // Calculate horizontal position
                     let y = (j + 1) * layerY; // Calculate vertical position
-                    let neuronColor = 'rgb(209, 96, 30)'; // Default color for neurons
+                    let neuronColor = defaultNeuronColor; // Default color for neurons
 
                     // Check if the current neuron is part of the path
                     if (i < path.length && j === path[i]) {
@@ -463,6 +466,7 @@ function creatAnimeModel() {
                 buttonImage.src = 'icons/play.png'; // Change to play icon
                 buttonImage.alt = 'Play'; // Update the alt text
             }
+        
         });
     }
     // Delay the setup and animation of the network
