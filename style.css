@@ -165,8 +165,8 @@ body {
 }
 
 .ai-box {
+    /* width change using js */
     margin-left: 1rem;
-    max-width: 30rem; /* maximum size */
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;

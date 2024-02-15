@@ -187,6 +187,7 @@ const gt = (tag, children, attributes) => {
 
 /* typing simulation */
 const aiBox = document.getElementById('ai-box');
+const styleAiBox = document.querySelector(".ai-box");
 const codeBox = document.getElementById('codeSimulation');
 const cursor = document.createElement('span');
 cursor.textContent = '|';
@@ -194,8 +195,8 @@ cursor.className = 'cursor'; // Add a class for styling
 codeBox.appendChild(cursor); // Append the cursor to the code box
 
 const codeLines = {
-    "en": "Visual representation of an artificial intelligence in slow motion.",
-    "fr": "Visuelle représentation d'une intelligence artificielle au ralenti.",
+    "en": "Visual representation of an AI in slow motion.",
+    "fr": "Visuelle représentation d'une IA au ralenti.",
 };
 
 
@@ -204,6 +205,12 @@ let currentChar = 0; // Index of the current character to be typed
 
 // Function to simulate typing effect for code lines in a specific language.
 function typeCode(language) {
+    if (language === "en") {
+        styleAiBox.style.maxWidth = "22rem";
+    } else {
+        styleAiBox.style.maxWidth = "20.5rem";
+    }
+
     // Check if there are more characters to type
     if (currentChar < codeLines[language].length) {
         // Create a text node for the current character
