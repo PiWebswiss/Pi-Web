@@ -205,6 +205,7 @@ let currentChar = 0; // Index of the current character to be typed
 
 // Function to simulate typing effect for code lines in a specific language.
 function typeCode(language) {
+    // Change max width corresponding to language
     if (language === "en") {
         styleAiBox.style.maxWidth = "22rem";
     } else {
