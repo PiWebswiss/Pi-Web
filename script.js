@@ -207,9 +207,9 @@ let currentChar = 0; // Index of the current character to be typed
 function typeCode(language) {
     // Change max width corresponding to language
     if (language === "en") {
-        styleAiBox.style.maxWidth = "22rem";
+        styleAiBox.style.width = "22rem";
     } else {
-        styleAiBox.style.maxWidth = "20.5rem";
+        styleAiBox.style.width = "20.5rem";
     }
 
     // Check if there are more characters to type
