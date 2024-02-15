@@ -194,8 +194,8 @@ cursor.className = 'cursor'; // Add a class for styling
 codeBox.appendChild(cursor); // Append the cursor to the code box
 
 const codeLines = {
-    "en": "Visual Representation of an AI Training.",
-    "fr": "Visualisation de l'entraînement d'une IA.",
+    "en": "Visual representation of an artificial intelligence in slow motion.",
+    "fr": "Visuelle représentation d'une intelligence artificielle au ralenti.",
 };
 
 
