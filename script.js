@@ -477,8 +477,8 @@ function creatAnimeModel() {
         
         });
     }
-    // Delay the setup and animation of the network
-    setTimeout(setupAndAnimateNetwork, 1000); 
+    // Start animation of the network
+    setupAndAnimateNetwork()
 }
 
 creatAnimeModel()
