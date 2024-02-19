@@ -20,7 +20,7 @@ const translations = {
       'text-2': 'New AI Model to classify surgical instruments',
       'text-3': 'AI Model to classify fossils',
       'text-4': 'Custom-made website example',
-      'footerText': 'My portfolio website, PIWeb, showcases various projects, including custom-made websites and AI models. All my projects are open source.',
+      'footerText': 'My portfolio website, PiWeb, showcases various projects, including custom-made websites and AI models. All my projects are open source.',
     },
     'fr': {
       'title': 'Pi Web - Site web et application web sur mesure',
@@ -30,7 +30,7 @@ const translations = {
       'text-2': 'Modèle pour classer les instruments chirurgicaux',
       'text-3': 'Modèle pour classer les fossiles',
       'text-4': 'Exemple de site web sur mesure',
-      'footerText': "Mon site web, PIWeb, présente divers projets, notamment des sites web sur mesure et des modèles d'IA. Tous mes projets sont open source.",
+      'footerText': "Mon site web, PiWeb, présente divers projets, notamment des sites web sur mesure et des modèles d'IA. Tous mes projets sont open source.",
     }
 };
 
