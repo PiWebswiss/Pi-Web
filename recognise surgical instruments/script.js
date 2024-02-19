@@ -40,7 +40,7 @@ const translations = {
       'text-model-p2': 'The model runs automatically when an image is given',
       'text-model-p3': 'Upload a surgical instrument image by dragging & dropping or choose a file',
       'text-model-h4': 'The model runs automatically when an image is given',
-      'bth-go-back': 'Go back to PIWeb',
+      'bth-go-back': 'Go back to PiWeb',
       'text-btn-upload': 'Upload an image',
     },
     'fr': {
@@ -61,7 +61,7 @@ const translations = {
       'text-model-p2': 'Le modèle se lance automatiquement lorsqu\'une image est fournie',
       'text-model-p3': 'Téléchargez une image d\'instrument chirurgical en la glissant et la déposant ou choisissez un fichier',
       'text-model-h4': 'Le modèle se lance automatiquement lorsqu\'une image est fournie',
-      'bth-go-back': 'Retourner à PIWeb',
+      'bth-go-back': 'Retourner à PiWeb',
       'text-btn-upload': 'Choisir une image',
     }
   };

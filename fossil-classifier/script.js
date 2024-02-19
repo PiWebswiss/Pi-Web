@@ -27,7 +27,7 @@ const translations = {
     'text-use-model-2': 'The model runs automatically when an image is given',
     'text-btn-upload': 'Upload an image',
     'text-image-recognise': 'Here are the fossils that the model can recognise.',
-    'bth-go-back': 'Go back to PIWeb',
+    'bth-go-back': 'Go back to PiWeb',
 
     },
     'fr': {
@@ -54,7 +54,7 @@ const translations = {
     'text-use-model-2': 'Le modèle s’exécute automatiquement lorsqu’une image est fournie',
     'text-btn-upload': 'Choisir une image',
     'text-image-recognise': 'Voici les fossiles que le modèle peut reconnaître.',
-    'bth-go-back': 'Retour à PIWeb',
+    'bth-go-back': 'Retour à PiWeb',
       
     }
 };
