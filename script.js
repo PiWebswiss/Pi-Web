@@ -452,32 +452,40 @@ function creatAnimeModel() {
         }        
         animatePaths();
 
-        const toggleAnimationDiv = document.getElementById('toggleAnimation');
+        // Function to create and set up the button pause start
+        function createButton() {
+            const toggleAnimationDiv = document.getElementById('toggleAnimation');
 
-        // Correctly create an img element using document.createElement
-        const buttonImage = document.createElement('img');
-        buttonImage.src = 'icons/pause.png'; // Set initial source for the play icon
-        buttonImage.alt = 'pause'; // Set the initial alt text
-        buttonImage.classList.add('play-pause-btn')
+            // Correctly create an img element using document.createElement
+            const buttonImage = document.createElement('img');
+            buttonImage.src = 'icons/pause.png'; // Set initial source for the play icon
+            buttonImage.alt = 'pause'; // Set the initial alt text
+            buttonImage.classList.add('play-pause-btn')
 
-        // Append the newly created img element to the toggleAnimationDiv
-        toggleAnimationDiv.appendChild(buttonImage);
+            // Append the newly created img element to the toggleAnimationDiv
+            toggleAnimationDiv.appendChild(buttonImage);
 
-        toggleAnimationDiv.addEventListener('click', () => {
-            isAnimating = !isAnimating;
-            animatePaths();
+            toggleAnimationDiv.addEventListener('click', () => {
+                isAnimating = !isAnimating;
+                animatePaths();
 
-            if (isAnimating) {
-                buttonImage.src = 'icons/pause.png'; // Change to pause icon
-                buttonImage.alt = 'Pause'; // Update the alt text
-            } else {
-                buttonImage.src = 'icons/play.png'; // Change to play icon
-                buttonImage.alt = 'Play'; // Update the alt text
-            }
+                if (isAnimating) {
+                    buttonImage.src = 'icons/pause.png'; // Change to pause icon
+                    buttonImage.alt = 'Pause'; // Update the alt text
+                } else {
+                    buttonImage.src = 'icons/play.png'; // Change to play icon
+                    buttonImage.alt = 'Play'; // Update the alt text
+                }
+            
+            });
+        }
+        // Delay btn 
+        setTimeout(createButton, 2000);
         
-        });
+
+        
     }
-    // Start animation of the network
+    // Call the network initialization function
     setupAndAnimateNetwork()
 }
 
