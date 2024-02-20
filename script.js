@@ -17,7 +17,7 @@ const translations = {
       'h1': 'Custom-made AI models & website',
       'h2': 'I have recently been certified from the EPFL Extension School',
       'text-1': 'Custom-made AI models',
-      'text-2': 'New AI Model to classify surgical instruments',
+      'text-2': 'AI Model to classify surgical instruments',
       'text-3': 'AI Model to classify fossils',
       'text-4': 'Custom-made website example',
       'footerText': 'My portfolio website, PiWeb, showcases various projects, including custom-made websites and AI models. All my projects are open source.',
@@ -72,7 +72,7 @@ function createContainerElements(item, lang) {
         h2.classList.add("title-big", "center-text-container")
     }
     else{
-        h2.classList.add("title-big");
+        h2.classList.add("title-litle");
     }
    
     h2.textContent = translations[lang][item.title];
@@ -123,7 +123,7 @@ const EPFLcontainers = [
 function  createEPLFContainerElements(item, lang) {
     // Create a container div
     const divContainer = document.createElement("div");
-    divContainer.classList.add("container", "padding", "padding-top", "grad3");
+    divContainer.classList.add("container", "padding", "small-scren-padding-top", "grad3");
 
     // Create an h2 element
     const h2 = document.createElement("h2");
