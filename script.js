@@ -3,10 +3,39 @@ let char = 0; // Current character index for animation
 let timer; // Timer for controlling the animation interval
 let typingTimeout; // Global variable for the typing timeout
 
+// Function for creating elements
+const gt = (tag, children, attributes, dataAttributes) => {
+    const element = document.createElement(tag);
+
+    // Set regular attributes using existing logic
+    for (const key in attributes) {
+        element[key] = attributes[key];
+    }
+
+    // Set custom data attributes using the provided object
+    if (dataAttributes) {
+        for (const key in dataAttributes) {
+            element.setAttribute(key, dataAttributes[key]);;
+        }
+    }
+
+    // Handle children
+    if (children) {
+        if (typeof children === "string") element.innerText = children;
+        else if (Array.isArray(children)) {
+            for (let i = 0; i < children.length; i++) element.appendChild(children[i]);
+        } else element.appendChild(children);
+    }
+
+    return element;
+};
+
 
 // Set initial language default ("en")
 lang = localStorage.getItem('lang') || 'en';
 
+// Declare main IDs outside the function to make them accessible globally
+const divHeader = document.getElementById("header-hero");
 const container = document.getElementById("container-image");
 const containerEPFL = document.getElementById("container-EPFL");
 const containerFooter = document.getElementById("footer");
@@ -33,6 +62,84 @@ const translations = {
       'footerText': "Mon site web, PiWeb, présente divers projets, notamment des sites web sur mesure et des modèles d'IA. Tous mes projets sont open source.",
     }
 };
+
+/* Create header */
+function createHeader() {
+    // Create header logo and button to change lang
+    const translateEnButton = gt("input", null, { type: "button", id: "translateToEn", value: "En", className: "translate-button" });
+    const translateFrButton = gt("input", null, { type: "button", id: "translateToFr", value: "Fr", className: "translate-button" });
+    const logoText = gt("p", "PiWeb", { className: "logo-margin text-logo" });
+    const logoImg = gt("img", null, { className: "img-logo", src: "image/logo 2.webp", alt: "pi web logo" });
+    const headerDiv = gt("div", [logoImg, logoText, translateFrButton, translateEnButton], { className: "container-fr-en padding-right" });
+    
+    // Create Neural Network html
+    const toggleAnimationDiv = gt("div", null, { id: "toggleAnimation" });
+    const neuralNetworkCanvas = gt("canvas", null, { id: "neural-network", className: "neural-network" });
+    const aiBoxText = gt("pre", null, { id: "codeSimulation", className: "ai-box-text" });
+    const aiBox = gt("div", aiBoxText, { id: "ai-box", className: "ai-box" });
+    const heroTitle = gt("h1", null, null, {"data-translate-text": "h1"});
+    const heroDiv = gt("div", [heroTitle, aiBox, neuralNetworkCanvas, toggleAnimationDiv], { className: "hero-container grad3" });
+
+    // Append children to heroDiv
+    divHeader.appendChild(headerDiv);
+    divHeader.appendChild(heroDiv); 
+}
+
+createHeader();
+
+/* typing simulation */
+const aiBox = document.getElementById('ai-box');
+const styleAiBox = document.querySelector(".ai-box");
+const codeBox = document.getElementById('codeSimulation');
+const cursor = document.createElement('span');
+cursor.textContent = '|';
+cursor.className = 'cursor'; // Add a class for styling
+codeBox.appendChild(cursor); // Append the cursor to the code box
+
+const codeLines = {
+    "en": "Visual representation of an AI in slow motion.",
+    "fr": "Visuelle représentation d'une IA au ralenti.",
+};
+
+
+let currentChar = 0; // Index of the current character to be typed
+
+
+// Function to simulate typing effect for code lines in a specific language.
+function typeText(language) {
+    // Change max width corresponding to language
+    if (language === "en") {
+        styleAiBox.style.width = "22rem";
+    } else {
+        styleAiBox.style.width = "20.5rem";
+    }
+
+    // Check if there are more characters to type
+    if (currentChar < codeLines[language].length) {
+        // Create a text node for the current character
+        const textNode = document.createTextNode(codeLines[language][currentChar]);
+
+        // Insert the character before the cursor if it exists, otherwise append it
+        if (codeBox.contains(cursor)) {
+            codeBox.insertBefore(textNode, cursor);
+        } else {
+            codeBox.appendChild(textNode);
+        }
+
+        // Move to the next character and set a timeout for the next typing action
+        currentChar++;
+        typingTimeout = setTimeout(() => typeText(language), 140); // Set the global timeout variable
+    } else {
+        // Once all characters are typed
+        if (codeBox.contains(cursor)) {
+            // Remove the cursor from the code box
+            codeBox.removeChild(cursor);
+        
+        }
+    }
+  
+}
+
 
 // Define an array of objects, each representing the content for a container
 const containers = [
@@ -120,7 +227,7 @@ const EPFLcontainers = [
     }
 ]
 
-function  createEPLFContainerElements(item, lang) {
+function createEPLFContainerElements(item, lang) {
     // Create a container div
     const divContainer = document.createElement("div");
     divContainer.classList.add("container", "padding", "small-scren-padding-top", "grad3");
@@ -169,74 +276,6 @@ function  createEPLFContainerElements(item, lang) {
 }
 
 
-// Function for creating elements, already defined in your codebase
-const gt = (tag, children, attributes) => {
-    const element = document.createElement(tag);
-    for (const key in attributes) {
-        element[key] = attributes[key];
-    }
-    if (children) {
-        if (typeof children === "string") element.innerText = children;
-        else if (Array.isArray(children)){
-            for (let i = 0; i < children.length; i++) element.appendChild(children[i]);
-        }else element.appendChild(children);
-    }
-    return element;
-  };
-
-
-/* typing simulation */
-const aiBox = document.getElementById('ai-box');
-const styleAiBox = document.querySelector(".ai-box");
-const codeBox = document.getElementById('codeSimulation');
-const cursor = document.createElement('span');
-cursor.textContent = '|';
-cursor.className = 'cursor'; // Add a class for styling
-codeBox.appendChild(cursor); // Append the cursor to the code box
-
-const codeLines = {
-    "en": "Visual representation of an AI in slow motion.",
-    "fr": "Visuelle représentation d'une IA au ralenti.",
-};
-
-
-let currentChar = 0; // Index of the current character to be typed
-
-
-// Function to simulate typing effect for code lines in a specific language.
-function typeCode(language) {
-    // Change max width corresponding to language
-    if (language === "en") {
-        styleAiBox.style.width = "22rem";
-    } else {
-        styleAiBox.style.width = "20.5rem";
-    }
-
-    // Check if there are more characters to type
-    if (currentChar < codeLines[language].length) {
-        // Create a text node for the current character
-        const textNode = document.createTextNode(codeLines[language][currentChar]);
-
-        // Insert the character before the cursor if it exists, otherwise append it
-        if (codeBox.contains(cursor)) {
-            codeBox.insertBefore(textNode, cursor);
-        } else {
-            codeBox.appendChild(textNode);
-        }
-
-        // Move to the next character and set a timeout for the next typing action
-        currentChar++;
-        typingTimeout = setTimeout(() => typeCode(language), 140); // Set the global timeout variable
-    } else {
-        // Once all characters are typed
-        if (codeBox.contains(cursor)) {
-            // Remove the cursor from the code box
-            codeBox.removeChild(cursor);
-        
-        }
-    }
-  
-}
 
 
 /* Footer */
@@ -279,9 +318,9 @@ function crateFooter(lang) {
 
 // Function to translate page content based on selected language
 function translatePage(lang) {
-    document.querySelectorAll("[data-translate]").forEach(el => {
+    document.querySelectorAll("[data-translate-text]").forEach(el => {
         // Fetch the translation key from the element's data attribute
-        const translationKey = el.dataset.translate;
+        const translationKey = el.dataset.translateText;
         const translatedText = translations[lang][translationKey];
         el.textContent = translatedText; // Update element text with translation
     });
@@ -299,7 +338,7 @@ function translatePage(lang) {
     codeBox.innerHTML = ''; // Clear existing text
     codeBox.appendChild(cursor); // Re-append the cursor
     // Start function typeCode with a delay 
-    setTimeout(() => typeCode(lang), 1000);// Delay in milliseconds
+    setTimeout(() => typeText(lang), 1000);// Delay in milliseconds
 
 
 
@@ -481,8 +520,6 @@ function creatAnimeModel() {
         }
         // Delay btn 
         setTimeout(createButton, 2000);
-        
-
         
     }
     // Call the network initialization function
