@@ -519,7 +519,7 @@ function creatAnimeModel() {
             });
         }
         // Delay btn 
-        setTimeout(createButton, 2000);
+        setTimeout(createButton, 1000);
         
     }
     // Call the network initialization function
