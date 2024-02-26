@@ -59,21 +59,21 @@ h1 {
   position: relative;
   left: 0;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.8); /* Background color for text */
+  background-color: rgb(227, 227, 230); /* Background color for text */
   padding: 4px; /* Adjust for padding around the text */; /* Half of the height to center vertically */
   margin-bottom: -0px;
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .box-title {
-  background-color: rgb(213, 211, 211);
+  background-color: rgb(227, 227, 230);
   border-radius: 0.5rem;
   padding: 2rem;
 
 }
 
 .box {
-  background-color: rgb(213, 211, 211);
+  background-color: rgb(227, 227, 230);
   border-radius: 0.5rem;
   padding: 2rem;
 }
