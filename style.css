@@ -44,6 +44,7 @@ body {
 
 .anim-img {
     transition: all 0.5s ease;
+    cursor: pointer;
 }
       
 .anim-img:hover {
@@ -411,7 +412,6 @@ body {
     transition: color 0.2s; /* Smooth color transition */
     cursor: pointer;
 }
-
 
 
 .footer-content {
