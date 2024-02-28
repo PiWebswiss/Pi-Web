@@ -175,21 +175,24 @@ function createContainerElements(item, lang) {
 
     // Create an h2 element
     const h2 = document.createElement("h2");
-    if (item.title === "text-1") {
-        h2.classList.add("title-big", "center-text-container")
-    }
-    else{
-        h2.classList.add("title-litle");
-    }
-   
-    h2.textContent = translations[lang][item.title];
 
     // Create an image element
     const img = document.createElement("img");
-    img.classList.add("style-img", "anim-img");
     img.src = item.imgSrc;
     img.alt = item.altText;
 
+    // Change style depending on the item displayed 
+    if (item.title === "text-1") {
+        h2.classList.add("title-big", "center-text-container")
+        img.classList.add("style-img",);
+    }
+    else{
+        h2.classList.add("title-litle");
+        img.classList.add("style-img", "anim-img");
+    }
+   
+    h2.textContent = translations[lang][item.title];
+    
     // If there's a link, create an anchor element
     if (item.link) {
         const link = document.createElement("a");
@@ -215,7 +218,7 @@ function createContainerElements(item, lang) {
     return divContainer;
 }
 
-
+// EPFL container
 const EPFLcontainers = [
     {
         title: "I have recently been certified from the EPFL Extension School",
@@ -274,8 +277,6 @@ function createEPLFContainerElements(item, lang) {
 
     return divContainer;
 }
-
-
 
 
 /* Footer */
