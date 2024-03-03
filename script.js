@@ -152,7 +152,7 @@ const containers = [
         title: "text-2",
         imgSrc: "image/surgical-instruments.webp",
         altText: "AI Model to classify surgical instruments",
-        link: "recognise surgical instruments/index.html"
+        link: "recognise-surgical-instruments/index.html"
     },
     {
         title: "text-3",
