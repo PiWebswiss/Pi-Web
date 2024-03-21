@@ -140,6 +140,153 @@ function typeText(language) {
   
 }
 
+/* The following demonstrates a delayed setup and display of a neural network. 
+To achieve this, the model's setup and drawing logic are encapsulated in a function, which is then executed after a delay using setTimeout. */
+// Access the canvas element and its 2D drawing context
+const neroCanvas = document.getElementById('neural-network'); 
+const ctx = neroCanvas.getContext('2d');
+
+// Set the dimensions of the canvas
+neroCanvas.width = 600;
+neroCanvas.height = 550;
+
+// Define the structure of the neural network
+const layers = [3, 4, 4, 2]; // Number of neurons in each layer
+const neuronRadius = 20;
+const layerDistance = 140;
+const defaultNeuronColor = 'rgb(209, 96, 30)';
+const defaultSynapseColor = 'rgba(128, 128, 128, 0.5)';
+const btnDelay = 1000;
+
+
+function creatAnimeModel() {
+    function setupAndAnimateNetwork() {
+        // Function to draw a single neuron
+        function drawNeuron(x, y, color = defaultNeuronColor) {
+            ctx.beginPath(); // Begin a new path
+            ctx.arc(x, y, neuronRadius, 0, Math.PI * 2); // Draw a circle for the neuron
+            ctx.fillStyle = color; // Set the color for the neuron
+            ctx.fill(); // Fill the neuron with color
+            ctx.stroke(); // Draw the outline of the neuron
+        }
+
+        // Function to draw a synapse (line) between two neurons
+        function drawSynapse(x1, y1, x2, y2, color = defaultSynapseColor) {
+            ctx.beginPath(); // Begin a new path
+            ctx.moveTo(x1, y1); // Start point of the synapse
+            ctx.lineTo(x2, y2); // End point of the synapse
+            ctx.strokeStyle = color; // Set the color of the synapse
+            ctx.stroke(); // Draw the synapse
+        }
+
+        // Function to draw the entire neural network
+        function drawNeuralNetwork(path = [], color = defaultNeuronColor) {
+            for (let i = 0; i < layers.length; i++) { // Loop through each layer
+                let layerY = neroCanvas.height / (layers[i] + 1); // Calculate vertical position
+
+                for (let j = 0; j < layers[i]; j++) { // Loop through each neuron in the layer
+                    let x = i * layerDistance + 100; // Calculate horizontal position
+                    let y = (j + 1) * layerY; // Calculate vertical position
+                    let neuronColor = defaultNeuronColor; // Default color for neurons
+
+                    // Check if the current neuron is part of the path
+                    if (i < path.length && j === path[i]) {
+                        neuronColor = color; // Change color for neurons in the path
+                    }
+
+                    // Draw synapses from each neuron
+                    if (i < layers.length - 1) {
+                        let nextLayerY = neroCanvas.height / (layers[i + 1] + 1);
+                        for (let k = 0; k < layers[i + 1]; k++) {
+                            let nextX = (i + 1) * layerDistance + 100;
+                            let nextY = (k + 1) * nextLayerY;
+                            let synapseColor = (i < path.length && j === path[i] && k === path[i + 1]) ? color : defaultSynapseColor;
+                            drawSynapse(x, y, nextX, nextY, synapseColor); // Draw the synapse
+                        }
+                    }
+
+                    drawNeuron(x, y, neuronColor); // Draw the neuron
+                }
+            }
+        }
+
+        // Arrays to store the paths and their colors
+        const paths = [];
+        const pathColors = [];
+
+        // Generate 20 random paths and their corresponding colors
+        for (let i = 0; i < 40; i++) {
+            const path = []; // Array to store one path
+            const color = 'white'; // Set color to white
+
+            // Generate a random path through all layers
+            for (let l = 0; l < layers.length; l++) {
+                path.push(Math.floor(Math.random() * layers[l]));
+            }
+
+            paths.push(path); // Add the path to the paths array
+            pathColors.push(color); // Add the color to the pathColors array
+        }
+
+        // Global variables
+        let isAnimating = true;
+        let animationInterval;
+        // Function to animate the neural network by highlighting different paths
+        function animatePaths() {
+            let index = 0;
+        
+            function updateAnimation() {
+                ctx.clearRect(0, 0, neroCanvas.width, neroCanvas.height);
+                drawNeuralNetwork(paths[index], pathColors[index]);
+                index = (index + 1) % paths.length;
+            }
+        
+            if (isAnimating && !animationInterval) {
+                animationInterval = setInterval(updateAnimation, 1000);
+            } else if (!isAnimating && animationInterval) {
+                clearInterval(animationInterval);
+                animationInterval = null;
+            }
+        }        
+        animatePaths();
+
+        // Function to create and set up the button pause start
+        function createButton() {
+            const toggleAnimationDiv = document.getElementById('toggleAnimation');
+
+            // Correctly create an img element using document.createElement
+            const buttonImage = document.createElement('img');
+            buttonImage.src = 'icons/pause.png'; // Set initial source for the play icon
+            buttonImage.alt = 'pause'; // Set the initial alt text
+            buttonImage.classList.add('play-pause-btn')
+
+            // Append the newly created img element to the toggleAnimationDiv
+            toggleAnimationDiv.appendChild(buttonImage);
+
+            toggleAnimationDiv.addEventListener('click', () => {
+                isAnimating = !isAnimating;
+                animatePaths();
+
+                if (isAnimating) {
+                    buttonImage.src = 'icons/pause.png'; // Change to pause icon
+                    buttonImage.alt = 'Pause'; // Update the alt text
+                } else {
+                    buttonImage.src = 'icons/play.png'; // Change to play icon
+                    buttonImage.alt = 'Play'; // Update the alt text
+                }
+            
+            });
+        }
+        // Delay btn 
+        setTimeout(createButton, btnDelay);
+        
+    }
+    // Call the network initialization function
+    setupAndAnimateNetwork()
+}
+
+creatAnimeModel()
+
 
 // Define an array of objects, each representing the content for a container
 const containers = [
@@ -380,154 +527,6 @@ document.getElementById('translateToEn').addEventListener('click', function() {
 
 translatePage(lang);
 
-/* The following code is from ChatGPT-4 demonstrates a delayed setup and display of a neural network. 
-To achieve this, the model's setup and drawing logic are encapsulated in a function, which is then executed after a delay using setTimeout. */
-// Access the canvas element and its 2D drawing context
-const neroCanvas = document.getElementById('neural-network'); 
-const ctx = neroCanvas.getContext('2d');
-
-// Set the dimensions of the canvas
-neroCanvas.width = 600;
-neroCanvas.height = 550;
-
-// Define the structure of the neural network
-const layers = [3, 4, 4, 2]; // Number of neurons in each layer
-const neuronRadius = 20;
-const layerDistance = 140;
-const defaultNeuronColor = 'rgb(209, 96, 30)';
-const defaultSynapseColor = 'rgba(128, 128, 128, 0.5)';
-const animationIntervalDuration = 1000;
-
-
-function creatAnimeModel() {
-    function setupAndAnimateNetwork() {
-        // Function to draw a single neuron
-        function drawNeuron(x, y, color = defaultNeuronColor) {
-            ctx.beginPath(); // Begin a new path
-            ctx.arc(x, y, neuronRadius, 0, Math.PI * 2); // Draw a circle for the neuron
-            ctx.fillStyle = color; // Set the color for the neuron
-            ctx.fill(); // Fill the neuron with color
-            ctx.stroke(); // Draw the outline of the neuron
-        }
-
-        // Function to draw a synapse (line) between two neurons
-        function drawSynapse(x1, y1, x2, y2, color = defaultSynapseColor) {
-            ctx.beginPath(); // Begin a new path
-            ctx.moveTo(x1, y1); // Start point of the synapse
-            ctx.lineTo(x2, y2); // End point of the synapse
-            ctx.strokeStyle = color; // Set the color of the synapse
-            ctx.stroke(); // Draw the synapse
-        }
-
-        // Function to draw the entire neural network
-        function drawNeuralNetwork(path = [], color = defaultNeuronColor) {
-
-
-            for (let i = 0; i < layers.length; i++) { // Loop through each layer
-                let layerY = neroCanvas.height / (layers[i] + 1); // Calculate vertical position
-
-                for (let j = 0; j < layers[i]; j++) { // Loop through each neuron in the layer
-                    let x = i * layerDistance + 100; // Calculate horizontal position
-                    let y = (j + 1) * layerY; // Calculate vertical position
-                    let neuronColor = defaultNeuronColor; // Default color for neurons
-
-                    // Check if the current neuron is part of the path
-                    if (i < path.length && j === path[i]) {
-                        neuronColor = color; // Change color for neurons in the path
-                    }
-
-                    // Draw synapses from each neuron
-                    if (i < layers.length - 1) {
-                        let nextLayerY = neroCanvas.height / (layers[i + 1] + 1);
-                        for (let k = 0; k < layers[i + 1]; k++) {
-                            let nextX = (i + 1) * layerDistance + 100;
-                            let nextY = (k + 1) * nextLayerY;
-                            let synapseColor = (i < path.length && j === path[i] && k === path[i + 1]) ? color : defaultSynapseColor;
-                            drawSynapse(x, y, nextX, nextY, synapseColor); // Draw the synapse
-                        }
-                    }
-
-                    drawNeuron(x, y, neuronColor); // Draw the neuron
-                }
-            }
-        }
-
-        // Arrays to store the paths and their colors
-        const paths = [];
-        const pathColors = [];
-
-        // Generate 20 random paths and their corresponding colors
-        for (let i = 0; i < 40; i++) {
-            const path = []; // Array to store one path
-            const color = 'white'; // Set color to white
-
-            // Generate a random path through all layers
-            for (let l = 0; l < layers.length; l++) {
-                path.push(Math.floor(Math.random() * layers[l]));
-            }
-
-            paths.push(path); // Add the path to the paths array
-            pathColors.push(color); // Add the color to the pathColors array
-        }
-
-        // Global variables
-        let isAnimating = true;
-        let animationInterval;
-        // Function to animate the neural network by highlighting different paths
-        function animatePaths() {
-            let index = 0;
-        
-            function updateAnimation() {
-                ctx.clearRect(0, 0, neroCanvas.width, neroCanvas.height);
-                drawNeuralNetwork(paths[index], pathColors[index]);
-                index = (index + 1) % paths.length;
-            }
-        
-            if (isAnimating && !animationInterval) {
-                animationInterval = setInterval(updateAnimation, 1000);
-            } else if (!isAnimating && animationInterval) {
-                clearInterval(animationInterval);
-                animationInterval = null;
-            }
-        }        
-        animatePaths();
-
-        // Function to create and set up the button pause start
-        function createButton() {
-            const toggleAnimationDiv = document.getElementById('toggleAnimation');
-
-            // Correctly create an img element using document.createElement
-            const buttonImage = document.createElement('img');
-            buttonImage.src = 'icons/pause.png'; // Set initial source for the play icon
-            buttonImage.alt = 'pause'; // Set the initial alt text
-            buttonImage.classList.add('play-pause-btn')
-
-            // Append the newly created img element to the toggleAnimationDiv
-            toggleAnimationDiv.appendChild(buttonImage);
-
-            toggleAnimationDiv.addEventListener('click', () => {
-                isAnimating = !isAnimating;
-                animatePaths();
-
-                if (isAnimating) {
-                    buttonImage.src = 'icons/pause.png'; // Change to pause icon
-                    buttonImage.alt = 'Pause'; // Update the alt text
-                } else {
-                    buttonImage.src = 'icons/play.png'; // Change to play icon
-                    buttonImage.alt = 'Play'; // Update the alt text
-                }
-            
-            });
-        }
-        // Delay btn 
-        setTimeout(createButton, 1000);
-        
-    }
-    // Call the network initialization function
-    setupAndAnimateNetwork()
-}
-
-creatAnimeModel()
 
 /* copyright */
 const d = new Date();
