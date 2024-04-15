@@ -369,42 +369,30 @@ function simulateLoading() {
     }
 }
 
-// Function to load a TensorFlow.js model
-async function loadModel(path) {
-    return await tf.loadLayersModel(path);  // Load the model from a given path
-}
-
-
-// Function to initialize both models
-async function initModels() {
-    fossilModel = await loadModel('public/fossil-classifier-model/model.json');
-    checkFossilModel = await loadModel('public/model-fossil-vs-non/model.json');
-}
-
-// Load models and set up the application once the models are loaded
-initModels().then(setupApplication);
 
 // Function to setup the application
-function setupApplication() {
+function setupApplication(fossilModel, checkFossilModel) {
     // Add drag-and-drop functionality
     const dropArea = document.getElementById('drop-area');
     if (dropArea) {
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, handleDrag, false);
+            dropArea.addEventListener(eventName, (event) => {
+                handleDrag(event, fossilModel, checkFossilModel); // Pass the models
+            }, false);
         });
     }
 
     // Attach a change event listener to the image input element
     imageElement.addEventListener('change', () => {
         if (imageElement.files.length > 0) {
-            handleImg(imageElement.files[0]);
+            useModel(imageElement.files[0], fossilModel, checkFossilModel);
         }
     });
     
 }
 
 // Function to handle drag-and-drop events
-function handleDrag(event) {
+function handleDrag(event, fossilModel, checkFossilModel) {
     // Prevent default behavior and stop event propagation
     event.preventDefault();
     event.stopPropagation();
@@ -425,9 +413,23 @@ function handleDrag(event) {
     // Handle file drop event
     if (event.type === 'drop') {
         const img = event.dataTransfer.files;
-        handleImg(img[0]);
+        useModel(img[0], fossilModel, checkFossilModel);
     }
 }
+
+// Function to initialize both models
+async function initModels() {
+    const loadFossilModel = await tf.loadLayersModel('public/fossil-classifier-model/model.json');
+    const loadFcheckFossilModel = await tf.loadLayersModel('public/model-fossil-vs-non/model.json');
+    return  [loadFossilModel, loadFcheckFossilModel];
+}
+// Load models 
+const modelPromise = initModels();
+// Load models and set up the application once the models are loaded
+modelPromise.then(([fossilModel, checkFossilModel]) => { 
+    setupApplication(fossilModel, checkFossilModel); // Pass both models to setupApplication
+});
+
 
 // Function to load an image file
 function loadImage(file) {
@@ -444,24 +446,16 @@ function loadImage(file) {
 }
 
 // Function to preprocess the image into a tensor
-function preprocessImage(image) {
+/// img_sape must be array (ex [299, 229])
+function preprocessImage(image, img_shape) {
     let tensor = tf.browser.fromPixels(image)  // Convert the image to a tensor
-        .resizeBilinear([299, 299])            // Resize the image
+        .resizeBilinear(img_shape)            // Resize the image
         .toFloat()                             // Convert to float32
         .div(tf.scalar(255))                   // Normalize the image to [0, 1]
         .expandDims();                         // Add a batch dimension
     return tensor;
 }
 
-// Function to preprocess the image for the check model
-function checkPreprocessImage(image) {
-    let tensor = tf.browser.fromPixels(image)  // Convert the image to a tensor
-        .resizeBilinear([224, 224])            // Resize the image for the check model
-        .toFloat()                             // Convert to float32
-        .div(tf.scalar(255))                   // Normalize the image to [0, 1]
-        .expandDims();                         // Add a batch dimension
-    return tensor;
-}
 
 const btnUpleadContainer = document.getElementById("btn-uplead-container"); // ID to add class for magine in small scren
 const displayImage = document.querySelector(".display-image");
@@ -487,9 +481,7 @@ function updateImageDisplay(image) {
         if(displayNon) {
             displayNon.style.display = "block";
         }
-
         
-
     }
     // Append or update as necessary
     result.append(showImage);
@@ -508,24 +500,24 @@ function isImage(file) {
 
 
 // Function to handle image processing and prediction
-async function handleImg(file) {
+async function useModel(file, fossilModel, checkFossilModel) {
     simulateLoading();
     if (file && isImage(file)) {
         try {
             const image = await loadImage(file); // Load the image
-            const checkTensor = checkPreprocessImage(image); // Preprocess the image 224x224
+            const checkTensor = preprocessImage(image, [224, 224]); // Preprocess the image 224x224
             const checkPrediction = checkFossilModel.predict(checkTensor); // Check if it's a fossil
             const predictedCheck = await checkPrediction.argMax(1).data();
             updateImageDisplay(image);
 
             if (predictedCheck[0] == 0) {
                 // If it's a fossil, classify the type of fossil
-                const tensor = preprocessImage(image); // Preprocess the image 299x299
+                const tensor = preprocessImage(image, [299, 299]); // Preprocess the image 299x299
                 const predictionTensor = fossilModel.predict(tensor);
                 const predictedValue = await predictionTensor.data(); // Get prediction data
                 const predictedClassIndex = await predictionTensor.argMax(1).data();
                 lastPredictedIndex = predictedClassIndex[0];
-                maxValue = Math.max(...predictedValue); // Get max value           
+                const maxValue = Math.max(...predictedValue); // Get max value         
                 const name = index[lang][predictedClassIndex[0]];
                 textResult.textContent = text_translate[lang]["Predicted class"] + name + " " + confidenceText(maxValue);
                 tensor.dispose(); // Dispose of the tensor to free memory

@@ -202,42 +202,30 @@ function simulateLoading() {
     }
 }
 
-// Function to load a TensorFlow.js model
-async function loadModel(path) {
-    return await tf.loadLayersModel(path);  // Load the model from a given path
-}
-
-
-// Function to initialize both models
-async function initModels() {
-    model = await loadModel('public/tfjs_model/model.json');
-}
-
-
-// Load models and set up the application once the models are loaded
-initModels().then(setupApplication);
 
 // Function to setup the application
-function setupApplication() {
+function setupApplication(model) {
     // Add drag-and-drop functionality
     const dropArea = document.getElementById('drop-area');
     if (dropArea) {
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, handleDrag, false);
+            dropArea.addEventListener(eventName, (event) => {
+                handleDrag(model) // Pass the model
+            }, false);
         });
     }
 
     // Attach a change event listener to the image input element
     imageElement.addEventListener('change', () => {
         if (imageElement.files.length > 0) {
-            handleImg(imageElement.files[0]);
+            handleImg(imageElement.files[0], model);
         }
     });
     
 }
 
 // Function to handle drag-and-drop events
-function handleDrag(event) {
+function handleDrag(event, model) {
     // Prevent default behavior and stop event propagation
     event.preventDefault();
     event.stopPropagation();
@@ -258,9 +246,22 @@ function handleDrag(event) {
     // Handle file drop event
     if (event.type === 'drop') {
         const img = event.dataTransfer.files;
-        handleImg(img[0]);
+        handleImg(img[0], model);
     }
 }
+
+// Function to initialize both models
+async function initModels() {
+    const loadModel = await tf.loadLayersModel('public/tfjs_model/model.json');
+    return loadModel;
+}
+
+// Load models and set up the application once the models are loaded
+const modelPromise = initModels(); // Store the promise
+modelPromise.then((model) => {
+    setupApplication(model); // Pass the loaded Model setupApplication
+});
+
 
 // Function to load an image file
 function loadImage(file) {
@@ -316,9 +317,7 @@ function updateImageDisplay(image) {
         if(displayNon) {
             displayNon.style.display = "block";
         }
-
         
-
     }
     // Append or update as necessary
     result.append(showImage);
@@ -327,8 +326,8 @@ function updateImageDisplay(image) {
 }
 
 
-
-async function handleImg(file) {
+// Function to handle image processing and prediction
+async function handleImg(file, model) {
     simulateLoading(); // Ensure this function is defined
     if (file && isImage(file)) { // Ensure isImage is a defined function
         try {
