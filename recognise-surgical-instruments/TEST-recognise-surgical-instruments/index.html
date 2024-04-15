@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="AI Model to classify fossils">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="rgb(1, 1, 13)"/>
+  <!-- Include TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+  <title data-translate="title">Recognise surgical instruments</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- type modul defer by default -->
+  <script defer src="script.js"></script>
+  <link rel="icon" href="../image/logo 2.web" type="image/x-icon">
+</head>
+<body>
+
+  <!-- © Copyright: Powered by PIWeb : https://piweb.ch -->
+
+  <header>
+
+   <div class="box-title">
+      <div class="container-fr-en">
+        <input class="translate-button" type="button" id="translateToFr" value="Fr">
+        <input class="translate-button" type="button" id="translateToEn" value="En">
+      </div>
+      <h1 data-translate="h1"></h1>
+      <h2 data-translate="h2" class="center-text red-text"></h2>
+      <div class="padding"></div>
+      <h3 data-translate="h3"></h3>
+      <div class="model-loading-notice">
+        <p><strong data-translate="text-strong"></strong></p>
+        <p data-translate="note-model-text"></p>
+      </div>
+      
+      <div class="image-grid">
+        <div class="image-container">
+            <p data-translate="image-name-1" class="image-name"></p>
+            <img src="Ciseaux Mayo.webp" alt="Surgical Image 1">
+        
+        </div>
+        <div class="image-container">
+            <p data-translate="image-name-2" class="image-name"></p>
+            <img src="Ciseaux micro.webp" alt="Surgical Image 2">
+        </div>
+        <div class="image-container">
+            <p data-translate="image-name-3" class="image-name"></p>
+            <img src="Ciseaux Stevens.webp" alt="Surgical Image 3">
+            
+        </div>
+        <div class="image-container">
+            <p data-translate="image-name-4" class="image-name"></p>
+            <img src="Ciseaux Stille.webp" alt="Surgical Image 4">
+            
+        </div>
+        <div class="image-container">
+          <p data-translate="image-name-5" class="image-name"></p>
+          <img src="Ciseaux à plâtre.webp" alt="Surgical Image 5">
+          
+      </div>
+        <!-- Add more images as needed -->
+    </div>
+    
+    
+  </header>
+
+  <main>
+    <div class="min-padding"></div>
+
+    <div class="box">
+      <h2 data-translate="text-model-h2" class="center-text"></h2>
+      <h3 data-translate="text-model-h3" class="center-text"></h3>
+      <!-- text only display on phone -->
+      <p data-translate="text-model-p1" class="text-phone padding"></p>
+      <p data-translate="text-model-p2" class="text-phone bold-text"></p>
+
+      <div class="display-image">
+        <div class="container">
+          <div id="drop-area" class="drop-area">
+            <form class="my-form">
+              <p data-translate="text-model-p3" class="center-text"></p>
+              <h4 data-translate="text-model-h4" class="center-text"></h4>
+            </form>
+          </div>
+          <div class="display-non img-result" id="result"></div>
+        </div>
+    </div>
+
+      <div id="btn-uplead-container" class="file-upload-container">
+        <input type="file" id="fileElem" class="file-upload-input" accept="image/*">
+        <label for="fileElem" class="file-upload-button">
+          <img src="../icons/upload-icon.png" alt="Icon" class="icon">
+          <span data-translate="text-btn-upload"></span>
+      </label>
+      </div>
+
+      <div class="padding"></div>
+
+      <div class="loading-container">
+        <div class="loading-bar">
+          <div class="loading-progress"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="min-padding"></div>
+
+    <div class="container">
+      <a href="../index.html">
+        <button data-translate="bth-go-back" class="btn"></button>
+      </a>
+  </div>
+
+  <div class="padding"></div>
+
+  </main>
+
+
+  <footer>
+    <div id="footer-copyright" class="footer-text"></div>
+  </footer>
+
+</body>
+</html>
