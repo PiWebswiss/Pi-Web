@@ -119,11 +119,11 @@ function linkText(lang) {
     
     // Create a text node for the point
     const point = document.createTextNode('.');
-
+    
     // Append the link to the paragraph
     linkpara.appendChild(link);
     // Add point after the link
-    link.after(point)
+    link.after(point);
 
     // Append the paragraph to the element with ID
     document.getElementById("github-link").appendChild(linkpara); // or append to another element as needed

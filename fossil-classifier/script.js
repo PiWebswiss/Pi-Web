@@ -231,7 +231,7 @@ function linkText(lang) {
     // Append the link to the paragraph
     linkpara.appendChild(link);
     // Add point after the link
-    link.after(point)
+    link.after(point);
 
     // Append the paragraph to the element with ID 'text-link-Capstone-Project'
     document.getElementById("text-link-Capstone-Project").appendChild(linkpara); // or append to another element as needed
