@@ -69,7 +69,7 @@ function createHeader() {
     const translateEnButton = gt("input", null, { type: "button", id: "translateToEn", value: "En", className: "translate-button" });
     const translateFrButton = gt("input", null, { type: "button", id: "translateToFr", value: "Fr", className: "translate-button" });
     const logoText = gt("p", "PiWeb", { className: "logo-margin text-logo" });
-    const logoImg = gt("img", null, { className: "img-logo", src: "image/logo 2.webp", alt: "pi web logo" });
+    const logoImg = gt("img", null, { className: "img-logo", src: "piweb_logo/logo-2.webp", alt: "pi web logo" });
     const headerDiv = gt("div", [logoImg, logoText, translateFrButton, translateEnButton], { className: "container-fr-en padding-right" });
     
     // Create Neural Network html
@@ -432,7 +432,7 @@ function crateFooter(lang) {
     const containerFooter = gt("div", null, { className: "footer-content" });
 
     // Section 1: Logo and Text
-    const footerLogo = gt("img", null, { src: 'image/logo 2.webp', alt: 'footer logo', className: 'footer-logo' });
+    const footerLogo = gt("img", null, { src: 'piweb_logo/logo-2.webp', alt: 'footer logo', className: 'footer-logo' });
     const h2 = gt("h2", "PiWeb", {});
     const div = gt("div", [footerLogo, h2], { className: "footer-image-section" });
     const paraOne = gt("p", translations[lang]["footerText"], { className: "footer-text" });

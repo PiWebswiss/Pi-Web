@@ -7,7 +7,7 @@ const translations = {
     'title': 'fossil classifier',
     'h1': 'AI Model to classify fossils',
     'p-1': 'Identifying fossils can be a time-consuming task that relies on expert knowledge of fossil morphology. This task is particularly challenging due to the often fragmented and degraded nature of fossils.',
-    'p-2': 'These models are part of my Capstone Project, which you can find on GitHub',
+    'p-2': 'These models are part of my Capstone Project, which you can find on GitHub ',
     'p-2-link': 'Capstone-Project',
     'li-1': 'The accuracy rate for distinguishing between fossils and non-fossils is 93%.',
     'li-2': 'The accuracy rate in identifying specific fossil types is 90%.',
