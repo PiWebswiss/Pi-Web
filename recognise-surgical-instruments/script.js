@@ -113,7 +113,7 @@ function linkText(lang) {
 
     // Create a new anchor (link) element
     const link = document.createElement('a');
-    link.setAttribute('href', 'https://github.com/PiWebswiss/Capstone-Project-Louis-Cavaleri');
+    link.setAttribute('href', 'https://github.com/PiWebswiss/MedAI');
     link.setAttribute('target', '_blank');
     link.textContent = translations[lang]["github-link"];
     
