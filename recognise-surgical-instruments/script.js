@@ -24,7 +24,7 @@ const index = {
 const translations = {
     'en': {
       'title': 'Recognize surgical instruments',
-      'h1': 'AI Model to classify surgical instruments',
+      'h1': 'Demo AI model to classify surgical instruments',
       'h2': 'Model is in Beta',
       'h3': 'Here are surgical instruments that the model can recognise.',
       'text-strong': 'Please Note:',
@@ -45,7 +45,7 @@ const translations = {
     },
     'fr': {
       'title': 'Reconnaître les instruments chirurgicaux',
-      'h1': 'Modèle IA pour classer les instruments chirurgicaux',
+      'h1': 'Modèle de démonstration pour classer les instruments chirurgicaux',
       'h2': 'Le modèle est en version bêta',
       'h3': 'Voici les instruments chirurgicaux que le modèle peut reconnaître.',
       'text-strong': 'Veuillez noter:',
