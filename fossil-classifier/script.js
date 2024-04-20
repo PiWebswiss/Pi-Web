@@ -7,7 +7,7 @@ const translations = {
     'title': 'fossil classifier',
     'h1': 'AI Model to classify fossils',
     'p-1': 'Identifying fossils can be a time-consuming task that relies on expert knowledge of fossil morphology. This task is particularly challenging due to the often fragmented and degraded nature of fossils.',
-    'p-2': 'These models are part of my Capstone Project, which you can find on GitHub.',
+    'p-2': 'These models are part of my Capstone Project, which you can find on GitHub',
     'p-2-link': 'Capstone-Project',
     'li-1': 'The accuracy rate for distinguishing between fossils and non-fossils is 93%.',
     'li-2': 'The accuracy rate in identifying specific fossil types is 90%.',
@@ -34,7 +34,7 @@ const translations = {
     'title': 'classificateur de fossiles',
     'h1': 'Modèle IA pour classifier les fossiles',
     'p-1': "L'identification des fossiles peut être une tâche fastidieuse qui repose sur une connaissance experte de la morphologie des fossiles. Cette tâche est particulièrement difficile en raison de la nature souvent fragmentée et dégradée des fossiles.",
-    'p-2': "Ces modèles font partie de mon projet de fin d'études, que vous pouvez trouver sur GitHub. ",
+    'p-2': "Ces modèles font partie de mon projet de fin d'études, que vous pouvez trouver sur GitHub ",
     'p-2-link': 'Capstone-Project',
     'li-1': "Le taux de précision pour distinguer entre les fossiles et les non-fossiles est de 93 %.",
     'li-2': "Le taux de précision pour identifier des types spécifiques de fossiles est de 90 %.",
@@ -225,8 +225,13 @@ function linkText(lang) {
     link.setAttribute('target', '_blank');
     link.textContent = translations[lang]["p-2-link"];
 
+    // Create a text node for the point
+    const point = document.createTextNode('.');
+
     // Append the link to the paragraph
     linkpara.appendChild(link);
+    // Add point after the link
+    link.after(point)
 
     // Append the paragraph to the element with ID 'text-link-Capstone-Project'
     document.getElementById("text-link-Capstone-Project").appendChild(linkpara); // or append to another element as needed

@@ -25,10 +25,11 @@ const translations = {
     'en': {
       'title': 'Recognize surgical instruments',
       'h1': 'Demo AI model to classify surgical instruments',
-      'h2': 'Model is in Beta',
       'h3': 'Here are surgical instruments that the model can recognise.',
       'text-strong': 'Please Note:',
-      'note-model-text': "There is no safeguard in place if images outside of the categories displayed below are provided. The model is only equipped to recognize and classify images within the predefined set of surgical instruments. Therefore, for all images that fall outside of these specified categories, the results should be treated as not accurate.",
+      'note-model-text': 'There is no safeguard in place if images outside of the categories displayed below are provided. The model is only equipped to recognize and classify images within the predefined set of surgical instruments. Therefore, for all images that fall outside of these specified categories, the results should be treated as not accurate.',
+      'github-para': 'The MedAI project is open-source and available on ',
+      'github-link': 'GitHub',
       'image-name-1': 'Mayo Scissors',
       'image-name-2': 'Micro Scissors',
       'image-name-3': 'Stevens Scissors',
@@ -46,10 +47,11 @@ const translations = {
     'fr': {
       'title': 'Reconnaître les instruments chirurgicaux',
       'h1': 'Modèle de démonstration pour classer les instruments chirurgicaux',
-      'h2': 'Le modèle est en version bêta',
       'h3': 'Voici les instruments chirurgicaux que le modèle peut reconnaître.',
       'text-strong': 'Veuillez noter:',
       'note-model-text': "Il n'y a pas de protection en place si des images en dehors des catégories affichées ci-dessous sont fournies. Le modèle n'est équipé que pour reconnaître et classer les images dans l'ensemble prédéfini d'instruments chirurgicaux. Par conséquent, pour toutes les images qui n'entrent pas dans les catégories spécifiées, les résultats doivent être considérés comme inexacts.",
+      'github-para': 'Le projet MedAI est open-source et disponible sur ',
+      'github-link': 'GitHub',
       'image-name-1': 'Ciseaux Mayo',
       'image-name-2': 'Ciseaux micro',
       'image-name-3': 'Ciseaux Stevens',
@@ -98,6 +100,36 @@ function confidenceText(prediction) {
 }
 
 
+function linkText(lang) {
+    // Remove any existing elements before adding new ones
+    const existingLinkPara = document.getElementById("github-link");
+    if (existingLinkPara) {
+        existingLinkPara.innerHTML = ''; // Clear the contents
+    }
+
+    // Create a new paragraph element
+    const linkpara = document.createElement('p');
+    linkpara.textContent = translations[lang]["github-para"];
+
+    // Create a new anchor (link) element
+    const link = document.createElement('a');
+    link.setAttribute('href', 'https://github.com/PiWebswiss/Capstone-Project-Louis-Cavaleri');
+    link.setAttribute('target', '_blank');
+    link.textContent = translations[lang]["github-link"];
+    
+    // Create a text node for the point
+    const point = document.createTextNode('.');
+
+    // Append the link to the paragraph
+    linkpara.appendChild(link);
+    // Add point after the link
+    link.after(point)
+
+    // Append the paragraph to the element with ID
+    document.getElementById("github-link").appendChild(linkpara); // or append to another element as needed
+}
+
+
 function translatePage(lang) {
     document.querySelectorAll("[data-translate]").forEach(el => {
         // Check if the element has a specific child to translate
@@ -136,6 +168,7 @@ function translatePage(lang) {
 
     /* Change HTML lang */
     document.documentElement.lang = lang;
+    linkText(lang);
    
 }
 
