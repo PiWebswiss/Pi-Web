@@ -285,7 +285,7 @@ function handleDrag(event, model) {
 
 // Function to initialize both models
 async function initModels() {
-    const loadModel = await tf.loadLayersModel('public/tfjs_model/model.json');
+    const loadModel = await tf.loadLayersModel('public/tfjs-model-V2/model.json');
     return loadModel;
 }
 
