@@ -66,19 +66,19 @@ const translations = {
 /* Create header */
 function createHeader() {
     // Create header logo and button to change lang
-    const translateEnButton = gt("input", null, { type: "button", id: "translateToEn", value: "En", className: "translate-button" });
-    const translateFrButton = gt("input", null, { type: "button", id: "translateToFr", value: "Fr", className: "translate-button" });
-    const logoText = gt("p", "PiWeb", { className: "logo-margin text-logo" });
-    const logoImg = gt("img", null, { className: "img-logo", src: "piweb_logo/logo-2.webp", alt: "pi web logo" });
-    const headerDiv = gt("div", [logoImg, logoText, translateFrButton, translateEnButton], { className: "container-fr-en padding-right" });
+    const translateEnButton = gt("input", null, {type: "button", id: "translateToEn", value: "En", className: "translate-button"});
+    const translateFrButton = gt("input", null, {type: "button", id: "translateToFr", value: "Fr", className: "translate-button"});
+    const logoText = gt("p", "PiWeb", {className: "logo-margin text-logo"});
+    const logoImg = gt("img", null, {className: "img-logo", src: "piweb_logo/logo-2.webp", alt: "pi web logo"});
+    const headerDiv = gt("div", [logoImg, logoText, translateFrButton, translateEnButton], {className: "container-fr-en padding-right"});
     
     // Create Neural Network html
-    const toggleAnimationDiv = gt("div", null, { id: "toggleAnimation" });
-    const neuralNetworkCanvas = gt("canvas", null, { id: "neural-network", className: "neural-network" });
-    const aiBoxText = gt("pre", null, { id: "codeSimulation", className: "ai-box-text" });
-    const aiBox = gt("div", aiBoxText, { id: "ai-box", className: "ai-box" });
+    const toggleAnimationDiv = gt("div", null, {id: "toggleAnimation"});
+    const neuralNetworkCanvas = gt("canvas", null, {id: "neural-network", className: "neural-network"});
+    const aiBoxText = gt("pre", null, {id: "codeSimulation", className: "ai-box-text"});
+    const aiBox = gt("div", aiBoxText, {id: "ai-box", className: "ai-box"});
     const heroTitle = gt("h1", null, null, {"data-translate-text": "h1"});
-    const heroDiv = gt("div", [heroTitle, aiBox, neuralNetworkCanvas, toggleAnimationDiv], { className: "hero-container grad3" });
+    const heroDiv = gt("div", [heroTitle, aiBox, neuralNetworkCanvas, toggleAnimationDiv], {className: "hero-container grad3"});
 
     // Append children to heroDiv
     divHeader.appendChild(headerDiv);
@@ -429,32 +429,32 @@ function createEPLFContainerElements(item, lang) {
 /* Footer */
 function crateFooter(lang) {
     // Create the main footer container
-    const containerFooter = gt("div", null, { className: "footer-content" });
+    const containerFooter = gt("div", null, {className: "footer-content"});
 
     // Section 1: Logo and Text
-    const footerLogo = gt("img", null, { src: 'piweb_logo/logo-2.webp', alt: 'footer logo', className: 'footer-logo' });
+    const footerLogo = gt("img", null, {src: 'piweb_logo/logo-2.webp', alt: 'footer logo', className: 'footer-logo'});
     const h2 = gt("h2", "PiWeb", {});
-    const div = gt("div", [footerLogo, h2], { className: "footer-image-section" });
-    const paraOne = gt("p", translations[lang]["footerText"], { className: "footer-text" });
-    const footerSectionOne = gt("div", [div, paraOne], { className: "footer-section" });
+    const div = gt("div", [footerLogo, h2], {className: "footer-image-section"});
+    const paraOne = gt("p", translations[lang]["footerText"], {className: "footer-text"});
+    const footerSectionOne = gt("div", [div, paraOne], {className: "footer-section"});
 
     // Section 2: Social Links
     // Mail
-    const mailLogo = gt("img", null, { src: 'icons/email.png', alt: 'Icon', className: 'icon' });
-    const myMail = gt("a", "pi.web@piweb.ch", { href: "mailto:pi.web@piweb.ch", className: "social-links" });
-    const mailContainer = gt("div", [mailLogo, myMail], { className: "link-container footer-padding-top" });
+    const mailLogo = gt("img", null, {src: 'icons/email.png', alt: 'Icon', className: 'icon'});
+    const myMail = gt("a", "pi.web@piweb.ch", {href: "mailto:pi.web@piweb.ch", className: "social-links"});
+    const mailContainer = gt("div", [mailLogo, myMail], {className: "link-container footer-padding-top"});
 
     // GitHub
-    const gitHubLogo = gt("img", null, { src: 'icons/github.png', alt: 'Icon', className: 'icon' });
-    const gitHubLink = gt("a", "github.com/PiWebswiss", { href: "https://github.com/PiWebswiss", className: "social-links" });
-    const gitHubContainer = gt("div", [gitHubLogo, gitHubLink], { className: "link-container" });
+    const gitHubLogo = gt("img", null, {src: 'icons/github.png', alt: 'Icon', className: 'icon'});
+    const gitHubLink = gt("a", "github.com/PiWebswiss", {href: "https://github.com/PiWebswiss", className: "social-links"});
+    const gitHubContainer = gt("div", [gitHubLogo, gitHubLink], {className: "link-container" });
 
     // LinkedIn
-    const linkedinLogo = gt("img", null, { src: 'icons/linkedin.png', alt: 'Icon', className: 'icon' });
-    const linkedinLink = gt("a", "linkedin.com/in/pilink", { href: "https://linkedin.com/in/pilink", className: "social-links" });
-    const linkedinContainer = gt("div", [linkedinLogo, linkedinLink], { className: "link-container" });
+    const linkedinLogo = gt("img", null, {src: 'icons/linkedin.png', alt: 'Icon', className: 'icon'});
+    const linkedinLink = gt("a", "linkedin.com/in/pilink", {href: "https://linkedin.com/in/pilink", className: "social-links"});
+    const linkedinContainer = gt("div", [linkedinLogo, linkedinLink], {className: "link-container"});
 
-    const footerSectionTwo = gt("div", [mailContainer, gitHubContainer, linkedinContainer], { className: "footer-section social-links" });
+    const footerSectionTwo = gt("div", [mailContainer, gitHubContainer, linkedinContainer], {className: "footer-section social-links"});
 
     // Append sections to the footer container
     containerFooter.appendChild(footerSectionOne);
