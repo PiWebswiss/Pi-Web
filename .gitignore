@@ -1,6 +1,6 @@
 img_archive
 .vscode
-tfjs@latest.js
+tfjs.js
 
 ## old version model
 recognise-surgical-instruments\public\tfjs_model-old

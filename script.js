@@ -140,8 +140,10 @@ function typeText(language) {
   
 }
 
-/* The following demonstrates a delayed setup and display of a neural network. 
-To achieve this, the model's setup and drawing logic are encapsulated in a function, which is then executed after a delay using setTimeout. */
+/* The following code displays a delayed neural network using HTML5 Canvas AP. 
+/* Note: The code below was made possible with assistance from Google, Gimini, and OpenAI's GPT-4 chat. */
+
+// To achieve this, the model's setup and drawing logic are encapsulated in a function, which is then executed after a delay using setTimeout. */
 // Access the canvas element and its 2D drawing context
 const neroCanvas = document.getElementById('neural-network'); 
 const ctx = neroCanvas.getContext('2d');
@@ -234,7 +236,6 @@ function creatAnimeModel() {
         // Function to animate the neural network by highlighting different paths
         function animatePaths() {
             let index = 0;
-        
             function updateAnimation() {
                 ctx.clearRect(0, 0, neroCanvas.width, neroCanvas.height);
                 drawNeuralNetwork(paths[index], pathColors[index]);
@@ -254,7 +255,7 @@ function creatAnimeModel() {
         function createButton() {
             const toggleAnimationDiv = document.getElementById('toggleAnimation');
 
-            // Correctly create an img element using document.createElement
+            // Create an img element using document.createElement
             const buttonImage = document.createElement('img');
             buttonImage.src = 'icons/pause.png'; // Set initial source for the play icon
             buttonImage.alt = 'pause'; // Set the initial alt text
