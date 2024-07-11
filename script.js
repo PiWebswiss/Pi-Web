@@ -297,8 +297,7 @@ function creatAnimeModel() {
 
 creatAnimeModel(); // Call function to create animated neural network model
 
-
-
+/* Image containers  */
 // Define an array of objects, each representing the content for a container
 const containers = [
     {
