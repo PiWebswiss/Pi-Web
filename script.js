@@ -314,19 +314,19 @@ const containers = [
         link: "web-OCR/index.html"
     },
     {
-        title: "text-2",
+        title: "text-3",
         imgSrc: "image/surgical-instruments.webp",
         altText: "AI Model to classify surgical instruments",
         link: "recognise-surgical-instruments/index.html"
     },
     {
-        title: "text-3",
+        title: "text-4",
         imgSrc: "image/AI fossil.webp",
         altText: "AI Model to classify fossils",
         link: "fossil-classifier/index.html"
     },
     {
-        title: "text-4",
+        title: "text-5",
         imgSrc: "image/Pi web site 1.webp",
         altText: "Pi web site affutage",
         link: "PiWebaffutage/index.html"
