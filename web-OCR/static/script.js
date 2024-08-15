@@ -427,7 +427,7 @@ async function handleFileUpload(file, overlay=false, api_key=apiKey, language="e
     }
 }
 
-document.getElementById("err").innerText = err;
+document.getElementById("err").innerText =  `error: ${err}`;
 
 // Handle form submission via AJAX 
 uploadFile.addEventListener("submit", async (event) => {
