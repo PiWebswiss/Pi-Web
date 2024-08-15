@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="https://sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>https://piweb.ch/</loc>
-		<priority>0.71</priority>
-		<lastmod>2024-02-20</lastmod>
+		<loc>https://piweb.ch</loc>
+		<priority>1.00</priority>
+		<lastmod>2024-04-20</lastmod>
 	</url>
 	<url>
-		<loc>https://piweb.ch//recognise-surgical-instruments/index.html</loc>
-		<priority>0.43</priority>
-		<lastmod>2024-02-06</lastmod>
+		<loc>https://piweb.ch/web-OCR</loc>
+		<priority>0.75</priority>
+		<lastmod>2024-08-15</lastmod>
 	</url>
 	<url>
-		<loc>https://piweb.ch//fossil-classifier/index.html</loc>
-		<priority>0.43</priority>
-		<lastmod>2024-02-06</lastmod>
+		<loc>https://piweb.ch/fossil-classifier</loc>
+		<priority>0.75</priority>
+		<lastmod>2024-04-20</lastmod>
 	</url>
 	<url>
-		<loc>https://piweb.ch//PiWebaffutage/index.html</loc>
-		<priority>0.43</priority>
-		<lastmod>2024-02-06</lastmod>
+		<loc>https://piweb.ch/recognise-surgical-instruments</loc>
+		<priority>0.75</priority>
+		<lastmod>2024-04-20</lastmod>
 	</url>
 	<url>
-		<loc>https://piweb.ch//PiWebaffutage/sharpening.html</loc>
-		<priority>0.29</priority>
-		<lastmod>2024-02-06</lastmod>
+		<loc>https://piweb.ch/PiWebaffutage</loc>
+		<priority>0.75</priority>
+		<lastmod>2024-04-20</lastmod>
+	</url>
+	<url>
+		<loc>https://piweb.ch/PiWebaffutage/sharpening.html</loc>
+		<priority>0.50</priority>
+		<lastmod>2024-04-20</lastmod>
 	</url>
 </urlset>

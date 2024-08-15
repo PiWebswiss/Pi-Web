@@ -1,0 +1,9 @@
+# Run the Command for Sitemap-Generator
+1. Press Ctrl + Shift + P  (or Cmd + Shift + P on macOS) to open the Command Palette in VSCode.
+2. Chose on of:
+Sitemap-Generator: New Sitemap	(Creates a new sitemap based on a few user inputs.)
+Sitemap-Generator: Re-Generate Sitemap	(Re-Generate an already existing sitemap.)
+Sitemap-Generator: Open Settings (JSON)	(Opens the sitemap-generator.json settings file.)
+3. Choose "https"
+4. Enter domain name
+5. Sitemap generated!
