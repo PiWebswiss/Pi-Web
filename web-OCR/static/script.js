@@ -360,8 +360,6 @@ function extractTextFromApi(jsonResponse, mainKey="ParsedResults", textKey="Pars
     return null; 
 }
 
-let err = null;
-
 // Define OCR.Space API URL
 // https://ocr.space/
 const ocrUrl = 'https://api.ocr.space/parse/image';
@@ -422,12 +420,12 @@ async function handleFileUpload(file, overlay=false, api_key=apiKey, language="e
         }
     } catch (error) {
         showFeedback(error, "error", userFeedBack); // TO REMOVE
-        err = error
+        
+        document.getElementById("err").innerText =  `error: ${error}`;
         //showFeedback("Invalid request.", "error", userFeedBack);
     }
 }
 
-document.getElementById("err").innerText =  `error: ${err}`;
 
 // Handle form submission via AJAX 
 uploadFile.addEventListener("submit", async (event) => {
