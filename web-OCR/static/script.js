@@ -420,7 +420,8 @@ async function handleFileUpload(file, overlay=false, api_key=apiKey, language="e
             fileInput.value = "";
         }
     } catch (error) {
-        showFeedback("Invalid request.", "error", userFeedBack);
+        showFeedback(error, "error", userFeedBack); // TO REMOVE
+        //showFeedback("Invalid request.", "error", userFeedBack);
     }
 }
 
