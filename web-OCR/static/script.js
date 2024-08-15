@@ -360,6 +360,7 @@ function extractTextFromApi(jsonResponse, mainKey="ParsedResults", textKey="Pars
     return null; 
 }
 
+let err = null;
 
 // Define OCR.Space API URL
 // https://ocr.space/
@@ -421,9 +422,12 @@ async function handleFileUpload(file, overlay=false, api_key=apiKey, language="e
         }
     } catch (error) {
         showFeedback(error, "error", userFeedBack); // TO REMOVE
+        err = error
         //showFeedback("Invalid request.", "error", userFeedBack);
     }
 }
+
+document.getElementById("err").innerText = err;
 
 // Handle form submission via AJAX 
 uploadFile.addEventListener("submit", async (event) => {
