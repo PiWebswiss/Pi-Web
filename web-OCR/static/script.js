@@ -78,12 +78,6 @@ const datetime = new Date();
 
 // Text animation code modified from GPT4
 function typeText(text, element, maxLength = 290) {
-    // Ensure we have some text to display
-    if (!text || text.trim() == "") {
-        showFeedback("no text.", "info", userFeedBack);
-        return
-    }
-
     // Clear existing text 
     element.textContent = "";
     let index = 0;
@@ -415,6 +409,11 @@ async function handleFileUpload(file, overlay=false, api_key=apiKey, language="e
         // Access data
         if (result) {
             let text = extractTextFromApi(jsonResponce=result);
+             // Ensure we have some text to display
+            if (!text || text.trim() == "") {
+                showFeedback("no text.", "info", userFeedBack); 
+                return
+            }
             typeText(text, animatedText);
             saveToLocaleStorage(text)
             showResultsTable();
