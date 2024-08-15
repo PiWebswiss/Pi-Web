@@ -405,6 +405,8 @@ async function handleFileUpload(file, overlay=false, api_key=apiKey, language="e
             showFeedback(result.error, "error", userFeedBack);
             return;
         }
+        //TO REMOVE!!!!
+        document.getElementById("err").innerText =  `result: ${result} \n\n error: ${error}`;
 
         // Access data
         if (result) {
@@ -421,11 +423,11 @@ async function handleFileUpload(file, overlay=false, api_key=apiKey, language="e
 
             // Clear file input after OCR is done
             fileInput.value = "";
-            document.getElementById("err").innerText =  `result: ${result} \n\n error: ${error}`;
+           
         }
     } catch (error) {
         showFeedback(error, "error", userFeedBack); // TO REMOVE
-        
+        //TO REMOVE!!!!    
         document.getElementById("err").innerText =  `result: ${result} \n\n error: ${error}`;
         //showFeedback("Invalid request.", "error", userFeedBack);
     }
