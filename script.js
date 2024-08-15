@@ -46,9 +46,10 @@ const translations = {
       'h1': 'Custom-made AI models & website',
       'h2': 'I have recently been certified from the EPFL Extension School',
       'text-1': 'Custom-made AI models',
-      'text-2': 'AI Model to classify surgical instruments',
-      'text-3': 'AI Model to classify fossils',
-      'text-4': 'Custom-made website example',
+      'text-2': "Optical Character Recognition",
+      'text-3': 'AI Model to classify surgical instruments',
+      'text-4': 'AI Model to classify fossils',
+      'text-5': 'Custom-made website example',
       'footerText': 'My portfolio website, PiWeb, showcases various projects, including custom-made websites and AI models. All my projects are open source.',
     },
     'fr': {
@@ -56,9 +57,10 @@ const translations = {
       'h1': "Modèles d'IA et site web sur mesure",
       'h2': "J'ai récemment été certifiée par l'EPFL Extension School",
       'text-1': "Modèles d'IA sur mesure",
-      'text-2': 'Modèle pour classer les instruments chirurgicaux',
-      'text-3': 'Modèle pour classer les fossiles',
-      'text-4': 'Exemple de site web sur mesure',
+      'text-2': "Reconnaissance optique de caractères",
+      'text-3': 'Modèle pour classer les instruments chirurgicaux',
+      'text-4': 'Modèle pour classer les fossiles',
+      'text-5': 'Exemple de site web sur mesure',
       'footerText': "Mon site web, PiWeb, présente divers projets, notamment des sites web sur mesure et des modèles d'IA. Tous mes projets sont open source.",
     }
 };
@@ -304,6 +306,12 @@ const containers = [
         title: "text-1",
         imgSrc: "image/AI-model.webp",
         altText: "custom code"
+    },
+    {
+        title: "text-2",
+        imgSrc: "web-OCR/static/image/DALL·E-logo.webp",
+        altText: "Optical Character Recognition",
+        link: "web-OCR/index.html"
     },
     {
         title: "text-2",

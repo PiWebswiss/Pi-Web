@@ -1,0 +1,369 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.logo {
+  max-width: 3rem;
+  border-radius: 2rem;
+  
+}
+
+.navbar-brand img {
+  height: 40px;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: 32rem;
+  object-fit: cover;
+}
+
+.body-color {
+  background-color: #f3f2f2fc;
+}
+
+.box-flex {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  gap: 20px;
+  padding: 10px;  
+}
+
+.box {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  width: 100%;
+  text-align: center;
+}
+
+.box-ocr {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+  width: 100%;
+}
+
+.container-drag {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.drop-area {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  width: 100%;
+  border: 2px dashed #0d0d0d;
+  padding: 3.5rem;
+  margin: 3rem;
+}
+
+.drop-area.dragover {
+  border-color: blue; /* or any other color */
+}
+
+.center-text {
+  text-align: center;
+  color: #4A4A4A;
+}
+
+.text-big {
+  font-size: xx-large;
+}
+
+.upload-container {
+  position: relative;
+  border: 2px dashed #4A90E2;
+  border-radius: 8px;
+  padding: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 1.3rem;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.upload-container.dragover {
+  border-color: #000;
+  background-color: #f0f0f0;
+}
+/* Style for small screens */
+@media (max-width: 600px) {
+  .box-flex{
+    flex-direction: column;
+  }
+  .hide-on-small {
+    display: none;
+  }
+  .video-container video {
+    height: 22rem;
+  }
+}
+
+/* Style for screens with a minimum with of 900px */
+@media (min-width: 900px) {
+  .upload-container {
+    padding: 4rem;
+  }
+}
+
+/* Style for screens with a minimum with of 1200px */
+@media (min-width: 1200px) {
+  .video-container video {
+    height: 44rem;
+  }
+}
+
+
+/* File input styling */
+.file-input {
+  display: none;
+}
+
+.file-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #4A4A4A;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.file-label i {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  color: #007BFF;
+}
+
+.file-upload-text {
+  color: #888;
+  font-size: 0.875rem;
+}
+
+.get-file-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: rgba(54, 176, 66, 0.953);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0d6913;
+}
+
+.btn-copy {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: rgba(18, 33, 120, 0.953);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-copy:hover {
+  background-color: #adadad;
+}
+
+
+.feedback-visible {
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.feedback-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* User feedback box */
+.custom-feedback-box {
+  display: none; /* Default don't display */
+  width: auto;
+  max-width: 20rem;
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-align: center;
+  transition: all 0.5 ease;
+  white-space: nowrap; /* Prevents text from breaking into multiple lines */
+  overflow: hidden; /* Hides overflow text */
+}
+
+.custom-feedback-box.success {
+  background-color: rgba(94, 224, 107, 0.95);
+  color: #155724;
+  border-radius: 1px solid #c3e6c3;
+}
+
+.custom-feedback-box.error {
+  background-color: rgba(248, 215, 218, 0.95);
+  color: #721c24;
+  border-radius: 1px solid #f5c6cb;
+}
+
+.custom-feedback-box.info {
+  background-color: rgba(209, 236, 241, 0.95);
+  color: #0c5460;
+  border-radius: 1px solid #bee5be;
+}
+
+.dropdown-lang-style {
+  cursor: pointer;
+}
+
+.dropdown-menu .dropdown-item.dropdown-lang-style:hover {
+  background-color: #999b9c; /* Custom hover background color */
+  color: white; /* Custom hover text color */
+}
+
+
+.copy-text-box {
+  display: flex;
+  align-items: flex-start;
+  height: 16rem; /* to change !! */
+  border: 2px solid rgb(90, 88, 88);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(215, 208, 208, 0.027);
+  margin-bottom: 1.8rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.animated-text {
+  line-height: 1.5rem;
+  margin: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  position: relative;
+  width: 100%;
+}
+
+.cursor {
+  font-size: 1.2rem;
+  animation: blink 1s step-start 0s infinite;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.table-wrapper {
+  width: 100%;
+  background-color: #fff;
+  padding: 20rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reponsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.truncate-text {
+  max-width: 10rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.table-copy-btn {
+  display: block;
+  padding: 0.22rem;
+  background-color: rgba(38, 128, 47, 0.953);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.table-copy-btn:hover {
+  background-color: #0b320d;
+}
+
+/* Add border radius to the table */
+.table {
+  border-collapse: separate; 
+  border-spacing: 0; 
+  border-radius: 0.4rem; 
+  overflow: hidden; 
+}
+.container-delete {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.delete-response {
+  position: absolute;
+  margin: 0.2rem;
+  min-height: 0.5rem;
+}
+
+.footer-container {
+  background-color: rgb(210, 206, 206);
+  padding: 4rem;
+
+}
+
+.footer-margin {
+  margin: 3rem;
+}
