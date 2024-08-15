@@ -405,8 +405,6 @@ async function handleFileUpload(file, overlay=false, api_key=apiKey, language="e
             showFeedback(result.error, "error", userFeedBack);
             return;
         }
-        //TO REMOVE!!!!
-        document.getElementById("err").innerText =  `result: ${result} \n\n error: ${error}`;
 
         // Access data
         if (result) {
@@ -426,10 +424,7 @@ async function handleFileUpload(file, overlay=false, api_key=apiKey, language="e
            
         }
     } catch (error) {
-        showFeedback(error, "error", userFeedBack); // TO REMOVE
-        //TO REMOVE!!!!    
-        document.getElementById("err").innerText =  `result: ${result} \n\n error: ${error}`;
-        //showFeedback("Invalid request.", "error", userFeedBack);
+        showFeedback("Invalid request.", "error", userFeedBack);
     }
 }
 
