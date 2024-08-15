@@ -79,7 +79,7 @@ const datetime = new Date();
 // Text animation code modified from GPT4
 function typeText(text, element, maxLength = 290) {
     // Ensure we have some text to display
-    if (!text) {
+    if (!text || text.trim() == "") {
         showFeedback("no text.", "info", userFeedBack);
         return
     }
