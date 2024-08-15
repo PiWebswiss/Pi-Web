@@ -411,7 +411,7 @@ async function handleFileUpload(file, overlay=false, api_key=apiKey, language="e
             let text = extractTextFromApi(jsonResponce=result);
              // Ensure we have some text to display
             if (!text || text.trim() == "") {
-                showFeedback("no text.", "info", userFeedBack); 
+                showFeedback("No text.", "info", userFeedBack); 
                 return
             }
             typeText(text, animatedText);
