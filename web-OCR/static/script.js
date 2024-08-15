@@ -78,6 +78,12 @@ const datetime = new Date();
 
 // Text animation code modified from GPT4
 function typeText(text, element, maxLength = 290) {
+    // Ensure we have some text to display
+    if (!text) {
+        showFeedback("no text.", "info", userFeedBack);
+        return
+    }
+
     // Clear existing text 
     element.textContent = "";
     let index = 0;
@@ -375,7 +381,6 @@ async function handleFileUpload(file, overlay=false, api_key=apiKey, language="e
 
     // Set the language, defaulting to English if no selection is made
     language = modelLang || "eng";
-    console.log(modelLang)
 
     // Construct a set of key/value pairs
     let formData = new FormData();
