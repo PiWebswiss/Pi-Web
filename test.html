@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PiWeb • AI-Driven Portfolio</title>
+
+    <!-- Google Font – Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          fontFamily: { sans: ['Space Grotesk','sans-serif'] },
+          extend: {
+            colors: {
+              backdrop: '#0d1117',
+              neon: { 1: '#00e0ff', 2: '#ff00f7', 3: '#ffbe0b' }
+            },
+            animation: { 'bg-slow': 'gradient 15s ease infinite' },
+            keyframes: {
+              gradient: {
+                '0%,100%': { 'background-size':'200% 200%','background-position':'left center' },
+                '50%':     { 'background-size':'200% 200%','background-position':'right center' }
+              }
+            }
+          }
+        }
+      };
+    </script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
+
+    <!-- Three.js for hero -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <!-- VanillaTilt for cards -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+
+    <style>
+      /* Noise overlay */
+      .noise::before {
+        content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+        opacity:.08;background-image:url("data:image/png;base64,iVBOR...");
+      }
+      /* Hero canvas */
+      #meshCanvas {
+        position:absolute;inset:0;z-index:-1;
+      }
+    </style>
+  </head>
+
+  <body class="bg-backdrop text-white noise font-sans">
+    <!-- NAVBAR -->
+    <header class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-backdrop/70 border-b border-white/10">
+      <div class="max-w-7xl mx-auto flex items-center justify-between h-14 px-4">
+        <a href="#home" class="text-2xl font-bold bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3 bg-clip-text text-transparent">
+          PiWeb
+        </a>
+        <nav class="hidden md:flex gap-8 text-sm font-medium">
+          <a href="#projects" class="hover:text-neon-1">Projects</a>
+          <a href="#about" class="hover:text-neon-2">About</a>
+          <a href="#contact" class="hover:text-neon-3">Contact</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <button id="themeToggle" class="text-xl hover:text-neon-1"><i class="fas fa-moon"></i></button>
+          <button id="hamburger" class="md:hidden text-xl hover:text-neon-2"><i class="fas fa-bars"></i></button>
+        </div>
+      </div>
+      <nav id="mobileMenu" class="fixed inset-0 bg-backdrop flex flex-col items-center justify-center gap-10 text-lg transform translate-x-full transition-transform md:hidden">
+        <a href="#projects" class="hover:text-neon-1">Projects</a>
+        <a href="#about" class="hover:text-neon-2">About</a>
+        <a href="#contact" class="hover:text-neon-3">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="relative flex items-center justify-center min-h-screen text-center px-4 pt-14 overflow-hidden">
+      <canvas id="meshCanvas"></canvas>
+      <div class="max-w-3xl mx-auto relative z-10">
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight">
+          <span class="bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3 bg-clip-text text-transparent">
+            AI-Ready
+          </span><br>Solutions.
+        </h1>
+        <p class="mt-6 text-lg text-slate-300">
+          I’m <span class="font-semibold">Pi</span> – crafting performant edge-AI apps and infrastructure.
+        </p>
+        <a href="#projects" class="mt-10 inline-flex items-center gap-3 px-8 py-3 rounded-full bg-neon-1 text-backdrop font-semibold shadow-lg hover:scale-105 transition-transform">
+          Explore Work <i class="fas fa-arrow-down"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">Selected Projects</h2>
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- card -->
+          <article
+            class="tilt relative rounded-3xl overflow-hidden bg-white/5 p-6 backdrop-blur-lg border border-white/10 shadow-[0_6px_15px_rgba(0,0,0,0.3)]"
+          >
+            <img
+              src="ai-kit.jpg"
+              alt="Pi AI"
+              class="rounded-xl mb-4 h-40 w-full object-cover"
+            />
+            <h3 class="text-lg font-semibold mb-2">Pi5 AI Object-Detection App</h3>
+            <p class="text-sm text-slate-400 mb-4">
+              Real-time objet detection on endge device served via FastAPI server.
+            </p>
+            <a
+              href="https://github.com/PiWebswiss/raspberry_PI5_hailo_web_app"
+              target="_blank"
+              class="inline-flex items-center gap-2 text-neon-1 hover:text-neon-2"
+              >
+              View Code <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+          </article>
+          <!-- Repeat cards -->
+          <article
+            class="tilt relative rounded-3xl overflow-hidden bg-white/5 p-6 backdrop-blur-lg border border-white/10 shadow-[0_6px_15px_rgba(0,0,0,0.3)]"
+          >
+            <img
+              src="image\AI fossil.webp"
+              alt="Fossil"
+              class="rounded-xl mb-4 h-40 w-full object-cover"
+            />
+            <h3 class="text-lg font-semibold mb-2">Fossil Image Classifier</h3>
+            <p class="text-sm text-slate-400 mb-4">
+              CNN that tags fossil fragments from excavation photos to speed up
+              cataloguing.
+            </p>
+            <a
+              href="https://github.com/PiWebswiss/fossil-classifier"
+              target="_blank"
+              class="inline-flex items-center gap-2 text-neon-1 hover:text-neon-2"
+              >
+              View Code <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+          </article>
+          <article
+            class="tilt relative rounded-3xl overflow-hidden bg-white/5 p-6 backdrop-blur-lg border border-white/10 shadow-[0_6px_15px_rgba(0,0,0,0.3)]"
+          >
+            <img
+              src="web-OCR\static\image\DALL·E-logo.webp"
+              alt="OCR"
+              class="rounded-xl mb-4 h-40 w-full object-cover"
+            />
+            <h3 class="text-lg font-semibold mb-2">Edge-OCR Microservice</h3>
+            <p class="text-sm text-slate-400 mb-4">
+              Browser-run OCR powered by Tesseract-WASM - privacy-first, no
+              server round-trip.
+            </p>
+            <a
+              href="fossil-classifier/index.html"
+              target="_blank"
+              class="inline-flex items-center gap-2 text-neon-1 hover:text-neon-2"
+              >
+              View Code <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+          </article>
+          <!-- Add more cards as needed -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24 bg-backdrop/50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
+        <img src="EPFL Extension School Louis Cavaleri.jpeg" alt="Working" class="rounded-3xl shadow-lg tilt"/>
+        <div>
+          <h2 class="text-4xl font-bold mb-6 bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3 bg-clip-text text-transparent">
+            Who Am I?
+          </h2>
+          <p class="text-slate-300 mb-4">
+            Swiss IT student doing a CFC in IT with an harvard CS50x certifacte in introdunction to Computer Science and a EPFL certifacte.
+          </p>
+          <p class="text-slate-300">
+            Off script, inline-skating around Lausanne or prototyping the next side-project.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24 bg-backdrop/70">
+      <div class="max-w-lg mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3 bg-clip-text text-transparent">
+          Get in touch
+        </h2>
+        <ul class="space-y-10 text-lg">
+          <li class="flex items-center gap-6">
+            <span class="flex-shrink-0 w-14 h-14 rounded-full bg-white/10 flex items-center justify-center text-2xl">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <a href="mailto:pi.web@piweb.ch" class="underline hover:text-neon-1">pi.web@piweb.ch</a>
+          </li>
+          <li class="flex items-center gap-6">
+            <span class="flex-shrink-0 w-14 h-14 rounded-full bg-white/10 flex items-center justify-center text-2xl">
+              <i class="fab fa-github"></i>
+            </span>
+            <a href="https://github.com/PiWebswiss" target="_blank" class="underline hover:text-neon-1">
+              github.com/PiWebswiss
+            </a>
+          </li>
+          <li class="flex items-center gap-6">
+            <span class="flex-shrink-0 w-14 h-14 rounded-full bg-white/10 flex items-center justify-center text-2xl">
+              <i class="fab fa-linkedin-in"></i>
+            </span>
+            <a href="https://linkedin.com/in/pilink" target="_blank" class="underline hover:text-neon-1">
+              linkedin.com/in/pilink
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-6 text-center text-slate-500 text-sm bg-backdrop border-t border-white/10">
+      © <span id="year"></span> PiWeb. Built in Switzerland
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+      // Three.js wireframe
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 1, 1000);
+      camera.position.z = 55;
+      const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('meshCanvas'), alpha:true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      const geo = new THREE.IcosahedronGeometry(20,1);
+      const mat = new THREE.MeshBasicMaterial({ color:0x00e0ff, wireframe:true, transparent:true, opacity:0.15 });
+      const mesh = new THREE.Mesh(geo, mat);
+      scene.add(mesh);
+      (function anim(){ requestAnimationFrame(anim); mesh.rotation.x+=0.002; mesh.rotation.y+=0.003; renderer.render(scene,camera); })();
+      window.addEventListener('resize', ()=>{
+        camera.aspect = window.innerWidth/window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      // Utilities
+      document.getElementById('year').textContent = new Date().getFullYear();
+      document.getElementById('themeToggle').addEventListener('click', ()=> document.documentElement.classList.toggle('dark'));
+      const hb = document.getElementById('hamburger'), mm = document.getElementById('mobileMenu');
+      hb.addEventListener('click', ()=> mm.classList.toggle('translate-x-full'));
+      mm.addEventListener('click', e=> e.target.tagName==='A' && mm.classList.add('translate-x-full'));
+      VanillaTilt.init(document.querySelectorAll('.tilt'), { max:8, speed:400, glare:true, 'max-glare':0.2 });
+    </script>
+  </body>
+</html>
