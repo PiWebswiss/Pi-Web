@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>PiWeb • AI-Driven Portfolio</title>
+    <title>Louis Cavaleri • AI-Driven Portfolio</title>
 
     <!-- Google Font – Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -63,22 +63,35 @@
   </head>
 
   <body class="bg-backdrop text-white noise font-sans">
-    <!-- NAVBAR -->
     <header class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-backdrop/70 border-b border-white/10">
-      <div class="max-w-7xl mx-auto flex items-center justify-between h-14 px-4">
-        <a href="#home" class="text-2xl font-bold bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3 bg-clip-text text-transparent">
-          PiWeb
+      <div class="relative max-w-7xl mx-auto flex items-center justify-between h-14 px-4">
+        
+        <!-- Logo left -->
+        <a href="#home" class="flex items-center">
+          <img src="new_logo.svg" alt="Logo" class="h-8 w-auto">
+          <span class="sr-only">Home</span>
         </a>
-        <nav class="hidden md:flex gap-8 text-sm font-medium">
+        
+        <!-- Nav center absolutely -->
+        <nav class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8 text-sm font-medium">
           <a href="#projects" class="hover:text-neon-1">Projects</a>
           <a href="#about" class="hover:text-neon-2">About</a>
           <a href="#contact" class="hover:text-neon-3">Contact</a>
         </nav>
+        
+        <!-- Icons right -->
         <div class="flex items-center gap-4">
-          <button id="themeToggle" class="text-xl hover:text-neon-1"><i class="fas fa-moon"></i></button>
-          <button id="hamburger" class="md:hidden text-xl hover:text-neon-2"><i class="fas fa-bars"></i></button>
+          <button id="themeToggle" class="text-xl hover:text-neon-1" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button id="hamburger" class="md:hidden text-xl hover:text-neon-2" aria-label="Open menu">
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
+
       </div>
+
+      <!-- Mobile menu -->
       <nav id="mobileMenu" class="fixed inset-0 bg-backdrop flex flex-col items-center justify-center gap-10 text-lg transform translate-x-full transition-transform md:hidden">
         <a href="#projects" class="hover:text-neon-1">Projects</a>
         <a href="#about" class="hover:text-neon-2">About</a>
@@ -92,14 +105,16 @@
       <div class="max-w-3xl mx-auto relative z-10">
         <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight">
           <span class="bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3 bg-clip-text text-transparent">
-            AI-Ready
-          </span><br>Solutions.
+            Driven to Grow
+            </span><br>
+            in a Digital World<br>
+            with AI.
         </h1>
         <p class="mt-6 text-lg text-slate-300">
-          I’m <span class="font-semibold">Pi</span> – crafting performant edge-AI apps and infrastructure.
+          <span class="font-semibold">Louis Cavaleri</span> - Portfolio website 
         </p>
         <a href="#projects" class="mt-10 inline-flex items-center gap-3 px-8 py-3 rounded-full bg-neon-1 text-backdrop font-semibold shadow-lg hover:scale-105 transition-transform">
-          Explore Work <i class="fas fa-arrow-down"></i>
+          Explore my Work <i class="fas fa-arrow-down"></i>
         </a>
       </div>
     </section>
@@ -184,14 +199,15 @@
         <img src="EPFL Extension School Louis Cavaleri.jpeg" alt="Working" class="rounded-3xl shadow-lg tilt"/>
         <div>
           <h2 class="text-4xl font-bold mb-6 bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3 bg-clip-text text-transparent">
-            Who Am I?
+            I’m
           </h2>
           <p class="text-slate-300 mb-4">
-            Swiss IT student doing a CFC in IT with an harvard CS50x certifacte in introdunction to Computer Science and a EPFL certifacte.
+            Swiss IT student pursuing a CFC in IT, with a Harvard CS50x certificate in Introduction to Computer Science and an EPFL certificate in Applied Data Science and Machine Learning.
           </p>
           <p class="text-slate-300">
-            Off script, inline-skating around Lausanne or prototyping the next side-project.
+            Off-script, you’ll find me inline-skating around Lausanne or prototyping my next side project.
           </p>
+
         </div>
       </div>
     </section>
