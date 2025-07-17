@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>NAME • AI-Driven Portfolio</title>
+
+    <!-- Google Font – Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          fontFamily: { sans: ['Space Grotesk','sans-serif'] },
+          extend: {
+            colors: {
+              backdrop: '#0d1117',
+              neon: { 1: '#00e0ff', 2: '#ff00f7', 3: '#ffbe0b' }
+            },
+            animation: { 'bg-slow': 'gradient 15s ease infinite' },
+            keyframes: {
+              gradient: {
+                '0%,100%': { 'background-size':'200% 200%','background-position':'left center' },
+                '50%':     { 'background-size':'200% 200%','background-position':'right center' }
+              }
+            }
+          }
+        }
+      };
+    </script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
+
+    <!-- Three.js for hero -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <!-- VanillaTilt for cards -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+    <!-- Load our module last -->
+    <script type="module" src="main.js"></script>
+
+    <style>
+      /* Noise overlay */
+      .noise::before {
+        content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+        opacity:.08;background-image:url("data:image/png;base64,iVBOR...");
+      }
+      /* Hero canvas */
+      #meshCanvas {
+        position:absolute;inset:0;z-index:-1;
+      }
+    </style>
+    <!-- Load our module last -->
+    <script type="module" src="main.js"></script>
+    
+  </head>
+
+  <body class="bg-backdrop text-white noise font-sans"></body>
+</html>
