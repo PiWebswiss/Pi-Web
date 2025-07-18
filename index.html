@@ -1,31 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="description" content="Custom-made AI models & website. Check my latest web site build.">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="rgb(1, 1, 13)"/>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta name="description"
+      content="My AI portfolio website: real-time object detection on Raspberry Pi, Hailo model compilation guides, fossil image classification, and browser-run OCR.">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="script.js"></script>
-    <title data-translate-text="title">Pi Web - Custom-made website & web app</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="./piweb_logo/logo-2.webp" type="image/x-icon">
-</head>
+    <title>Louis Cavaleri • Portfolio</title>
+    <!-- LOGO -->
+    <link rel="icon" href="hexagon_ring.svg" type="image/x-icon">
 
-<body>
-    <header>
-        <div id="header-hero"></div>
-    </header>
+    <!-- Google Font – Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet" />
 
-    <main>
-        <div id="container-image"></div>
-        <div id="container-EPFL"></div>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          fontFamily: { sans: ['Space Grotesk', 'sans-serif'] },
+          extend: {
+            colors: {
+              backdrop: '#0d1117',
+              neon: { 1: '#00e0ff', 2: '#ff00f7', 3: '#ffbe0b' },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous" />
+
+    <!-- Three-JS & Vanilla-Tilt -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+
+    <!--  Costum CSS -->
+    <link defer rel="stylesheet" href="style.css">
+
+  </head>
+
+  <body class="bg-backdrop text-white noise font-sans">
+    <!-- =============== HEADER =============== -->
+    <header
+      class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-backdrop/70 border-b border-white/10">
+      <div
+        class="relative max-w-7xl mx-auto flex items-center justify-between h-14 px-4">
+        <!-- Logo -->
+        <a href="#home" class="flex items-center">
+          <img src="logo_v3.svg" alt="Logo" class="h-8 w-auto" />
+          <span class="sr-only">Home</span>
+        </a>
+
+        <!-- Nav -->
+        <nav
+          class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8 text-xl font-medium">
+          <a href="#projects" data-i18n="navProjects" class="hover:text-neon-1">Projects</a>
+          <a href="#about" data-i18n="navAbout" class="hover:text-neon-2">About</a>
+          <a href="#contact" data-i18n="navContact" class="hover:text-neon-3">Contact</a>
+        </nav>
+
+        <!-- Main content wrapper -->
+        <main>
+
+          <!-- Icons & Lang -->
+          <div class="flex items-center gap-4">
+            <button id="hamburger" type="button"
+                    class="md:hidden text-xl hover:text-neon-2" aria-label="Open menu">
+              <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- FR | EN pill -->
+            <button id="langToggle" type="button" aria-label="Toggle language"
+                    class="relative inline-flex items-center justify-center
+                          h-9 px-6 rounded-full border border-white/25
+                          text-sm font-bold uppercase tracking-wide
+                          transition hover:border-neon-3 hover:text-neon-3
+                          focus:outline-none focus:ring-2 focus:ring-neon-3/50">
+                FR
+              </button>
+            </div>
+          </div>
+
+        <!-- Mobile menu -->
+        <nav id="mobileMenu"
+            class="fixed inset-0 bg-backdrop flex flex-col items-center
+                    justify-center gap-10 text-lg transform translate-x-full
+                    transition-transform md:hidden">
+          <a href="#projects" data-i18n="navProjects" class="hover:text-neon-1">Projects</a>
+          <a href="#about" data-i18n="navAbout"    class="hover:text-neon-2">About</a>
+          <a href="#contact" data-i18n="navContact"  class="hover:text-neon-3">Contact</a>
+        </nav>
+      </header>
+
+      <!-- =============== HERO =============== -->
+      <section id="home"
+              class="relative flex items-center justify-center min-h-screen
+                      text-center px-4 pt-14 overflow-hidden">
+        <canvas id="meshCanvas"></canvas>
+        <div class="max-w-3xl mx-auto relative z-10">
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight">
+            <span
+              class="bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3
+                    bg-clip-text text-transparent"
+              data-i18n="heroLine1">Passionate about</span><br />
+            <span data-i18n="heroLine2">a Digital World</span><br />
+            <span data-i18n="heroLine3">with AI.</span>
+          </h1>
+          <p class="mt-6 text-lg text-slate-300">
+            <span class="font-semibold">Louis Cavaleri</span> -
+            <span data-i18n="portfolioLabel">Portfolio website</span>
+          </p>
+          <a href="#projects"
+            class="mt-10 inline-flex items-center gap-3 px-8 py-3 rounded-full
+                    bg-neon-1 text-backdrop font-semibold shadow-lg
+                    hover:scale-105 transition-transform">
+            <span data-i18n="explore">Explore my Work</span>
+            <i class="fas fa-arrow-down"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- =============== PROJECTS =============== -->
+      <section id="projects" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="projectsHeading"
+              class="text-4xl md:text-5xl font-bold text-center mb-12">
+            Selected Projects
+          </h2>
+          <div id="projectsGrid"
+              class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"></div>
+        </div>
+      </section>
+
+      <!-- =============== ABOUT =============== -->
+      <section id="about" class="py-24 bg-backdrop/50">
+        <div
+          class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
+          <img src="image EPFL Extension School.jpeg"
+              alt="Louis working"
+              class="rounded-3xl shadow-lg tilt" />
+          <div>
+            <h2 class="text-4xl font-bold mb-6
+                      bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3
+                      bg-clip-text text-transparent"
+                data-i18n="aboutHeading">I'm</h2>
+            <p class="text-slate-300 mb-4 text-justify"
+              data-i18n="aboutP1">
+              Swiss IT student pursuing a CFC in IT, with a Harvard CS50x
+              certificate and an EPFL certificate in Data Science & ML.
+            </p>
+            <p class="text-slate-300 text-justify"
+              data-i18n="aboutP2">
+              Off-script you'll find me inline-skating around Lausanne or
+              prototyping my next side-project.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============== CONTACT =============== -->
+      <section id="contact" class="py-24 bg-backdrop/70">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+
+          <!-- Heading -->
+          <h2
+            id="contactHeading"
+            class="text-4xl font-bold text-center mb-12
+                  bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3
+                  bg-clip-text text-transparent"
+            data-i18n="contactHeading"
+          >
+            Get in touch
+          </h2>
+
+          <!-- Responsive grid: 1 col on mobile, 2 cols on md+ -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 place-items-center">
+
+            <!-- Logo -->
+            <div>
+              <img
+                src="logo_v3.svg"
+                alt="PiWeb logo"
+                class="h-32 md:h-40"
+              />
+            </div>
+
+            <!-- Contact List -->
+            <ul class="space-y-8 text-lg">
+              <li class="flex items-center gap-4">
+                <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <a href="mailto:pi.web@piweb.ch" class="underline hover:text-neon-1">
+                  pi.web@piweb.ch
+                </a>
+              </li>
+              <li class="flex items-center gap-4">
+                <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
+                  <i class="fab fa-github"></i>
+                </span>
+                <a href="https://github.com/PiWebswiss" target="_blank" class="underline hover:text-neon-1">
+                  github.com/PiWebswiss
+                </a>
+              </li>
+              <li class="flex items-center gap-4">
+                <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
+                  <i class="fab fa-linkedin-in"></i>
+                </span>
+                <a href="https://linkedin.com/in/pilink" target="_blank" class="underline hover:text-neon-1">
+                  linkedin.com/in/pilink
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </section>
     </main>
-    
-    <footer>
-        <div id="footer"></div>
-        <div id="footer-copyright" class="padding center"></div>
+
+    <!-- =============== FOOTER =============== -->
+    <footer
+      class="py-6 text-center text-slate-500 text-sm bg-backdrop border-t border-white/10">
+      © <span id="year"></span> PiWeb. <span data-i18n="footerNote">Built in Switzerland</span>
     </footer>
-    
-</body>
+
+  </body>
 </html>
