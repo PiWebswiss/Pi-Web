@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
+    <meta name="description"
+      content="My AI portfolio website: real-time object detection on Raspberry Pi, Hailo model compilation guides, fossil image classification, and browser-run OCR.">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Louis Ca • AI‑Driven Portfolio</title>
+    <script defer src="script.js"></script>
+    <title>Louis Cavaleri • Portfolio</title>
+    <!-- LOGO -->
+    <link rel="icon" href="hexagon_ring.svg" type="image/x-icon">
 
     <!-- Google Font – Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,29 +40,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       crossorigin="anonymous" />
 
-    <!-- Three‑JS & Vanilla‑Tilt -->
+    <!-- Three-JS & Vanilla-Tilt -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
 
-    <style>
-      /* Grain overlay */
-      .noise::before {
-        content: '';
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 50;
-        opacity: 0.07;
-        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4////fwAJ+wP7vi6nuQAAAABJRU5ErkJggg==')
-          repeat;
-      }
-      /* Hero canvas */
-      #meshCanvas {
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-      }
-    </style>
+    <!--  Costum CSS -->
+    <link defer rel="stylesheet" href="style.css">
+
   </head>
 
   <body class="bg-backdrop text-white noise font-sans">
@@ -68,172 +57,176 @@
         class="relative max-w-7xl mx-auto flex items-center justify-between h-14 px-4">
         <!-- Logo -->
         <a href="#home" class="flex items-center">
-          <img src="new_logo.svg" alt="Logo" class="h-8 w-auto" />
+          <img src="logo_v3.svg" alt="Logo" class="h-8 w-auto" />
           <span class="sr-only">Home</span>
         </a>
 
         <!-- Nav -->
         <nav
-          class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8 text-sm font-medium">
+          class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8 text-xl font-medium">
           <a href="#projects" data-i18n="navProjects" class="hover:text-neon-1">Projects</a>
-          <a href="#about"    data-i18n="navAbout"    class="hover:text-neon-2">About</a>
-          <a href="#contact"  data-i18n="navContact"  class="hover:text-neon-3">Contact</a>
+          <a href="#about" data-i18n="navAbout" class="hover:text-neon-2">About</a>
+          <a href="#contact" data-i18n="navContact" class="hover:text-neon-3">Contact</a>
         </nav>
 
-        <!-- Icons & Lang -->
-        <div class="flex items-center gap-4">
-          <button id="hamburger" type="button"
-                  class="md:hidden text-xl hover:text-neon-2" aria-label="Open menu">
-            <i class="fas fa-bars"></i>
-          </button>
+        <!-- Main content wrapper -->
+        <main>
 
-          <!-- FR | EN pill -->
-          <button id="langToggle" type="button" aria-label="Toggle language"
-                  class="relative inline-flex items-center justify-center
-                         h-9 px-6 rounded-full border border-white/25
-                         text-sm font-bold uppercase tracking-wide
-                         transition hover:border-neon-3 hover:text-neon-3
-                         focus:outline-none focus:ring-2 focus:ring-neon-3/50">
-            FR
-          </button>
-        </div>
-      </div>
+          <!-- Icons & Lang -->
+          <div class="flex items-center gap-4">
+            <button id="hamburger" type="button"
+                    class="md:hidden text-xl hover:text-neon-2" aria-label="Open menu">
+              <i class="fas fa-bars"></i>
+            </button>
 
-      <!-- Mobile menu -->
-      <nav id="mobileMenu"
-           class="fixed inset-0 bg-backdrop flex flex-col items-center
-                  justify-center gap-10 text-lg transform translate-x-full
-                  transition-transform md:hidden">
-        <a href="#projects" data-i18n="navProjects" class="hover:text-neon-1">Projects</a>
-        <a href="#about"    data-i18n="navAbout"    class="hover:text-neon-2">About</a>
-        <a href="#contact"  data-i18n="navContact"  class="hover:text-neon-3">Contact</a>
-      </nav>
-    </header>
+            <!-- FR | EN pill -->
+            <button id="langToggle" type="button" aria-label="Toggle language"
+                    class="relative inline-flex items-center justify-center
+                          h-9 px-6 rounded-full border border-white/25
+                          text-sm font-bold uppercase tracking-wide
+                          transition hover:border-neon-3 hover:text-neon-3
+                          focus:outline-none focus:ring-2 focus:ring-neon-3/50">
+                FR
+              </button>
+            </div>
+          </div>
 
-    <!-- =============== HERO =============== -->
-    <section id="home"
-             class="relative flex items-center justify-center min-h-screen
-                    text-center px-4 pt-14 overflow-hidden">
-      <canvas id="meshCanvas"></canvas>
-      <div class="max-w-3xl mx-auto relative z-10">
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight">
-          <span
-            class="bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3
-                   bg-clip-text text-transparent"
-            data-i18n="heroLine1">Driven to Grow</span><br />
-          <span data-i18n="heroLine2">in a Digital World</span><br />
-          <span data-i18n="heroLine3">with AI.</span>
-        </h1>
-        <p class="mt-6 text-lg text-slate-300">
-          <span class="font-semibold">Louis Ca</span> –
-          <span data-i18n="portfolioLabel">Portfolio website</span>
-        </p>
-        <a href="#projects"
-           class="mt-10 inline-flex items-center gap-3 px-8 py-3 rounded-full
-                  bg-neon-1 text-backdrop font-semibold shadow-lg
-                  hover:scale-105 transition-transform">
-          <span data-i18n="explore">Explore my Work</span>
-          <i class="fas fa-arrow-down"></i>
-        </a>
-      </div>
-    </section>
+        <!-- Mobile menu -->
+        <nav id="mobileMenu"
+            class="fixed inset-0 bg-backdrop flex flex-col items-center
+                    justify-center gap-10 text-lg transform translate-x-full
+                    transition-transform md:hidden">
+          <a href="#projects" data-i18n="navProjects" class="hover:text-neon-1">Projects</a>
+          <a href="#about" data-i18n="navAbout"    class="hover:text-neon-2">About</a>
+          <a href="#contact" data-i18n="navContact"  class="hover:text-neon-3">Contact</a>
+        </nav>
+      </header>
 
-    <!-- =============== PROJECTS =============== -->
-    <section id="projects" class="py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="projectsHeading"
-            class="text-4xl md:text-5xl font-bold text-center mb-12">
-          Selected Projects
-        </h2>
-        <div id="projectsGrid"
-             class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"></div>
-      </div>
-    </section>
-
-    <!-- =============== ABOUT =============== -->
-    <section id="about" class="py-24 bg-backdrop/50">
-      <div
-        class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
-        <img src="image EPFL Extension School.jpeg"
-             alt="Louis working"
-             class="rounded-3xl shadow-lg tilt" />
-        <div>
-          <h2 class="text-4xl font-bold mb-6
-                     bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3
-                     bg-clip-text text-transparent"
-              data-i18n="aboutHeading">I’m</h2>
-          <p class="text-slate-300 mb-4"
-             data-i18n="aboutP1">
-            Swiss IT student pursuing a CFC in IT, with a Harvard CS50x
-            certificate and an EPFL certificate in Data Science & ML.
+      <!-- =============== HERO =============== -->
+      <section id="home"
+              class="relative flex items-center justify-center min-h-screen
+                      text-center px-4 pt-14 overflow-hidden">
+        <canvas id="meshCanvas"></canvas>
+        <div class="max-w-3xl mx-auto relative z-10">
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight">
+            <span
+              class="bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3
+                    bg-clip-text text-transparent"
+              data-i18n="heroLine1">Passionate about</span><br />
+            <span data-i18n="heroLine2">a Digital World</span><br />
+            <span data-i18n="heroLine3">with AI.</span>
+          </h1>
+          <p class="mt-6 text-lg text-slate-300">
+            <span class="font-semibold">Louis Cavaleri</span> -
+            <span data-i18n="portfolioLabel">Portfolio website</span>
           </p>
-          <p class="text-slate-300"
-             data-i18n="aboutP2">
-            Off‑script you’ll find me inline‑skating around Lausanne or
-            prototyping my next side‑project.
-          </p>
+          <a href="#projects"
+            class="mt-10 inline-flex items-center gap-3 px-8 py-3 rounded-full
+                    bg-neon-1 text-backdrop font-semibold shadow-lg
+                    hover:scale-105 transition-transform">
+            <span data-i18n="explore">Explore my Work</span>
+            <i class="fas fa-arrow-down"></i>
+          </a>
         </div>
-      </div>
-    </section>
+      </section>
 
-<!-- =============== CONTACT =============== -->
-<section id="contact" class="py-24 bg-backdrop/70">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+      <!-- =============== PROJECTS =============== -->
+      <section id="projects" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="projectsHeading"
+              class="text-4xl md:text-5xl font-bold text-center mb-12">
+            Selected Projects
+          </h2>
+          <div id="projectsGrid"
+              class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3"></div>
+        </div>
+      </section>
 
-    <!-- Heading -->
-    <h2
-      id="contactHeading"
-      class="text-4xl font-bold text-center mb-12
-             bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3
-             bg-clip-text text-transparent"
-      data-i18n="contactHeading"
-    >
-      Get in touch
-    </h2>
+      <!-- =============== ABOUT =============== -->
+      <section id="about" class="py-24 bg-backdrop/50">
+        <div
+          class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
+          <img src="image EPFL Extension School.jpeg"
+              alt="Louis working"
+              class="rounded-3xl shadow-lg tilt" />
+          <div>
+            <h2 class="text-4xl font-bold mb-6
+                      bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3
+                      bg-clip-text text-transparent"
+                data-i18n="aboutHeading">I'm</h2>
+            <p class="text-slate-300 mb-4 text-justify"
+              data-i18n="aboutP1">
+              Swiss IT student pursuing a CFC in IT, with a Harvard CS50x
+              certificate and an EPFL certificate in Data Science & ML.
+            </p>
+            <p class="text-slate-300 text-justify"
+              data-i18n="aboutP2">
+              Off-script you'll find me inline-skating around Lausanne or
+              prototyping my next side-project.
+            </p>
+          </div>
+        </div>
+      </section>
 
-    <!-- Responsive grid: 1 col on mobile, 2 cols on md+ -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 place-items-center">
+      <!-- =============== CONTACT =============== -->
+      <section id="contact" class="py-24 bg-backdrop/70">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
 
-      <!-- Logo -->
-      <div>
-        <img
-          src="new_logo.svg"
-          alt="PiWeb logo"
-          class="h-32 md:h-40"
-        />
-      </div>
+          <!-- Heading -->
+          <h2
+            id="contactHeading"
+            class="text-4xl font-bold text-center mb-12
+                  bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3
+                  bg-clip-text text-transparent"
+            data-i18n="contactHeading"
+          >
+            Get in touch
+          </h2>
 
-      <!-- Contact List -->
-      <ul class="space-y-8 text-lg">
-        <li class="flex items-center gap-4">
-          <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
-            <i class="fas fa-envelope"></i>
-          </span>
-          <a href="mailto:pi.web@piweb.ch" class="underline hover:text-neon-1">
-            pi.web@piweb.ch
-          </a>
-        </li>
-        <li class="flex items-center gap-4">
-          <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
-            <i class="fab fa-github"></i>
-          </span>
-          <a href="https://github.com/PiWebswiss" target="_blank" class="underline hover:text-neon-1">
-            github.com/PiWebswiss
-          </a>
-        </li>
-        <li class="flex items-center gap-4">
-          <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
-            <i class="fab fa-linkedin-in"></i>
-          </span>
-          <a href="https://linkedin.com/in/pilink" target="_blank" class="underline hover:text-neon-1">
-            linkedin.com/in/pilink
-          </a>
-        </li>
-      </ul>
+          <!-- Responsive grid: 1 col on mobile, 2 cols on md+ -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 place-items-center">
 
-    </div>
-  </div>
-</section>
+            <!-- Logo -->
+            <div>
+              <img
+                src="logo_v3.svg"
+                alt="PiWeb logo"
+                class="h-32 md:h-40"
+              />
+            </div>
+
+            <!-- Contact List -->
+            <ul class="space-y-8 text-lg">
+              <li class="flex items-center gap-4">
+                <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <a href="mailto:pi.web@piweb.ch" class="underline hover:text-neon-1">
+                  pi.web@piweb.ch
+                </a>
+              </li>
+              <li class="flex items-center gap-4">
+                <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
+                  <i class="fab fa-github"></i>
+                </span>
+                <a href="https://github.com/PiWebswiss" target="_blank" class="underline hover:text-neon-1">
+                  github.com/PiWebswiss
+                </a>
+              </li>
+              <li class="flex items-center gap-4">
+                <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
+                  <i class="fab fa-linkedin-in"></i>
+                </span>
+                <a href="https://linkedin.com/in/pilink" target="_blank" class="underline hover:text-neon-1">
+                  linkedin.com/in/pilink
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- =============== FOOTER =============== -->
     <footer
@@ -241,221 +234,5 @@
       © <span id="year"></span> PiWeb. <span data-i18n="footerNote">Built in Switzerland</span>
     </footer>
 
-    <!-- =============== SCRIPTS =============== -->
-    <script>
-      /********** 1. DATA **********/
-      /* Project arrays */
-      const projectsEN = [
-        {
-          title: 'Pi5 AI Object‑Detection App',
-          desc:  'Real‑time object detection on an edge device served via FastAPI.',
-          href:  'https://github.com/PiWebswiss/raspberry_PI5_hailo_web_app',
-          img:   'ai-kit.jpg',
-          alt:   'Pi AI',
-          label: 'View Code',
-        },
-        {
-        title: 'Colab Guide to Compile a Hailo Model',
-        desc:  'Step-by-step guide to make your custom YOLO model compatible with the Hailo AI chip.',
-        href:  'https://drive.google.com/file/d/14KJ9gjgsY45bcO4u3Kfz8vbZCTnk20CO/view?usp=sharing',
-        img:   'colab_image.png',
-        alt:   'Colab Guide',
-        label: 'View Guide'
-        },
-        {
-          title: 'Fossil Image Classifier',
-          desc:  'CNN that tags fossil fragments from excavation photos to speed up cataloguing.',
-          href:  'https://github.com/PiWebswiss/fossil-classifier',
-          img:   'image/AI fossil.webp',
-          alt:   'Fossil Classifier',
-          label: 'View Code',
-        },
-        {
-          title: 'Edge‑OCR Microservice',
-          desc:  'Browser‑run OCR powered by Tesseract‑WASM — privacy‑first, no server round‑trip.',
-          href:  'web-OCR/index.html',
-          img:   'web-OCR/static/image/DALL·E-logo.webp',
-          alt:   'Edge OCR',
-          label: 'View Code',
-        },
-      ];
-
-      const projectsFR = [
-        {
-          title: 'Application de détection d’objets Pi5 AI',
-          desc:  'Détection d’objets en temps réel sur un périphérique Edge, servie par FastAPI.',
-          href:  'https://github.com/PiWebswiss/raspberry_PI5_hailo_web_app',
-          img:   'ai-kit.jpg',
-          alt:   'Pi AI',
-          label: 'Voir le code',
-        },
-        {
-        title: 'Guide Colab pour compiler un modèle Hailo',
-        desc:  'Guide étape par étape pour rendre votre modèle YOLO personnalisé compatible avec la puce Hailo AI.',
-        href:  'https://drive.google.com/file/d/14KJ9gjgsY45bcO4u3Kfz8vbZCTnk20CO/view?usp=sharing',
-        img:   'colab_image.png',
-        alt:   'Guide Colab',
-        label: 'Voir le guide'
-        },
-        {
-          title: 'Classificateur d’images de fossiles',
-          desc:  'CNN pour taguer des fragments de fossiles et accélérer le catalogage.',
-          href:  'https://github.com/PiWebswiss/fossil-classifier',
-          img:   'image/AI fossil.webp',
-          alt:   'Classificateur de fossiles',
-          label: 'Voir le code',
-        },
-        {
-          title: 'Micro‑service OCR Edge',
-          desc:  'OCR côté navigateur grâce à Tesseract‑WASM — respect de la vie privée.',
-          href:  'web-OCR/index.html',
-          img:   'web-OCR/static/image/DALL·E-logo.webp',
-          alt:   'Edge OCR',
-          label: 'Voir le code',
-        },
-      ];
-
-      /* i18n dictionary */
-      const t = {
-        en: {
-          navProjects:     'Projects',
-          navAbout:        'About',
-          navContact:      'Contact',
-          heroLine1:       'Driven to Grow',
-          heroLine2:       'in a Digital World',
-          heroLine3:       'with AI.',
-          explore:         'Explore my Work',
-          portfolioLabel:  'Portfolio website',
-          selectedProjects:'Selected Projects',
-          aboutHeading:    'I’m',
-          aboutP1:         'Swiss IT student pursuing a CFC in IT, with a Harvard CS50x certificate and an EPFL certificate in Data Science & ML.',
-          aboutP2:         'Off‑script you’ll find me inline‑skating around Lausanne or prototyping my next side‑project.',
-          contactHeading:  'Get in touch',
-          footerNote:      'Built in Switzerland',
-          langBtn:         'FR',
-        },
-        fr: {
-          navProjects:     'Projets',
-          navAbout:        'À propos',
-          navContact:      'Contact',
-          heroLine1:       'Poussé à grandir',
-          heroLine2:       'dans un monde numérique',
-          heroLine3:       'avec l’IA.',
-          explore:         'Découvrir mon travail',
-          portfolioLabel:  'Site portfolio',
-          selectedProjects:'Projets sélectionnés',
-          aboutHeading:    'Je suis',
-          aboutP1:         'Étudiant suisse en informatique CFC, titulaire d’un certificat Harvard CS50x et d’un certificat EPFL en science des données et ML.',
-          aboutP2:         'Hors écrans, on me trouve en roller autour de Lausanne ou en train de prototyper un nouveau projet.',
-          contactHeading:  'Contactez‑moi',
-          footerNote:      'Réalisé en Suisse',
-          langBtn:         'EN',
-        },
-      };
-
-      /********** 2. HELPER (vanilla JSX‑ish) **********/
-      function h(tag, attrs = {}, children = []) {
-        const el = document.createElement(tag);
-        for (const [k, v] of Object.entries(attrs)) {
-          if (k.startsWith('on')) {
-            el.addEventListener(k.slice(2).toLowerCase(), v);
-          } else if (v !== null) {
-            el.setAttribute(k, v);
-          }
-        }
-        (Array.isArray(children) ? children : [children]).forEach(c => {
-          if (c != null) el.append(c.nodeType ? c : document.createTextNode(c));
-        });
-        return el;
-      }
-
-      /********** 3. RENDERERS **********/
-      function renderProjects(lang) {
-        const data = lang === 'fr' ? projectsFR : projectsEN;
-        const grid = document.getElementById('projectsGrid');
-        grid.innerHTML = '';
-        data.forEach(p => {
-          grid.append(
-            h('article',
-              { class: 'group tilt relative rounded-3xl overflow-hidden bg-white/5 p-6 backdrop-blur-lg border border-white/10 shadow-[0_6px_15px_rgba(0,0,0,0.3)]' },
-              [
-                h('a',
-                  { href: p.href, target: '_blank', rel: 'noopener', class: 'block -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-3xl' },
-                  h('img',
-                    { src: p.img, alt: p.alt,
-                      class: 'h-40 w-full object-cover transition-transform duration-300 group-hover:scale-105' })),
-                h('h3', { class: 'text-lg font-semibold mb-2' }, p.title),
-                h('p', { class: 'text-sm text-slate-400 mb-4' }, p.desc),
-                h('a',
-                  { href: p.href, target: '_blank', rel: 'noopener', class: 'inline-flex items-center gap-2 text-neon-1 hover:text-neon-2' },
-                  [ p.label, h('i', { class: 'fas fa-arrow-up-right-from-square text-xs' }) ]),
-              ]));
-        });
-        VanillaTilt.init(document.querySelectorAll('.tilt'), {
-          max: 8, speed: 400, glare: true, 'max-glare': 0.2,
-        });
-      }
-
-      function applyTranslations(lang) {
-        const dict = t[lang];
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          if (dict[key]) el.textContent = dict[key];
-        });
-        document.getElementById('projectsHeading').textContent =
-          dict.selectedProjects;
-        document.getElementById('langToggle').textContent = dict.langBtn;
-        renderProjects(lang);
-      }
-
-      /********** 4. BOOTSTRAP **********/
-      /* hero mesh */
-      const scene   = new THREE.Scene();
-      const camera  = new THREE.PerspectiveCamera(60,
-                        window.innerWidth / window.innerHeight, 1, 1000);
-      camera.position.z = 55;
-      const renderer = new THREE.WebGLRenderer({
-        canvas: document.getElementById('meshCanvas'), alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(window.devicePixelRatio);
-      const geo  = new THREE.IcosahedronGeometry(20, 1);
-      const mat  = new THREE.MeshBasicMaterial({
-        color: 0x00e0ff, wireframe: true, transparent: true, opacity: 0.15 });
-      scene.add(new THREE.Mesh(geo, mat));
-      (function anim () {
-        requestAnimationFrame(anim);
-        scene.children[0].rotation.x += 0.002;
-        scene.children[0].rotation.y += 0.003;
-        renderer.render(scene, camera);
-      })();
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-
-      /* utilities */
-      document.getElementById('year').textContent =
-        new Date().getFullYear();
-
-      const hb = document.getElementById('hamburger'),
-            mm = document.getElementById('mobileMenu');
-      hb.addEventListener('click', () =>
-        mm.classList.toggle('translate-x-full'));
-      mm.addEventListener('click', e => {
-        if (e.target.tagName === 'A')
-          mm.classList.add('translate-x-full');
-      });
-
-      /* language boot + toggle */
-      let lang = localStorage.getItem('lang') || 'en';
-      applyTranslations(lang);
-      document.getElementById('langToggle')
-        .addEventListener('click', () => {
-          lang = lang === 'en' ? 'fr' : 'en';
-          localStorage.setItem('lang', lang);
-          applyTranslations(lang);
-        });
-    </script>
   </body>
 </html>
