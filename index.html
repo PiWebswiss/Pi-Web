@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Louis Cavaleri • AI‑Driven Portfolio</title>
+    <title>Louis Ca • AI‑Driven Portfolio</title>
 
     <!-- Google Font – Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -125,7 +125,7 @@
           <span data-i18n="heroLine3">with AI.</span>
         </h1>
         <p class="mt-6 text-lg text-slate-300">
-          <span class="font-semibold">Louis Cavaleri</span> –
+          <span class="font-semibold">Louis Ca</span> –
           <span data-i18n="portfolioLabel">Portfolio website</span>
         </p>
         <a href="#projects"
@@ -176,45 +176,64 @@
       </div>
     </section>
 
-    <!-- =============== CONTACT =============== -->
-    <section id="contact" class="py-24 bg-backdrop/70">
-      <div class="max-w-lg mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="contactHeading"
-            class="text-4xl font-bold text-center mb-12
-                   bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3
-                   bg-clip-text text-transparent"
-            data-i18n="contactHeading">Get in touch</h2>
-        <ul class="space-y-10 text-lg">
-          <li class="flex items-center gap-6">
-            <span
-              class="flex-shrink-0 w-14 h-14 rounded-full bg-white/10
-                     flex items-center justify-center text-2xl">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <a href="mailto:pi.web@piweb.ch"
-               class="underline hover:text-neon-1">pi.web@piweb.ch</a>
-          </li>
-          <li class="flex items-center gap-6">
-            <span
-              class="flex-shrink-0 w-14 h-14 rounded-full bg-white/10
-                     flex items-center justify-center text-2xl">
-              <i class="fab fa-github"></i>
-            </span>
-            <a href="https://github.com/PiWebswiss" target="_blank"
-               class="underline hover:text-neon-1">github.com/PiWebswiss</a>
-          </li>
-          <li class="flex items-center gap-6">
-            <span
-              class="flex-shrink-0 w-14 h-14 rounded-full bg-white/10
-                     flex items-center justify-center text-2xl">
-              <i class="fab fa-linkedin-in"></i>
-            </span>
-            <a href="https://linkedin.com/in/pilink" target="_blank"
-               class="underline hover:text-neon-1">linkedin.com/in/pilink</a>
-          </li>
-        </ul>
+<!-- =============== CONTACT =============== -->
+<section id="contact" class="py-24 bg-backdrop/70">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+
+    <!-- Heading -->
+    <h2
+      id="contactHeading"
+      class="text-4xl font-bold text-center mb-12
+             bg-gradient-to-r from-neon-1 via-neon-2 to-neon-3
+             bg-clip-text text-transparent"
+      data-i18n="contactHeading"
+    >
+      Get in touch
+    </h2>
+
+    <!-- Responsive grid: 1 col on mobile, 2 cols on md+ -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 place-items-center">
+
+      <!-- Logo -->
+      <div>
+        <img
+          src="new_logo.svg"
+          alt="PiWeb logo"
+          class="h-32 md:h-40"
+        />
       </div>
-    </section>
+
+      <!-- Contact List -->
+      <ul class="space-y-8 text-lg">
+        <li class="flex items-center gap-4">
+          <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <a href="mailto:pi.web@piweb.ch" class="underline hover:text-neon-1">
+            pi.web@piweb.ch
+          </a>
+        </li>
+        <li class="flex items-center gap-4">
+          <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
+            <i class="fab fa-github"></i>
+          </span>
+          <a href="https://github.com/PiWebswiss" target="_blank" class="underline hover:text-neon-1">
+            github.com/PiWebswiss
+          </a>
+        </li>
+        <li class="flex items-center gap-4">
+          <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-2xl">
+            <i class="fab fa-linkedin-in"></i>
+          </span>
+          <a href="https://linkedin.com/in/pilink" target="_blank" class="underline hover:text-neon-1">
+            linkedin.com/in/pilink
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</section>
 
     <!-- =============== FOOTER =============== -->
     <footer
@@ -234,6 +253,14 @@
           img:   'ai-kit.jpg',
           alt:   'Pi AI',
           label: 'View Code',
+        },
+        {
+        title: 'Colab Guide to Compile a Hailo Model',
+        desc:  'Step-by-step guide to make your custom YOLO model compatible with the Hailo AI chip.',
+        href:  'https://drive.google.com/file/d/14KJ9gjgsY45bcO4u3Kfz8vbZCTnk20CO/view?usp=sharing',
+        img:   'colab_image.png',
+        alt:   'Colab Guide',
+        label: 'View Guide'
         },
         {
           title: 'Fossil Image Classifier',
@@ -261,6 +288,14 @@
           img:   'ai-kit.jpg',
           alt:   'Pi AI',
           label: 'Voir le code',
+        },
+        {
+        title: 'Guide Colab pour compiler un modèle Hailo',
+        desc:  'Guide étape par étape pour rendre votre modèle YOLO personnalisé compatible avec la puce Hailo AI.',
+        href:  'https://drive.google.com/file/d/14KJ9gjgsY45bcO4u3Kfz8vbZCTnk20CO/view?usp=sharing',
+        img:   'colab_image.png',
+        alt:   'Guide Colab',
+        label: 'Voir le guide'
         },
         {
           title: 'Classificateur d’images de fossiles',
@@ -310,7 +345,7 @@
           portfolioLabel:  'Site portfolio',
           selectedProjects:'Projets sélectionnés',
           aboutHeading:    'Je suis',
-          aboutP1:         'Étudiant suisse en informatique préparant un CFC, titulaire d’un certificat Harvard CS50x et d’un certificat EPFL en science des données et ML.',
+          aboutP1:         'Étudiant suisse en informatique CFC, titulaire d’un certificat Harvard CS50x et d’un certificat EPFL en science des données et ML.',
           aboutP2:         'Hors écrans, on me trouve en roller autour de Lausanne ou en train de prototyper un nouveau projet.',
           contactHeading:  'Contactez‑moi',
           footerNote:      'Réalisé en Suisse',
