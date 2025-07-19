@@ -18,21 +18,7 @@
       rel="stylesheet" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          fontFamily: { sans: ['Space Grotesk', 'sans-serif'] },
-          extend: {
-            colors: {
-              backdrop: '#0d1117',
-              neon: { 1: '#00e0ff', 2: '#ff00f7', 3: '#ffbe0b' },
-            },
-          },
-        },
-      };
-    </script>
+    <link rel="stylesheet" href="dist/styles.css">
 
     <!-- Font Awesome -->
     <link
@@ -45,11 +31,12 @@
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
 
     <!--  Costum CSS -->
-    <link defer rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="costum_style.css">
 
   </head>
 
   <body class="bg-backdrop text-white noise font-sans">
+    
     <!-- =============== HEADER =============== -->
     <header
       class="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-backdrop/70 border-b border-white/10">
