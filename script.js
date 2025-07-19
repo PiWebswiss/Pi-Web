@@ -135,14 +135,14 @@ function renderProjects(lang) {
         { class: 'group tilt relative rounded-3xl overflow-hidden bg-white/5 p-6 backdrop-blur-lg border border-white/10 shadow-[0_6px_15px_rgba(0,0,0,0.3)]' },
         [
           h('a',
-            { href: p.href, target: '_blank', rel: 'noopener', class: 'block -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-3xl' },
+            { href: p.href, rel: 'noopener', class: 'block -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-3xl' },
             h('img',
               { src: p.img, alt: p.alt,
                 class: 'h-40 w-full object-cover transition-transform duration-300 group-hover:scale-105' })),
           h('h3', { class: 'text-lg font-semibold mb-2' }, p.title),
           h('p', { class: 'text-sm text-slate-400 mb-4' }, p.desc),
           h('a',
-            { href: p.href, target: '_blank', rel: 'noopener', class: 'inline-flex items-center gap-2 text-neon-1 hover:text-neon-2' },
+            { href: p.href, rel: 'noopener', class: 'inline-flex items-center gap-2 text-neon-1 hover:text-neon-2' },
             [ p.label, h('i', { class: 'fas fa-arrow-up-right-from-square text-xs' }) ]),
         ]));
   });
